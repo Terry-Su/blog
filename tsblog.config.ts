@@ -1,10 +1,10 @@
 import path from 'path'
 
-import { PageInfo, TransformedData } from '../tsblog/src/typings'
+import { Config, PageInfo, TransformedData } from '../tsblog/src/typings'
 
 const { resolve } = path
 
-export default {
+const config: Config = {
   siteData: {
     title: 'TSBLOG'
   },
@@ -13,9 +13,12 @@ export default {
     home    : resolve( __dirname, "./src/pages/Home" ),
     getPages,
     setWebpack,
+    tsconfigPath: resolve( __dirname, "tsconfig.json" )
   },
   port: 3602,
 }
+
+export default config
 
 function getPages( transformedData: TransformedData ): PageInfo[] {
   const { remarks, siteData } = transformedData
@@ -44,5 +47,8 @@ function getPages( transformedData: TransformedData ): PageInfo[] {
 
 
 function setWebpack( webpackConfig ) {
-  
+  webpackConfig.resolve.alias = {
+    '@': path.resolve( __dirname, './src' ),
+    '@tsblog': path.resolve( __dirname, '../tsblog/src' ),
+  }
 }

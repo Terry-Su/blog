@@ -1,6 +1,6 @@
 {
-  "include": ["./src/**/*", "./.cache/**/*", "../tsblog/src/**/*"],
-  "exclude": ["node_modules", "../tsblog/src/__test__/**/*"],
+  "include": ["src/**/*", ".cache/**/*", "../tsblog/**/*"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -11,14 +11,14 @@
         "../tsblog/src/*"
       ],
     },
-    "module": "esnext",
-		"target": "es5",
-		"jsx": "react",
+    "module": "commonJS",
+    "target": "es6",
+    "jsx": "react",
     "allowJs": true,
     "sourceMap": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "lib": ["dom" ],
+    "lib": ["dom", "es2016"],
     "esModuleInterop": true,
   }
 }
