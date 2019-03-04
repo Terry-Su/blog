@@ -4,8 +4,17 @@
   "description": "",
   "main": ".eslintrc.js",
   "scripts": {
-    "start": "cross-env DEV=true nodemon --watch contents/**/*,tsblog.config.ts,server.ts,../tsblog/src/**/* --verbose -e ts,tsx,md --exec 'ts-node --project tsconfig.node.json -r tsconfig-paths/register' server",
-    "build": "nodemon --watch contents/**/*,tsblog.config.ts,server.ts,../tsblog/src/**/* --verbose -e ts,tsx,md --exec 'ts-node --project tsconfig.node.json -r tsconfig-paths/register' server"
+    "start": "cross-env DEV=true nodemon --verbose -e ts,tsx,md",
+    "build": "nodemon --verbose -e ts,tsx,md"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "contents/**/*",
+      "tsblog.config.ts",
+      "server.ts",
+      "../tsblog/src/**/*"
+    ],
+    "exec": "ts-node --project tsconfig.node.json -r tsconfig-paths/register server"
   },
   "repository": {
     "type": "git",

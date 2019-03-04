@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
+import AbstractCategory from '@/__typings__/AbstractCategory'
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
+import Category from '@/components/Category/Category'
+import getDefaultData from '@/helpers/getDefaultData'
 import LayoutHome from '@/layouts/LayoutHome'
-import { ARTICLES_SIDEBAR_WIDTH } from '@/styles/STYLES'
+import { STYLE_ARTICLES_SIDEBAR_WIDTH } from '@/styles/STYLES'
 
 class Props extends DefaultComponentProps {}
 
@@ -17,6 +20,7 @@ const Title = styled.h1`
 
 export default class Articles extends Component<Props, State> {
   render() {
+    const category: AbstractCategory = getDefaultData().category
     return (
       <LayoutHome>
         <div style={{
@@ -25,16 +29,14 @@ export default class Articles extends Component<Props, State> {
           height: '100%',
         }}>
           <div style={{
-            width: `${ARTICLES_SIDEBAR_WIDTH}px`,
+            width: `${STYLE_ARTICLES_SIDEBAR_WIDTH}px`,
             height: '100%',
           }}>
-            <ul>
-              <li>Category1</li>
-              <li>Category2</li>
-              <li>Category3</li>
-              <li>Category4</li>
-              <li>Category45</li>
-            </ul>
+            <div>Newest</div>
+            <hr />
+            {
+              category.categories.map( (category, index) => <Category key={index} category={ category } /> )
+            }
           </div>
           <div>
             {

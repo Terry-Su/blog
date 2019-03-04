@@ -15,4 +15,5 @@ export default class AbstractCategory {
   //   Foo
   //     example.md 
   hasRemarks?: boolean
+  remarks?: any
 }

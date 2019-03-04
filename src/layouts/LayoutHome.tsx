@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 import { PATH_HOW_IT_WORKS } from '@/constants/paths'
-import { LAYOUT_HOME_HEADER_HEIGHT } from '@/styles/STYLES.ts'
+import { STYLE_LAYOUT_HOME_HEADER_HEIGHT } from '@/styles/STYLES.ts'
 
 class Props extends DefaultComponentProps {}
 
@@ -21,7 +21,7 @@ export default class LayoutHome extends Component<Props, State> {
         <div
           style={{
             width: "100%",
-            height: `${LAYOUT_HOME_HEADER_HEIGHT}px`
+            height: `${STYLE_LAYOUT_HOME_HEADER_HEIGHT}px`
           }}
         >
           <div
@@ -45,7 +45,7 @@ export default class LayoutHome extends Component<Props, State> {
           >
             {[
               [ "Articles", '/' ],
-              [ "How it works", PATH_HOW_IT_WORKS ],
+              [ "How It Works Series", PATH_HOW_IT_WORKS ],
               [ "About", '/about' ],
              ].map(([ value, path ], index) => (
               <Link
@@ -63,7 +63,7 @@ export default class LayoutHome extends Component<Props, State> {
         <div
           style={{
             width: "100%",
-            height: `calc( 100% - ${LAYOUT_HOME_HEADER_HEIGHT}px )`,
+            height: `calc( 100% - ${STYLE_LAYOUT_HOME_HEADER_HEIGHT}px )`,
           }}
         >
           {...this.props.children}
