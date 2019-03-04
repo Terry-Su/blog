@@ -4,8 +4,8 @@
   "description": "",
   "main": ".eslintrc.js",
   "scripts": {
-    "start": "cross-env DEV=true nodemon --watch 'contents/**/*|tsblog.config.ts|server.ts' --verbose -e ts,tsx,md --exec 'ts-node --project tsconfig.node.json -r tsconfig-paths/register' server",
-    "build": "nodemon --watch 'contents/**/*','tsblog.config.ts','server.ts' --verbose -e ts,tsx,md --exec 'ts-node --project tsconfig.node.json -r tsconfig-paths/register' server"
+    "start": "cross-env DEV=true nodemon --watch contents/**/*,tsblog.config.ts,server.ts,../tsblog/src/**/* --verbose -e ts,tsx,md --exec 'ts-node --project tsconfig.node.json -r tsconfig-paths/register' server",
+    "build": "nodemon --watch contents/**/*,tsblog.config.ts,server.ts,../tsblog/src/**/* --verbose -e ts,tsx,md --exec 'ts-node --project tsconfig.node.json -r tsconfig-paths/register' server"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "@types/styled-components": "^4.1.11",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
+    "lodash": "^4.17.11",
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.10",
     "react": "^16.8.3",

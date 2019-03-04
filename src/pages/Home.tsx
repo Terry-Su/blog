@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 
+import Articles from './Articles'
+
 class Props extends DefaultComponentProps {}
 
 class State {}
@@ -13,12 +15,10 @@ const Title = styled.h1`
   color: palevioletred;
 `
 
-export default class Template extends Component<Props, State> {
+export default class Home extends Component<Props, State> {
   render() {
     return (
-      <div>
-        <Title>Home</Title>
-      </div>
+      <Articles />
     )
   }
 }

@@ -11,11 +11,12 @@
       "args": [
         "server.ts",
       ],
-      "runtimeArgs": ["-r", "ts-node/register"],
+      "runtimeArgs": ["-r", "ts-node/register",],
       "cwd": "${workspaceRoot}",
       "protocol": "inspector",
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "development",
+        "TS_NODE_PROJECT": "tsconfig.node.json"
       },
       "sourceMaps": true
     }
