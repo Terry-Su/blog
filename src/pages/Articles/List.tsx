@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 import { AppState } from '@/state/app'
+import TSLink from '@cache/TSLink'
 
 class Props extends DefaultComponentProps {
   articles: any
@@ -17,7 +18,7 @@ export default connect(({ articles = {} }: any) => ({ articles  }) ) (class List
     return <div>
       {
         listRemarks && listRemarks.map( (remark, index) => <div key={index}>
-        {/* <h2><Link to={remark.route}>{ remark.title }</Link></h2> */}
+        <h2><TSLink to={remark.route}>{ remark.title }</TSLink></h2>
         <div>Post: { remark.postTime }</div>
         <div>{ remark.path }</div>
         <p>{ remark.abstract }</p>

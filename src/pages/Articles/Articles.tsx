@@ -36,7 +36,7 @@ const Title = styled.h1`
   }
 
   render() {
-    const category: AbstractCategory = getDefaultData().category
+     const { category }: { category: AbstractCategory } = getDefaultData()
 
     return (
       <LayoutHome>
@@ -55,7 +55,7 @@ const Title = styled.h1`
           >
             <div>Newest</div>
             <hr />
-            {category.categories.map((category, index) => (
+            {category && category.categories.map((category, index) => (
               <Category key={index} category={category} />
             ))}
           </div>

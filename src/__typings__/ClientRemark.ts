@@ -2,7 +2,8 @@ export default class ClientRemark {
   title: string
   text: string
   path: string
-  postTime: number 
+  postTime: number
+  comment: number
 }
 
 export class ClientListItemRemark {
@@ -12,6 +13,5 @@ export class ClientListItemRemark {
   // foo/bar/zoo(foo/bar/zoo/article1/en.md)
   path: string
   route: string
-  postTime: number
-  
+  postTime: string 
 }
