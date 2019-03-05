@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import getDefaultData from '@/helpers/getDefaultData'
 
+import DisqusComment from './DisqusComment'
 import GithubComment from './GithubComment/GithubComment'
 
 class Props {
@@ -29,6 +30,7 @@ export default class RemarkTemplate extends Component<Props, State> {
       <p>{remarkEndingWords}</p>
       <p>{path}</p>
       <p>{remarkReprintingNote}</p>
+      <DisqusComment />
       <GithubComment />
     </div>
   }

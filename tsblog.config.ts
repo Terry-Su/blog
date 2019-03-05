@@ -13,7 +13,8 @@ const config: Config = {
     remarkReprintingNote: `reprinting note`,
     remarkEndingWords: `remarkEndingWords`,
     remarkGithubIssuePageBase: `https://github.com/Terry-Su/TSBlogComments-En/issues/`,
-    remarkGithubCommentBase: 'https://api.github.com/repos/terry-su/tsblogcomments-en/issues/'
+    remarkGithubCommentBase: 'https://api.github.com/repos/terry-su/tsblogcomments-en/issues/',
+    remarkDisqusComment: `https://terrysu.disqus.com/embed.js`,
   },
   entry: {
     contents    : resolve( __dirname, "./contents" ),

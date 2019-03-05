@@ -2,10 +2,8 @@
   "eslint.autoFixOnSave": true,
    "eslint.validate": [
     "javascript",
-    "javascriptreact",
-    "typescriptReact",
-    { "language": "vue", "autoFix": true },
     { "language": "typescript", "autoFix": true },
+    { "language": "typescriptReact", "autoFix": true },
   ],
 
   "prettier.eslintIntegration": true,

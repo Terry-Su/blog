@@ -1,7 +1,9 @@
+import article, { ArticleState } from './modules/article'
 import articles, { ArticlesState } from './modules/articles'
 
 export class AppState {
   articles: ArticlesState = new ArticlesState()
+  article: ArticleState  = new ArticleState()
 }
 
 export default function app(
@@ -11,5 +13,6 @@ export default function app(
   return {
     ...state,
     articles: articles( state.articles, action ), 
+    article: article( state.article, action ), 
   }
 }

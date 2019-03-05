@@ -18,6 +18,7 @@ export default function getPages( transformedData: TransformedData ): PageInfo[]
     remarkEndingWords,
     remarkGithubIssuePageBase,
     remarkGithubCommentBase,
+    remarkDisqusComment,
   } = siteData
 
   const categories = getCategories( remarks )
@@ -42,22 +43,23 @@ export default function getPages( transformedData: TransformedData ): PageInfo[]
   const remarkPageInfos = remarks.map( remark => {
     const { relativePath, metadata, text } = remark
     const {
-      title,
       postTime,
       comment,
     } = metadata
-    const remarkTitle = title || getRemarkFolderName( remark )
-    const remarkPath = getRemarkPath( remark )
+    const id = getRemarkId( remark )
+    const title = getRemarkTitle( remark )
+    const path = getRemarkPath( remark )
+    const route = getRemarkRoute( remark )
     const remarkData: ClientRemark = {
-      title: remarkTitle,
+      id,
+      title,
       postTime,
       text,
-      path: remarkPath,
+      path,
       comment,
     }
-    const folderPath = getRemarkRoute( remark )
     return {
-      path     : `${folderPath}`,
+      path     : `${ route }`,
       component: resolve( __dirname, "../src/templates/RemarkTemplate/RemarkTemplate" ),
       data: {
         ...remarkData,
@@ -65,6 +67,7 @@ export default function getPages( transformedData: TransformedData ): PageInfo[]
         remarkEndingWords,
         remarkGithubCommentBase,
         remarkGithubIssuePageBase,
+        remarkDisqusComment,
       } 
     }
   } )
@@ -166,13 +169,13 @@ function getCategories( originalRemarks: TransformedMarkdownFile[] ) {
 
 function getClientListItemRemark( remark ): ClientListItemRemark {
   const { relativePath, text, metadata }: TransformedMarkdownFile = remark
-  const { title, postTime, id } = metadata
+  const { postTime, id } = metadata
 
-  const names = relativePath.split( "/" )
+  const title = getRemarkTitle( remark )
   const path = getRemarkPath( remark )
   const route = getRemarkRoute( remark )
   return {
-    title   : title || names[ names.length - 2 ],
+    title,
     abstract: text,
     path,
     route,
@@ -180,7 +183,23 @@ function getClientListItemRemark( remark ): ClientListItemRemark {
   }
 }
 
+function getRemarkTitle( remark: TransformedMarkdownFile ) {
+  const { title } = remark.metadata
+  return title || getRemarkFolderName( remark )
+}
 
+function getRemarkId( remark: TransformedMarkdownFile ) {
+  const { id } = remark.metadata
+  const folderName = getRemarkFolderName( remark )
+  const fileName = getRemarkFilerName( remark )
+  return id || `${
+    fileName === 'en' ? 
+    '' :
+    `${fileName}/`
+  }${folderName.replace( / /g, '-' )}`
+}
+
+// # e.g. foo/bar/articleName
 function getRemarkPath( remark: TransformedMarkdownFile ) {
   const names = remark.relativePath.split( "/" )
   return names.slice( 0, names.length - 2 ).join( "/" )
@@ -191,11 +210,12 @@ function getRemarkFolderName( remark: TransformedMarkdownFile ) {
   return names[ names.length - 2 ]
 }
 
-function getRemarkRoute( remark: TransformedMarkdownFile ) {
-  const { id } = remark.metadata
-  if ( id != null ) {
-    return id
-  }
+function getRemarkFilerName( remark: TransformedMarkdownFile ) {
   const names = remark.relativePath.split( "/" )
-  return `/${names.slice( 0, names.length - 2 ).join( "/" )}`
+  return names[ names.length - 1 ]
 }
+
+function getRemarkRoute( remark: TransformedMarkdownFile ) {
+  return `/${getRemarkId( remark )}`
+}
+

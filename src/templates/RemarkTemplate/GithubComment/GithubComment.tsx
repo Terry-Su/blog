@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import AbstractGithubComment from '@/__typings__/AbstractGithubComment'
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
@@ -8,14 +9,16 @@ import loadScript from '@/utils/loadScript'
 
 import CommentBox from './CommentBox'
 
-class Props extends DefaultComponentProps {}
+class Props extends DefaultComponentProps {
+  availableDisqusComment: boolean
+}
 
 class State {
   comments: AbstractGithubComment[] = []
   remarkParser: any
 }
 
-export default class GithubComment extends Component<Props, State> {
+export default connect( ({ article }: any) => ({ availableDisqusComment: article.availableDisqusComment }) )( class GithubComment extends Component<Props, State> {
   state: State = new State()
 
   componentDidMount() {
@@ -52,6 +55,8 @@ export default class GithubComment extends Component<Props, State> {
 
   render() {
     const { remarkGithubIssuePageBase, comment } = getDefaultData()
+    const { availableDisqusComment } = this.props
+    const { comments } = this.state
     return (
       <div
         style={{
@@ -66,16 +71,16 @@ export default class GithubComment extends Component<Props, State> {
           }}
         >
           <a href={`${remarkGithubIssuePageBase}${comment}`}>
-            {true
-              ? true
-                ? "BE_THE_FIRST_TO_COMMENT_ON_GITHUB"
-                : "BE_THE_FIRST_TO_COMMENT"
-              : true
-              ? "YOU_CAN_ALSO_COMMENT_ON_GITHUB"
-              : "WRITE_A_COMMENT"}
+            {comments.length === 0
+              ? availableDisqusComment
+                ? "Be The First to Comment on Github"
+                : "Be The First to Comment on Github"
+              : availableDisqusComment
+              ? "Commenting on Github Available"
+              : "Comment on Github"}
           </a>
         </div>
-        {this.state.comments.map((comment, index) => (
+        {comments.map((comment, index) => (
           <div
             style={{
               margin: "0 0 20px 0"
@@ -89,3 +94,4 @@ export default class GithubComment extends Component<Props, State> {
     )
   }
 }
+)

@@ -1,4 +1,5 @@
 export default class ClientRemark {
+  id: string
   title: string
   text: string
   path: string
