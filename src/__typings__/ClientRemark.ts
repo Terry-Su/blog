@@ -1,8 +1,17 @@
 export default class ClientRemark {
   title: string
-  abstract?: string
   text: string
   path: string
-  createTime: number 
-  modifyTime: number
+  postTime: number 
+}
+
+export class ClientListItemRemark {
+  title: string
+  abstract: string
+  // e.g.
+  // foo/bar/zoo(foo/bar/zoo/article1/en.md)
+  path: string
+  route: string
+  postTime: number
+  
 }

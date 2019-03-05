@@ -7,6 +7,9 @@
       "@/*": [
         "./src/*"
       ],
+      "@cache/*": [
+        "./.cache/*" 
+      ],
       "@tsblog/*": [
         "../tsblog/src/*"
       ],

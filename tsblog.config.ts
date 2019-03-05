@@ -3,6 +3,7 @@ import path from 'path'
 
 import { Config, PageInfo, TransformedData, TransformedMarkdownFile } from '../tsblog/src/typings'
 import AbstractCategory from './src/__typings__/AbstractCategory'
+import ClientRemark, { ClientListItemRemark } from './src/__typings__/ClientRemark'
 import { PATH_ABOUT, PATH_HOW_IT_WORKS } from './src/constants/paths'
 
 const { resolve } = path
@@ -14,14 +15,13 @@ const config: Config = {
   entry: {
     contents    : resolve( __dirname, "./contents" ),
     home        : resolve( __dirname, "./src/pages/Home" ),
+    reduxApp    : resolve( __dirname, "./src/state/app" ),
     getPages,
     setWebpack,
     tsconfigPath: resolve( __dirname, "tsconfig.json" )
   },
   port: 3602
 }
-
-
 
 export default config
 
@@ -30,11 +30,11 @@ function getPages( transformedData: TransformedData ): PageInfo[] {
 
   const categories = getCategories( remarks )
   const category = {
-    name: 'All',
+    name    : "All",
     categories,
     expanded: true
   }
-  const newestRemarks = remarks.map( getClientRemark )
+  const newestRemarks = remarks.map( getClientListItemRemark )
 
   const homePageInfo = {
     path     : "/",
@@ -42,14 +42,12 @@ function getPages( transformedData: TransformedData ): PageInfo[] {
     data     : {
       siteData,
       category,
-      newestRemarks,
-    },
-    
+      newestRemarks
+    }
   }
-  const remarkPageInfos = remarks.map( ( { relativePath, metadata, text } ) => {
-    let names = relativePath.split( '/' )
-    names.pop()
-    const folderPath = names.join( '/' )
+  const remarkPageInfos = remarks.map( remark => {
+    const { relativePath, metadata, text } = remark
+    const folderPath = getRemarkRoute( remark )
     return {
       path     : `/${folderPath}`,
       component: resolve( __dirname, "./src/templates/RemarkTemplate" ),
@@ -73,6 +71,7 @@ function getPages( transformedData: TransformedData ): PageInfo[] {
 function setWebpack( webpackConfig ) {
   webpackConfig.resolve.alias = {
     "@"      : path.resolve( __dirname, "./src" ),
+    "@cache" : path.resolve( __dirname, "./.cache" ),
     "@tsblog": path.resolve( __dirname, "../tsblog/src" )
   }
 }
@@ -98,11 +97,19 @@ function getCategories( originalRemarks: TransformedMarkdownFile[] ) {
   } ) )
 
   const hasRemarks = ( tmpNames: string[] ): boolean => {
-    return remarks.some( ( { parentOfCurrentFolder } ) => parentOfCurrentFolder === tmpNames.join('/'))
+    return remarks.some(
+      ( { parentOfCurrentFolder } ) =>
+        parentOfCurrentFolder === tmpNames.join( "/" )
+    )
   }
 
   const getRemarks = ( tmpNames: string[] ) => {
-    return remarks.filter( ({ currentFolder }) => currentFolder === tmpNames.join('/')).map( getClientRemark )
+    return remarks
+      .filter(
+        ( { parentOfCurrentFolder } ) =>
+          parentOfCurrentFolder === tmpNames.join( "/" )
+      )
+      .map( getClientListItemRemark )
   }
 
   const setValue = (
@@ -132,8 +139,8 @@ function getCategories( originalRemarks: TransformedMarkdownFile[] ) {
           name      : name,
           categories: [],
           hasRemarks: hasRemarks( tmpNames ),
-          remarks: getRemarks( tmpNames ),
-          expanded  :  index === names.length - 1 ? false : true
+          remarks   : getRemarks( tmpNames ),
+          expanded  : index === names.length - 1 ? false : true
         }
         categories.push( tmp )
       }
@@ -152,8 +159,28 @@ function getCategories( originalRemarks: TransformedMarkdownFile[] ) {
   return root.categories
 }
 
-function getClientRemark( remark: TransformedMarkdownFile ) {
+function getClientListItemRemark( remark ): ClientListItemRemark {
+  const { relativePath, text, metadata }: TransformedMarkdownFile = remark
+  const { title, postTime, id } = metadata
+
+  const names = relativePath.split( "/" )
+
+  const path = names.slice( 0, names.length - 2 ).join( "/" )
+  const route = getRemarkRoute( remark )
   return {
-    ...remark
+    title   : title || names[ names.length - 2 ],
+    abstract: text,
+    path,
+    route,
+    postTime
   }
+}
+
+export function getRemarkRoute( remark: TransformedMarkdownFile ) {
+  const { id } = remark.metadata
+  if ( id != null ) {
+    return id
+  }
+  const names = remark.relativePath.split( "/" )
+  return names.slice( 0, names.length - 2 ).join( "/" )
 }
