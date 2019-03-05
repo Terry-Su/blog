@@ -6,12 +6,21 @@ import {
 } from '../../tsblog/src/typings'
 import AbstractCategory from '../src/__typings__/AbstractCategory'
 import ClientRemark, { ClientListItemRemark } from '../src/__typings__/ClientRemark'
-import { PATH_ABOUT, PATH_HOW_IT_WORKS } from '../src/constants/paths'
+import { PATH_ABOUT, PATH_HOW_IT_WORKS_SERIES } from '../src/constants/paths'
 
 const { resolve } = path
 
 export default function getPages( transformedData: TransformedData ): PageInfo[] {
   const { remarks, siteData } = transformedData
+
+  const { authorUrl } = siteData
+  const commonData = {
+    authorUrl
+  }
+
+  const articleRemarks = remarks.filter(
+    remark => remark.relativePath.split( "/" ).length > 2
+  )
 
   const {
     remarkReprintingNote,
@@ -21,68 +30,81 @@ export default function getPages( transformedData: TransformedData ): PageInfo[]
     remarkDisqusComment,
   } = siteData
 
-  const categories = getCategories( remarks )
+  const categories = getCategories( articleRemarks )
   const category = {
     name    : "All",
     categories,
     expanded: true
   }
 
-  const newestRemarks = remarks.map( getClientListItemRemark )
+  const newestRemarks = articleRemarks.map( getClientListItemRemark )
 
+  // # home page
   const homePageInfo = {
     path     : "/",
     component: resolve( __dirname, "../src/pages/Home" ),
     data     : {
-      siteData,
+      ...commonData,
       category,
-      newestRemarks
+      newestRemarks,
     }
   }
 
-  const remarkPageInfos = remarks.map( remark => {
-    const { relativePath, metadata, text } = remark
-    const {
-      postTime,
-      comment,
-    } = metadata
-    const id = getRemarkId( remark )
-    const title = getRemarkTitle( remark )
-    const path = getRemarkPath( remark )
+  // # article pages
+  const remarkPageInfos = articleRemarks.map( remark => {
+    const { relativePath, metadata } = remark
+    const remarkBasicData = getRemarkBasicData( remark )
     const route = getRemarkRoute( remark )
-    const remarkData: ClientRemark = {
-      id,
-      title,
-      postTime,
-      text,
-      path,
-      comment,
-    }
     return {
-      path     : `${ route }`,
-      component: resolve( __dirname, "../src/templates/RemarkTemplate/RemarkTemplate" ),
+      path     : `${route}`,
+      component: resolve(
+        __dirname,
+        "../src/templates/RemarkTemplate/RemarkTemplate"
+      ),
       data: {
-        ...remarkData,
+        ...commonData,
+        ...remarkBasicData,
         remarkReprintingNote,
         remarkEndingWords,
         remarkGithubCommentBase,
         remarkGithubIssuePageBase,
-        remarkDisqusComment,
-      } 
+        remarkDisqusComment
+      }
     }
   } )
+
+  // # how it works series page
   const howItWorks = {
-    path     : PATH_HOW_IT_WORKS,
-    component: resolve( __dirname, "../src/pages/HowItWorks" )
+    path     : PATH_HOW_IT_WORKS_SERIES,
+    component: resolve( __dirname, "../src/pages/HowItWorks" ),
+    data     : ( () => {
+      const remark = remarks.find(
+        remark => getRemarkFolderPath( remark ) === "how it works series"
+      )
+      return {
+        ...commonData,
+        ...getRemarkBasicData( remark )
+      }
+    } )()
   }
+
+  // # about page
   const about = {
     path     : PATH_ABOUT,
-    component: resolve( __dirname, "../src/pages/About" )
+    component: resolve( __dirname, "../src/pages/About" ),
+    data     : ( () => {
+      const remark = remarks.find(
+        remark => getRemarkFolderPath( remark ) === "about"
+      )
+      return {
+        ...commonData,
+        ...getRemarkBasicData( remark ),
+      }
+    } )()
   }
+
   return [ homePageInfo, ...remarkPageInfos, howItWorks, about ]
 }
-
-
 
 function getCategories( originalRemarks: TransformedMarkdownFile[] ) {
   let remarks = cloneDeep( originalRemarks )
@@ -172,7 +194,7 @@ function getClientListItemRemark( remark ): ClientListItemRemark {
   const { postTime, id } = metadata
 
   const title = getRemarkTitle( remark )
-  const path = getRemarkPath( remark )
+  const path = getRemarkCategoryPath( remark )
   const route = getRemarkRoute( remark )
   return {
     title,
@@ -192,17 +214,22 @@ function getRemarkId( remark: TransformedMarkdownFile ) {
   const { id } = remark.metadata
   const folderName = getRemarkFolderName( remark )
   const fileName = getRemarkFilerName( remark )
-  return id || `${
-    fileName === 'en' ? 
-    '' :
-    `${fileName}/`
-  }${folderName.replace( / /g, '-' )}`
+  return (
+    id ||
+    `${fileName === "en" ? "" : `${fileName}/`}${folderName.replace( / /g, "-" )}`
+  )
+}
+
+// # e.g. foo/bar
+function getRemarkCategoryPath( remark: TransformedMarkdownFile ) {
+  const names = remark.relativePath.split( "/" )
+  return names.slice( 0, names.length - 2 ).join( "/" )
 }
 
 // # e.g. foo/bar/articleName
-function getRemarkPath( remark: TransformedMarkdownFile ) {
+function getRemarkFolderPath( remark: TransformedMarkdownFile ) {
   const names = remark.relativePath.split( "/" )
-  return names.slice( 0, names.length - 2 ).join( "/" )
+  return names.slice( 0, names.length - 1 ).join( "/" )
 }
 
 function getRemarkFolderName( remark: TransformedMarkdownFile ) {
@@ -219,3 +246,19 @@ function getRemarkRoute( remark: TransformedMarkdownFile ) {
   return `/${getRemarkId( remark )}`
 }
 
+function getRemarkBasicData( remark: TransformedMarkdownFile ): ClientRemark {
+  const { text } = remark
+  const { postTime, comment } = remark.metadata
+  const id = getRemarkId( remark )
+  const title = getRemarkTitle( remark )
+  const path = getRemarkCategoryPath( remark )
+  const route = getRemarkRoute( remark )
+  return {
+    id,
+    title,
+    path,
+    text,
+    postTime,
+    comment
+  }
+}

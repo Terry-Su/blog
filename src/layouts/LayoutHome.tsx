@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
-import { PATH_HOW_IT_WORKS } from '@/constants/paths'
+import Footer from '@/components/Footer/Footer'
+import { PATH_ABOUT, PATH_HOW_IT_WORKS_SERIES } from '@/constants/paths'
 import { STYLE_LAYOUT_HOME_HEADER_HEIGHT } from '@/styles/STYLES.ts'
+import TSLink from '@cache/TSLink'
 
 class Props extends DefaultComponentProps {}
 
@@ -21,53 +23,60 @@ export default class LayoutHome extends Component<Props, State> {
         <div
           style={{
             width: "100%",
-            height: `${STYLE_LAYOUT_HOME_HEADER_HEIGHT}px`
+            height: "100%"
           }}
         >
           <div
             style={{
-              display: "grid",
-              placeItems: "center"
+              width: "100%",
+              height: `${STYLE_LAYOUT_HOME_HEADER_HEIGHT}px`
             }}
           >
-            <h1>
-              <Link to="/">Logo</Link>
-              
+            <div
+              style={{
+                display: "grid",
+                placeItems: "center"
+              }}
+            >
+              <h1>
+                <TSLink to="/">Logo</TSLink>
               </h1>
-            <span>Step by Step</span>
+              <span>Step by Step</span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                margin: "20px 0 0 0"
+              }}
+            >
+              {[
+                ["Articles", "/"],
+                ["How It Works Series", PATH_HOW_IT_WORKS_SERIES],
+                ["About", PATH_ABOUT]
+              ].map(([value, path], index) => (
+                <TSLink
+                  key={index}
+                  style={{
+                    margin: "0 50px"
+                  }}
+                  to={path}
+                >
+                  {value}
+                </TSLink>
+              ))}
+            </div>
           </div>
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
-              margin: "20px 0 0 0"
+              width: "100%",
+              height: `calc( 100% - ${STYLE_LAYOUT_HOME_HEADER_HEIGHT}px )`
             }}
           >
-            {[
-              [ "Articles", '/' ],
-              [ "How It Works Series", PATH_HOW_IT_WORKS ],
-              [ "About", '/about' ],
-             ].map(([ value, path ], index) => (
-              <Link
-                key={index}
-                style={{
-                  margin: "0 50px"
-                }}
-                to={ path }
-              >
-                {value}
-              </Link>
-            ))}
+            {...this.props.children}
           </div>
         </div>
-        <div
-          style={{
-            width: "100%",
-            height: `calc( 100% - ${STYLE_LAYOUT_HOME_HEADER_HEIGHT}px )`,
-          }}
-        >
-          {...this.props.children}
-        </div>
+        <Footer />
       </div>
     )
   }

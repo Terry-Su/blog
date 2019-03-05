@@ -15,6 +15,7 @@ const config: Config = {
     remarkGithubIssuePageBase: `https://github.com/Terry-Su/TSBlogComments-En/issues/`,
     remarkGithubCommentBase: 'https://api.github.com/repos/terry-su/tsblogcomments-en/issues/',
     remarkDisqusComment: `https://terrysu.disqus.com/embed.js`,
+    authorUrl: 'https://github.com/Terry-Su',
   },
   entry: {
     contents    : resolve( __dirname, "./contents" ),

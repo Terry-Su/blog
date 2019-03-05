@@ -1,2 +1,2 @@
-export const PATH_HOW_IT_WORKS = '/how-it-works'
+export const PATH_HOW_IT_WORKS_SERIES = '/how-it-works-series'
 export const PATH_ABOUT = '/about'
