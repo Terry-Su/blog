@@ -15,7 +15,10 @@ class State {
 
 
 export default connect() (class DisqusComment extends Component<Props, State> {
+  private isUnmounting: boolean = false
+
   componentDidMount() {
+    const self = this
     const { dispatch } = this.props
     const { remarkDisqusComment, id: PAGE_IDENTIFIER } = getDefaultData()
     const PAGE_URL = location.href
@@ -28,7 +31,7 @@ export default connect() (class DisqusComment extends Component<Props, State> {
     window[ 'disqus_config' ] = function() {
       this.page.url = PAGE_URL // Replace PAGE_URL with your page's canonical URL variable
       this.page.identifier = PAGE_IDENTIFIER // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-      dispatch( { type: 'article/ENSURE_DISQUS_COMMENT_AVAILABLE' } )
+      ! self.isUnmounting && dispatch( { type: 'article/ENSURE_DISQUS_COMMENT_AVAILABLE' } )
     }
 
     setTimeout(() => {
@@ -40,6 +43,11 @@ export default connect() (class DisqusComment extends Component<Props, State> {
       ;(d.head || d.body).appendChild(s)
     }, 0)
   }
+
+  componentWillMount() {
+    this.isUnmounting = true
+  }
+
   render() {
     return (
       <div>

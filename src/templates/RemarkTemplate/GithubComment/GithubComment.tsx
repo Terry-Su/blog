@@ -21,6 +21,8 @@ class State {
 export default connect( ({ article }: any) => ({ availableDisqusComment: article.availableDisqusComment }) )( class GithubComment extends Component<Props, State> {
   state: State = new State()
 
+  private isUnmounting: boolean = false
+
   componentDidMount() {
     const { remarkGithubCommentBase, comment } = getDefaultData()
     const url = `${remarkGithubCommentBase}${comment}/comments`
@@ -42,15 +44,19 @@ export default connect( ({ article }: any) => ({ availableDisqusComment: article
             time: created_at,
           })
         )
-        this.setState({ comments })
+        ! this.isUnmounting && this.setState({ comments })
       }).then( () => {
         loadScript( "https://cdn.jsdelivr.net/npm/marked/marked.min.js", () => {
           const remarkParser = window[ 'marked' ] 
           if ( remarkParser ) {
-            this.setState( { remarkParser } )
+            ! this.isUnmounting && this.setState( { remarkParser } )
           }
         } )
       } )
+  }
+
+  componentWillMount() {
+    this.isUnmounting = true
   }
 
   render() {
