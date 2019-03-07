@@ -2,23 +2,24 @@ import htmlToText from 'html-to-text'
 import cloneDeep from 'lodash/cloneDeep'
 import path from 'path'
 
-import { EN, ZH_CN } from '@locale/names'
-import specialNameMap, { CN } from '@locale/specialNameMap'
-import t from '@locale/t'
-
 import {
-    Config, PageInfo, TransformedData, TransformedMarkdownFile
+    Config, PageInfo, TransformedData, TransformedMarkdownFile, TransformedYamlFile
 } from '../../tsblog/src/typings'
+import { EN, ZH_CN } from '../locale/names'
+import specialNameMap, { CN } from '../locale/specialNameMap'
+import t from '../locale/t'
 import AbstractCategory from '../src/__typings__/AbstractCategory'
+import CategoryProp from '../src/__typings__/CategoryProp'
 import ClientRemark, {
     ClientListItemRemark, ClientRemarkMetadata
 } from '../src/__typings__/ClientRemark'
 import { PATH_ABOUT, PATH_HOW_IT_WORKS_SERIES } from '../src/constants/paths'
+import { CATEGORY_PROPS_FILE_NAME } from './constants'
 
 const { resolve } = path
 
 export default function getPagesByLocale( transformedData: TransformedData, locale: string  ): PageInfo[] {
-  const { remarks, siteData } = transformedData
+  const { remarks, yamls, siteData } = transformedData
 
   const { authorUrl, title, testFunc } = siteData
   const commonData = {
@@ -39,7 +40,8 @@ export default function getPagesByLocale( transformedData: TransformedData, loca
     remarkDisqusComment,
   } = siteData
 
-  const categories = getCategories( articleRemarks )
+  const categoryProps: CategoryProp[] = getCategoryProps( yamls )
+  const categories = getCategories( articleRemarks, categoryProps, locale )
   const category = {
     name    : "All",
     categories,
@@ -119,7 +121,21 @@ export default function getPagesByLocale( transformedData: TransformedData, loca
   return [ homePageInfo, ...remarkPageInfos, howItWorks, about ]
 }
 
-function getCategories( originalRemarks: TransformedMarkdownFile[] ) {
+function getCategoryProps( yamls: TransformedYamlFile[] ) {
+  let res = yamls
+  .filter( ({relativePath}) => getFilerName( relativePath ) === CATEGORY_PROPS_FILE_NAME )
+  .map( yaml => {
+    const { relativePath, getData } = yaml
+    const categoryPath = getFileFolderPath( relativePath )
+    return {
+      categoryPath,
+      ...getData()
+    }
+  } )
+  return res
+}
+
+function getCategories( originalRemarks: TransformedMarkdownFile[], categoryProps: CategoryProp[], locale: string) {
   let remarks = cloneDeep( originalRemarks )
   remarks = remarks.map( remark => ( {
     ...remark,
@@ -159,7 +175,7 @@ function getCategories( originalRemarks: TransformedMarkdownFile[] ) {
     root: AbstractCategory,
     remark: TransformedMarkdownFile
   ) => {
-    let tmp = root
+    let tmp: AbstractCategory = root
     let tmpNames: string[] = []
     const names = remark.relativePath.split( "/" )
     names.map( ( name, index ) => {
@@ -171,15 +187,26 @@ function getCategories( originalRemarks: TransformedMarkdownFile[] ) {
       const { categories } = tmp
       let found = false
       tmpNames.push( name )
+
+      const localizedName = (() => {
+        const categoryProp = categoryProps.find( ({ categoryPath }) => categoryPath === tmpNames.join('/') )
+        if ( categoryProp ) {
+          const { name: nameMap } = categoryProp
+          const key = specialNameMap[ locale ] || locale
+          return nameMap[ key ] || name
+        }
+        return name
+      })()
+
       root.categories.map( category => {
-        if ( category.name === name ) {
+        if ( category.name === localizedName ) {
           found = true
           tmp = category
         }
       } )
       if ( !found ) {
         tmp = {
-          name      : name,
+          name      : localizedName,
           categories: [],
           hasRemarks: hasRemarks( tmpNames ),
           remarks   : getRemarks( tmpNames ),
@@ -242,6 +269,17 @@ function getRemarkId( remark: TransformedMarkdownFile ) {
   )
 }
 
+function getFilerName( relativePath: string ) {
+  const names = relativePath.split( "/" )
+  return names[ names.length - 1 ]
+}
+
+// # e.g. foo/bar/fileName
+function getFileFolderPath( relativePath: string ) {
+  const names = relativePath.split( "/" )
+  return names.slice( 0, names.length - 1 ).join( "/" )
+} 
+
 // # e.g. foo/bar
 function getRemarkCategoryPath( remark: TransformedMarkdownFile ) {
   const names = remark.relativePath.split( "/" )
@@ -250,8 +288,7 @@ function getRemarkCategoryPath( remark: TransformedMarkdownFile ) {
 
 // # e.g. foo/bar/articleName
 function getRemarkFolderPath( remark: TransformedMarkdownFile ) {
-  const names = remark.relativePath.split( "/" )
-  return names.slice( 0, names.length - 1 ).join( "/" )
+  return getFileFolderPath( remark.relativePath )
 }
 
 function getRemarkFolderName( remark: TransformedMarkdownFile ) {

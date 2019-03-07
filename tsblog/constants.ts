@@ -1,0 +1,1 @@
+export const CATEGORY_PROPS_FILE_NAME = '.category'

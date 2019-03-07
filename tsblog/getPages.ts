@@ -1,6 +1,5 @@
-import { locales } from '@locale/index'
-
 import { PageInfo, TransformedData } from '../../tsblog/src/typings'
+import { locales } from '../locale/index'
 import getPagesByLocale from './getPagesByLocale'
 
 export default function getPages( transformedData: TransformedData ): PageInfo[] {

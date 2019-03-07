@@ -10,6 +10,7 @@
   "nodemonConfig": {
     "watch": [
       "contents/**/*",
+      "contents/**/.category.yml",
       "tsblog.config.ts",
       "tsblog/**/*",
       "locale/**/*",
