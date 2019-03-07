@@ -77,7 +77,31 @@ export default connect(({ article }: any) => ({
             width: "100%"
           }}
         >
-          <div>
+          {comment != null && (
+            <div
+              style={{
+                boxSizing: `border-box`,
+                textAlign: "center"
+              }}
+            >
+              <a
+                style={{
+                  color: `#4169e1`,
+                  textDecoration: `none`
+                }}
+                href={`${remarkGithubIssuePageBase}${comment}`}
+              >
+                Comment on Github
+              </a>
+            </div>
+          )}
+
+          <div
+            style={{
+              padding:
+                comment != null && comments.length > 0 ? "40px 0 0 0" : `0`
+            }}
+          >
             {comments.map((comment, index) => (
               <div key={index}>
                 <CommentBox
@@ -86,28 +110,6 @@ export default connect(({ article }: any) => ({
                 />
               </div>
             ))}
-          </div>
-
-          <div
-            style={{
-              boxSizing: `border-box`,
-              padding: comments.length > 0 ? "40px 0 0 0" : `0`,
-              textAlign: "center"
-            }}
-          >
-            <a
-              style={{
-                color: `#4169e1`,
-                textDecoration: `none`
-              }}
-              href={`${remarkGithubIssuePageBase}${comment}`}
-            >
-              {comments.length === 0
-                ? "Comment on Github"
-                : availableDisqusComment
-                ? "Commenting on Github Available"
-                : "Comment on Github"}
-            </a>
           </div>
         </div>
       )

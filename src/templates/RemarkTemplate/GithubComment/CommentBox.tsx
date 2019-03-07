@@ -18,16 +18,16 @@ export default class CommentBox extends Component<Props, State> {
 
   ref: any = React.createRef()
 
-  componentDidUpdate( prevProps ) {
-    if ( prevProps.remarkParser == null && this.props.remarkParser ) {
-      const remarked = this.props.remarkParser( this.props.comment.content );
-      this.setState( { remarked } )
+  componentDidUpdate(prevProps) {
+    if (prevProps.remarkParser == null && this.props.remarkParser) {
+      const remarked = this.props.remarkParser(this.props.comment.content)
+      this.setState({ remarked })
     }
   }
 
   render() {
     const { avatorUrl, time, content } = this.props.comment
-    const formatedTime = formatNormalDate( new Date( time ) )
+    const formatedTime = formatNormalDate(new Date(time))
     const { remarked } = this.state
     return (
       <div
@@ -56,7 +56,7 @@ export default class CommentBox extends Component<Props, State> {
         <div
           style={{
             display: "flex",
-            padding: "15px",
+            padding: "20px 20px 10px 20px",
             boxSizing: "border-box",
             flex: "auto",
             flexDirection: "column",
@@ -80,7 +80,7 @@ export default class CommentBox extends Component<Props, State> {
             </span>
             <span
               style={{
-                margin: "0 0 0 10px",
+                // margin: "0 0 0 10px",
                 color: "#586069"
               }}
             >
@@ -88,9 +88,11 @@ export default class CommentBox extends Component<Props, State> {
             </span>
           </div>
           <div
-            style={{
-              margin: "5px 0 0 0"
-            }}
+            style={
+              {
+                // margin: "5px 0 0 10px"
+              }
+            }
             dangerouslySetInnerHTML={{
               __html: remarked != null ? remarked : content
             }}
