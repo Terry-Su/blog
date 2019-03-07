@@ -12,6 +12,7 @@
       "contents/**/*",
       "tsblog.config.ts",
       "tsblog/**/*",
+      "locale/**/*",
       "server.ts",
       "../tsblog/src/**/*"
     ],
@@ -50,6 +51,7 @@
     "react-router-config": "^4.4.0-beta.6",
     "redux": "^4.0.1",
     "sass-loader": "^7.1.0",
+    "serialize-javascript": "^1.6.1",
     "style-loader": "^0.23.1",
     "styled-components": "^4.1.3",
     "ts-loader": "^5.3.3",

@@ -9,7 +9,8 @@ const { resolve } = path
 
 const config: Config = {
   siteData: {
-    title: "TSBLOG",
+    title: 'tsblogConfig.siteData.title',
+    testFunc: 'tsblogConfig.siteData.testFunc',
     remarkReprintingNote: `reprinting note`,
     remarkEndingWords: `remarkEndingWords`,
     remarkGithubIssuePageBase: `https://github.com/Terry-Su/TSBlogComments-En/issues/`,

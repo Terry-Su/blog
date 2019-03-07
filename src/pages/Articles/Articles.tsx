@@ -40,6 +40,7 @@ const Title = styled.h1`
 
     return (
       <LayoutHome>
+        { getDefaultData().testFunc( 100 ) }
         <div
           style={{
             display: "flex",

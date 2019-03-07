@@ -19,7 +19,7 @@ export default connect(({ articles = {} }: any) => ({ articles  }) ) (class List
       {
         listRemarks && listRemarks.map( (remark, index) => <div key={index}>
         <h2><TSLink to={remark.route}>{ remark.title }</TSLink></h2>
-        <div>Post: { remark.postTime }</div>
+        <div>Post: { remark.postTime && new Date( remark.postTime ).toISOString() }</div>
         <div>{ remark.path }</div>
         <p>{ remark.abstract }</p>
         </div> )

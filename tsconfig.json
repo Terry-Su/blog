@@ -1,11 +1,14 @@
 {
-  "include": ["./src/**/*", "./.cache/**/*", "../tsblog/src/**/*"],
+  "include": ["./src/**/*", "./locale/**/*", "./.cache/**/*", "../tsblog/src/**/*"],
   "exclude": ["node_modules", "../tsblog/src/__test__/**/*"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "@locale/*": [
+        "./locale/*" 
       ],
       "@cache/*": [
         "./.cache/*" 
