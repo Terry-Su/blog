@@ -1,5 +1,4 @@
-import { ClientListItemRemark } from '@/__typings__/ClientRemark'
-import reduxReducerHelper from '@/utils/reduxReducerHelper'
+import reduxReducerHelper from '@/state/reduxReducerHelper'
 
 const nameSpace = 'template'
 

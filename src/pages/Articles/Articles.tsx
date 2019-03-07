@@ -26,41 +26,92 @@ const Title = styled.h1`
   color: palevioletred;
 `
 
- class Articles extends Component<Props, State> {
+const PADDING_TOP = 20
+
+class Articles extends Component<Props, State> {
   componentDidMount() {
-    const { listRemarks } = this.props.articles 
-    if ( ! listRemarks ) {
+    const { listRemarks } = this.props.articles
+    if (!listRemarks) {
       const { newestRemarks } = getDefaultData()
-      this.props.dispatch( { type: 'articles/UPDATE_LIST_REMARKS', listRemarks: newestRemarks } )
+      this.props.dispatch({
+        type: "articles/UPDATE_LIST_REMARKS",
+        listRemarks: newestRemarks
+      })
     }
   }
 
+  onNewestClick = () => {
+    const { newestRemarks } = getDefaultData()
+    this.props.dispatch({
+      type: "articles/UPDATE_LIST_REMARKS",
+      listRemarks: newestRemarks
+    })
+  }
+
   render() {
-     const { category }: { category: AbstractCategory } = getDefaultData()
+    const { category }: { category: AbstractCategory } = getDefaultData()
 
     return (
       <LayoutHome>
-        { getDefaultData().testFunc( 100 ) }
         <div
           style={{
+            boxSizing: "border-box",
             display: "flex",
+            // justifyContent: `space-between`,
             width: "100%",
-            height: "100%"
+            height: "100%",
+            padding: `40px 0 0 0`
+            // overflow: `auto`
           }}
         >
           <div
             style={{
-              width: `${STYLE_ARTICLES_SIDEBAR_WIDTH}px`,
-              height: "100%"
+              boxSizing: `border-box`,
+              display: `flex`,
+              justifyContent: `flex-end`,
+              // width: `${STYLE_ARTICLES_SIDEBAR_WIDTH}px`,
+              width: `30%`,
+              height: `100%`,
+              borderRight: `1px solid rgba(0,0,0,0.05)`,
+              padding: `10px 0 0 0`,
+              overflow: `auto`
             }}
           >
-            <div>Newest</div>
-            <hr />
-            {category && category.categories.map((category, index) => (
-              <Category key={index} category={category} />
-            ))}
+            <div
+              style={{
+                height: `100%`,
+                overflow: `auto`
+              }}
+            >
+              <div
+                style={{
+                  boxSizing: `border-box`,
+                  display: `flex`,
+                  alignItems: `center`,
+                  height: `37px`,
+                  padding: `0 50px 0 40px`,
+                  cursor: `pointer`
+                }}
+                onClick={this.onNewestClick}
+              >
+                Newest
+              </div>
+              {category &&
+                category.categories.map((category, index) => (
+                  <Category key={index} category={category} />
+                ))}
+            </div>
           </div>
-          <div>
+          <div
+            style={{
+              boxSizing: `border-box`,
+              // width: `656px`,
+              flex: `1 1 auto`,
+              height: `calc( 100% - ${10}px )`,
+              padding: `10px 0 0 40px`,
+              overflow: `auto`
+            }}
+          >
             <List />
           </div>
         </div>
@@ -68,4 +119,4 @@ const Title = styled.h1`
     )
   }
 }
-export default connect(({ articles = {} }: any) => ({ articles  })) ( Articles )
+export default connect(({ articles = {} }: any) => ({ articles }))(Articles)

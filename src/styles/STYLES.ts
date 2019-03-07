@@ -1,6 +1,5 @@
 // # Layout Home
-export const STYLE_LAYOUT_HOME_HEADER_HEIGHT = 200
-
+export const STYLE_LAYOUT_HOME_HEADER_HEIGHT = 90
 
 // # Articles
 export const STYLE_ARTICLES_SIDEBAR_WIDTH = 280

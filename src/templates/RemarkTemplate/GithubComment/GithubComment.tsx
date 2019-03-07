@@ -18,86 +18,99 @@ class State {
   remarkParser: any
 }
 
-export default connect( ({ article }: any) => ({ availableDisqusComment: article.availableDisqusComment }) )( class GithubComment extends Component<Props, State> {
-  state: State = new State()
+export default connect(({ article }: any) => ({
+  availableDisqusComment: article.availableDisqusComment
+}))(
+  class GithubComment extends Component<Props, State> {
+    state: State = new State()
 
-  private isUnmounting: boolean = false
+    private isUnmounting: boolean = false
 
-  componentDidMount() {
-    const { remarkGithubCommentBase, comment } = getDefaultData()
-    const url = `${remarkGithubCommentBase}${comment}/comments`
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        const comments = data.map(
-          ({
-            user = {},
-            created_at = "",
-            updated_at = "",
-            body = ""
-          }: any) => ({
-            avatorUrl: user.avatar_url || "",
-            name: user.login || "",
-            createTime: created_at,
-            updateTime: updated_at,
-            content: body,
-            time: created_at,
-          })
-        )
-        ! this.isUnmounting && this.setState({ comments })
-      }).then( () => {
-        loadScript( "https://cdn.jsdelivr.net/npm/marked/marked.min.js", () => {
-          const remarkParser = window[ 'marked' ] 
-          if ( remarkParser ) {
-            ! this.isUnmounting && this.setState( { remarkParser } )
-          }
-        } )
-      } )
-  }
+    componentDidMount() {
+      const { remarkGithubCommentBase, comment } = getDefaultData()
+      const url = `${remarkGithubCommentBase}${comment}/comments`
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const comments = data.map(
+            ({
+              user = {},
+              created_at = "",
+              updated_at = "",
+              body = ""
+            }: any) => ({
+              avatorUrl: user.avatar_url || "",
+              name: user.login || "",
+              createTime: created_at,
+              updateTime: updated_at,
+              content: body,
+              time: created_at
+            })
+          )
+          !this.isUnmounting && this.setState({ comments })
+        })
+        .then(() => {
+          loadScript(
+            "https://cdn.jsdelivr.net/npm/marked/marked.min.js",
+            () => {
+              const remarkParser = window["marked"]
+              if (remarkParser) {
+                !this.isUnmounting && this.setState({ remarkParser })
+              }
+            }
+          )
+        })
+    }
 
-  componentWillMount() {
-    this.isUnmounting = true
-  }
+    componentWillUnmount() {
+      this.isUnmounting = true
+    }
 
-  render() {
-    const { remarkGithubIssuePageBase, comment } = getDefaultData()
-    const { availableDisqusComment } = this.props
-    const { comments } = this.state
-    return (
-      <div
-        style={{
-          width: "100%",
-          height: "100%"
-        }}
-      >
+    render() {
+      const { remarkGithubIssuePageBase, comment } = getDefaultData()
+      const { availableDisqusComment } = this.props
+      const { comments } = this.state
+      console.log({ availableDisqusComment })
+      return (
         <div
           style={{
-            margin: "10px 0 20px 0",
-            textAlign: "center"
+            width: "100%"
           }}
         >
-          <a href={`${remarkGithubIssuePageBase}${comment}`}>
-            {comments.length === 0
-              ? availableDisqusComment
-                ? "Be The First to Comment on Github"
-                : "Be The First to Comment on Github"
-              : availableDisqusComment
-              ? "Commenting on Github Available"
-              : "Comment on Github"}
-          </a>
-        </div>
-        {comments.map((comment, index) => (
+          <div>
+            {comments.map((comment, index) => (
+              <div key={index}>
+                <CommentBox
+                  comment={comment}
+                  remarkParser={this.state.remarkParser}
+                />
+              </div>
+            ))}
+          </div>
+
           <div
             style={{
-              margin: "0 0 20px 0"
+              boxSizing: `border-box`,
+              padding: comments.length > 0 ? "40px 0 0 0" : `0`,
+              textAlign: "center"
             }}
-            key={index}
           >
-            <CommentBox comment={comment} remarkParser={this.state.remarkParser} />
+            <a
+              style={{
+                color: `#4169e1`,
+                textDecoration: `none`
+              }}
+              href={`${remarkGithubIssuePageBase}${comment}`}
+            >
+              {comments.length === 0
+                ? "Comment on Github"
+                : availableDisqusComment
+                ? "Commenting on Github Available"
+                : "Comment on Github"}
+            </a>
           </div>
-        ))}
-      </div>
-    )
+        </div>
+      )
+    }
   }
-}
 )

@@ -1,37 +1,136 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
+import Markdown from '@/components/Markdown/Markdown'
+import ResolvedLink from '@/components/ResolvedLink'
+import Logo from '@/components/svg/Logo'
 import getDefaultData from '@/helpers/getDefaultData'
+import LayoutBasic from '@/layouts/LayoutBasic'
+import LayoutHome from '@/layouts/LayoutHome'
 
 import DisqusComment from './DisqusComment'
 import GithubComment from './GithubComment/GithubComment'
 
 class Props {
-
+  availableDisqusComment: boolean
 }
 
-class State {
+class State {}
 
-}
+export default connect(({ article }: any) => ({
+  availableDisqusComment: article.availableDisqusComment
+}))(
+  class RemarkTemplate extends Component<Props, State> {
+    render() {
+      const {
+        title,
+        text,
+        postTime,
+        path,
+        remarkReprintingNote,
+        remarkEndingWords
+      } = getDefaultData()
+      const { availableDisqusComment } = this.props
+      return (
+        <LayoutHome>
+          <div
+            style={{
+              width: `100%`
+            }}
+          >
+            <div
+              style={{
+                boxSizing: `border-box`,
+                display: `flex`,
+                justifyContent: `center`,
+                width: `100%`,
+                padding: `40px 0 0 0`
+              }}
+            >
+              <div
+                style={{
+                  width: `700px`
+                }}
+              >
+                <span
+                  style={{
+                    display: `flex`,
+                    fontSize: `42px`,
+                    fontWeight: `bold`,
+                    justifyContent: `center`
+                  }}
+                >
+                  {title}
+                </span>
+                <div
+                  style={{
+                    margin: `40px 0 0 0`
+                  }}
+                >
+                  <Markdown />
+                </div>
+                <p>{remarkEndingWords}</p>
+                <div
+                  style={{
+                    display: `flex`,
+                    flexDirection: `column`,
+                    alignItems: `flex-end`,
+                    margin: `40px 0 0 0`
+                  }}
+                >
+                  <div>
+                    Post Time: {new Date(postTime).toLocaleDateString()}
+                  </div>
+                  <div
+                    style={{
+                      margin: `10px 0 0 0`
+                    }}
+                  >
+                    Category: {path}
+                  </div>
+                  <div
+                    style={{
+                      margin: `10px 0 0 0`
+                    }}
+                  >
+                    {remarkReprintingNote}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              style={{
+                boxSizing: `border-box`,
+                display: `flex`,
+                justifyContent: `center`,
+                width: `100%`,
+                margin: `80px 0 0 0`,
+                padding: `40px 0`
+                // background: `#fafafa`
+                // background: `hsl(27, 99%, 95%)`
+              }}
+            >
+              <div
+                style={{
+                  width: `700px`
+                }}
+              >
+                <div>
+                  <GithubComment />
+                </div>
 
-export default class RemarkTemplate extends Component<Props, State> {
-  render() {
-    const {
-      title,
-      text,
-      postTime,
-      path,
-      remarkReprintingNote,
-      remarkEndingWords,
-    } = getDefaultData()
-    return <div>
-      <h1>{ title }</h1>
-      <h5>{ new Date(postTime).toLocaleDateString() }</h5>
-      <div dangerouslySetInnerHTML={{ __html: text }}></div>
-      <p>{remarkEndingWords}</p>
-      <p>{path}</p>
-      <p>{remarkReprintingNote}</p>
-      <DisqusComment />
-      <GithubComment />
-    </div>
+                <div
+                  style={{
+                    padding: availableDisqusComment ? `80px 0 0 0` : "0"
+                  }}
+                >
+                  <DisqusComment />
+                </div>
+              </div>
+            </div>
+          </div>
+        </LayoutHome>
+      )
+    }
   }
-}
+)

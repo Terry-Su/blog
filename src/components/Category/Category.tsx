@@ -30,7 +30,13 @@ const Category = connect()(
     }
 
     render() {
-      const { name, categories, expanded, hasRemarks, remarks } = this.props.category
+      const {
+        name,
+        categories,
+        expanded,
+        hasRemarks,
+        remarks
+      } = this.props.category
       const isLast = categories.length === 0
       const { isExpanding } = this.state
       return (
@@ -39,11 +45,30 @@ const Category = connect()(
             width: "100%"
           }}
         >
-          <div>
-            <span onClick={ () => this.props.dispatch( { type: 'articles/UPDATE_LIST_REMARKS', listRemarks: remarks } ) }>{name}</span>
+          <div
+            style={{
+              boxSizing: `border-box`,
+              display: `flex`,
+              alignItems: `center`,
+              height: `37px`,
+              padding: `0 40px 0 40px`,
+              cursor: `pointer`
+            }}
+          >
+            <span
+              onClick={() =>
+                this.props.dispatch({
+                  type: "articles/UPDATE_LIST_REMARKS",
+                  listRemarks: remarks
+                })
+              }
+            >
+              {name}
+            </span>
             {!isLast && (
               <span
                 style={{
+                  margin: `0 0 0 7px`,
                   cursor: "pointer"
                 }}
                 onClick={this.onIconClick}

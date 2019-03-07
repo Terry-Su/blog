@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
+import { createGlobalStyle } from 'styled-components'
 
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
-import Markdown from '@/components/Markdown/Markdown'
 import getDefaultData from '@/helpers/getDefaultData'
-import LayoutHome from '@/layouts/LayoutHome'
+import GlobalMarkdownStyle from '@/styles/GlobalMarkdownStyle'
 
 class Props extends DefaultComponentProps {}
 
 class State {}
 
-export default class HowItWorks extends Component<Props, State> {
+export default class Markdown extends Component<Props, State> {
   render() {
     const {
       title,
@@ -20,25 +20,18 @@ export default class HowItWorks extends Component<Props, State> {
       remarkEndingWords
     } = getDefaultData()
     return (
-      <LayoutHome>
+      <React.Fragment>
         <div
+          className="markdown-body"
           style={{
-            boxSizing: `border-box`,
-            display: `flex`,
-            justifyContent: `center`,
             width: `100%`,
-            padding: `40px 0 0 0`
+            height: `100%`
           }}
         >
-          <div
-            style={{
-              width: `700px`
-            }}
-          >
-            <Markdown />
-          </div>
+          <div dangerouslySetInnerHTML={{ __html: text }} />
         </div>
-      </LayoutHome>
+        <GlobalMarkdownStyle />
+      </React.Fragment>
     )
   }
 }

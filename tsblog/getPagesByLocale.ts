@@ -18,14 +18,16 @@ import { CATEGORY_PROPS_FILE_NAME } from './constants'
 
 const { resolve } = path
 
-export default function getPagesByLocale( transformedData: TransformedData, locale: string  ): PageInfo[] {
+export default function getPagesByLocale(
+  transformedData: TransformedData,
+  locale: string
+): PageInfo[] {
   const { remarks, yamls, siteData } = transformedData
 
-  const { authorUrl, title, testFunc } = siteData
+  const { authorUrl, title } = siteData
   const commonData = {
     authorUrl,
-    title: t( title, locale ),
-    testFunc: t( testFunc, locale ),
+    title: t( title, locale )
   }
 
   const articleRemarks = remarks.filter(
@@ -37,7 +39,7 @@ export default function getPagesByLocale( transformedData: TransformedData, loca
     remarkEndingWords,
     remarkGithubIssuePageBase,
     remarkGithubCommentBase,
-    remarkDisqusComment,
+    remarkDisqusComment
   } = siteData
 
   const categoryProps: CategoryProp[] = getCategoryProps( yamls )
@@ -48,12 +50,13 @@ export default function getPagesByLocale( transformedData: TransformedData, loca
     expanded: true
   }
 
-
   const localeName = specialNameMap[ locale ]
-  const root = locale === EN ?  "/" : `/${ localeName }/`
-  const rootName = root.replace( /\/$/, '' )
+  const root = locale === EN ? "/" : `/${localeName}/`
+  const rootName = root.replace( /\/$/, "" )
 
-  const newestRemarks = articleRemarks.map( remark => getClientListItemRemark(remark, root) )
+  const newestRemarks = articleRemarks.map( remark =>
+    getClientListItemRemark( remark, root )
+  )
 
   // # home page
   const homePageInfo = {
@@ -62,7 +65,7 @@ export default function getPagesByLocale( transformedData: TransformedData, loca
     data     : {
       ...commonData,
       category,
-      newestRemarks,
+      newestRemarks
     }
   }
 
@@ -105,7 +108,7 @@ export default function getPagesByLocale( transformedData: TransformedData, loca
 
   // # about page
   const about = {
-    path     : `${root}/${PATH_ABOUT}`,
+    path     : `${rootName}${PATH_ABOUT}`,
     component: resolve( __dirname, "../src/pages/About" ),
     data     : ( () => {
       const remark = remarks.find(
@@ -113,9 +116,9 @@ export default function getPagesByLocale( transformedData: TransformedData, loca
       )
       return {
         ...commonData,
-        ...getRemarkBasicData( remark ),
+        ...getRemarkBasicData( remark )
       }
-    } )() 
+    } )()
   }
 
   return [ homePageInfo, ...remarkPageInfos, howItWorks, about ]
@@ -123,19 +126,26 @@ export default function getPagesByLocale( transformedData: TransformedData, loca
 
 function getCategoryProps( yamls: TransformedYamlFile[] ) {
   let res = yamls
-  .filter( ({relativePath}) => getFilerName( relativePath ) === CATEGORY_PROPS_FILE_NAME )
-  .map( yaml => {
-    const { relativePath, getData } = yaml
-    const categoryPath = getFileFolderPath( relativePath )
-    return {
-      categoryPath,
-      ...getData()
-    }
-  } )
+    .filter(
+      ( { relativePath } ) =>
+        getFilerName( relativePath ) === CATEGORY_PROPS_FILE_NAME
+    )
+    .map( yaml => {
+      const { relativePath, getData } = yaml
+      const categoryPath = getFileFolderPath( relativePath )
+      return {
+        categoryPath,
+        ...getData()
+      }
+    } )
   return res
 }
 
-function getCategories( originalRemarks: TransformedMarkdownFile[], categoryProps: CategoryProp[], locale: string) {
+function getCategories(
+  originalRemarks: TransformedMarkdownFile[],
+  categoryProps: CategoryProp[],
+  locale: string
+) {
   let remarks = cloneDeep( originalRemarks )
   remarks = remarks.map( remark => ( {
     ...remark,
@@ -188,15 +198,17 @@ function getCategories( originalRemarks: TransformedMarkdownFile[], categoryProp
       let found = false
       tmpNames.push( name )
 
-      const localizedName = (() => {
-        const categoryProp = categoryProps.find( ({ categoryPath }) => categoryPath === tmpNames.join('/') )
+      const localizedName = ( () => {
+        const categoryProp = categoryProps.find(
+          ( { categoryPath } ) => categoryPath === tmpNames.join( "/" )
+        )
         if ( categoryProp ) {
           const { name: nameMap } = categoryProp
           const key = specialNameMap[ locale ] || locale
-          return nameMap[ key ] || name
+          return nameMap ? nameMap[ key ] || name : name
         }
         return name
-      })()
+      } )()
 
       root.categories.map( category => {
         if ( category.name === localizedName ) {
@@ -235,15 +247,17 @@ function getClientListItemRemark( remark, root: string ): ClientListItemRemark {
 
   const title = getRemarkTitle( remark )
   const path = getRemarkCategoryPath( remark )
-  const route = getRemarkRoute( remark, root)
+  const route = getRemarkRoute( remark, root )
   const html = getText()
-  const remarkAbstract = abstract || htmlToText.fromString( html, {
-    ignoreImage: true,
-    noLinkBrackets: true,
-    ignoreHref: true,
-    wordwrap: false,
-    unorderedListItemPrefix: ' ',
-  } )
+  const remarkAbstract =
+    abstract ||
+    htmlToText.fromString( html, {
+      ignoreImage            : true,
+      noLinkBrackets         : true,
+      ignoreHref             : true,
+      wordwrap               : false,
+      unorderedListItemPrefix: " "
+    } )
   const remarkPostTime = postTime && new Date( postTime ).getTime()
   return {
     title,
@@ -278,7 +292,7 @@ function getFilerName( relativePath: string ) {
 function getFileFolderPath( relativePath: string ) {
   const names = relativePath.split( "/" )
   return names.slice( 0, names.length - 1 ).join( "/" )
-} 
+}
 
 // # e.g. foo/bar
 function getRemarkCategoryPath( remark: TransformedMarkdownFile ) {
@@ -316,7 +330,7 @@ function getRemarkBasicData( remark: TransformedMarkdownFile ): ClientRemark {
     id,
     title,
     path,
-    text: getText(),
+    text    : getText(),
     postTime: remarkPostTime,
     comment
   }

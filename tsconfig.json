@@ -1,6 +1,6 @@
 {
   "include": ["./src/**/*", "./locale/**/*", "./.cache/**/*", "../tsblog/src/**/*"],
-  "exclude": ["node_modules", "../tsblog/src/__test__/**/*"],
+  "exclude": ["node_modules", "../tsblog/.cache/**/*", "../tsblog/src/__test__/**/*"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

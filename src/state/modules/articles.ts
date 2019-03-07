@@ -1,4 +1,5 @@
 import { ClientListItemRemark } from '@/__typings__/ClientRemark'
+import reduxReducerHelper from '@/state/reduxReducerHelper'
 
 const nameSpace = 'articles'
 
@@ -8,16 +9,9 @@ export class ArticlesState {
 
 
 export default function articles( state: ArticlesState, action  ) {
-  const actions = {
+  return reduxReducerHelper( {
     UPDATE_LIST_REMARKS: (state, { listRemarks }) => ({ ...state, listRemarks })
-  }
-
-  if ( action.type && action.type.startsWith( `${ nameSpace }/` ) ) {
-    const key = action.type.replace( new RegExp( `^${ nameSpace }\/` ), '' )
-    const fn = actions[ key ]
-    return fn ? fn( state, action ) : state
-  }
-  return state
+  }, nameSpace, state, action  )
 }
 
 
