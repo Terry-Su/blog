@@ -52,7 +52,6 @@ export default function getPages( transformedData: TransformedData ): PageInfo[]
 
   // # article pages
   const remarkPageInfos = articleRemarks.map( remark => {
-    const { relativePath, metadata } = remark
     const remarkBasicData = getRemarkBasicData( remark )
     const route = getRemarkRoute( remark )
     return {
@@ -190,15 +189,15 @@ function getCategories( originalRemarks: TransformedMarkdownFile[] ) {
 }
 
 function getClientListItemRemark( remark ): ClientListItemRemark {
-  const { relativePath, text, metadata }: TransformedMarkdownFile = remark
-  const { postTime, id } = metadata
+  const { relativePath, getText, getMetadata }: TransformedMarkdownFile = remark
+  const { postTime, id } = getMetadata()
 
   const title = getRemarkTitle( remark )
   const path = getRemarkCategoryPath( remark )
   const route = getRemarkRoute( remark )
   return {
     title,
-    abstract: text,
+    abstract: getText(),
     path,
     route,
     postTime
@@ -206,12 +205,12 @@ function getClientListItemRemark( remark ): ClientListItemRemark {
 }
 
 function getRemarkTitle( remark: TransformedMarkdownFile ) {
-  const { title } = remark.metadata
+  const { title } = remark.getMetadata()
   return title || getRemarkFolderName( remark )
 }
 
 function getRemarkId( remark: TransformedMarkdownFile ) {
-  const { id } = remark.metadata
+  const { id } = remark.getMetadata()
   const folderName = getRemarkFolderName( remark )
   const fileName = getRemarkFilerName( remark )
   return (
@@ -247,8 +246,8 @@ function getRemarkRoute( remark: TransformedMarkdownFile ) {
 }
 
 function getRemarkBasicData( remark: TransformedMarkdownFile ): ClientRemark {
-  const { text } = remark
-  const { postTime, comment } = remark.metadata
+  const { getText } = remark
+  const { postTime, comment } = remark.getMetadata()
   const id = getRemarkId( remark )
   const title = getRemarkTitle( remark )
   const path = getRemarkCategoryPath( remark )
@@ -257,7 +256,7 @@ function getRemarkBasicData( remark: TransformedMarkdownFile ): ClientRemark {
     id,
     title,
     path,
-    text,
+    text: getText(),
     postTime,
     comment
   }
