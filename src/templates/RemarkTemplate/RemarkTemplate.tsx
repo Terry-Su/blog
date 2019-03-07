@@ -25,7 +25,7 @@ export default class RemarkTemplate extends Component<Props, State> {
     } = getDefaultData()
     return <div>
       <h1>{ title }</h1>
-      <h5>{ postTime }</h5>
+      <h5>{ new Date(postTime).toLocaleDateString() }</h5>
       <div dangerouslySetInnerHTML={{ __html: text }}></div>
       <p>{remarkEndingWords}</p>
       <p>{path}</p>

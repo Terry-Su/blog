@@ -1,3 +1,4 @@
+import htmlToText from 'html-to-text'
 import cloneDeep from 'lodash/cloneDeep'
 import path from 'path'
 
@@ -5,7 +6,9 @@ import {
     Config, PageInfo, TransformedData, TransformedMarkdownFile
 } from '../../tsblog/src/typings'
 import AbstractCategory from '../src/__typings__/AbstractCategory'
-import ClientRemark, { ClientListItemRemark } from '../src/__typings__/ClientRemark'
+import ClientRemark, {
+    ClientListItemRemark, ClientRemarkMetadata
+} from '../src/__typings__/ClientRemark'
 import { PATH_ABOUT, PATH_HOW_IT_WORKS_SERIES } from '../src/constants/paths'
 
 const { resolve } = path
@@ -190,27 +193,36 @@ function getCategories( originalRemarks: TransformedMarkdownFile[] ) {
 
 function getClientListItemRemark( remark ): ClientListItemRemark {
   const { relativePath, getText, getMetadata }: TransformedMarkdownFile = remark
-  const { postTime, id } = getMetadata()
+  const { postTime, id, abstract }: ClientRemarkMetadata = getMetadata()
 
   const title = getRemarkTitle( remark )
   const path = getRemarkCategoryPath( remark )
   const route = getRemarkRoute( remark )
+  const html = getText()
+  const remarkAbstract = abstract || htmlToText.fromString( html, {
+    ignoreImage: true,
+    noLinkBrackets: true,
+    ignoreHref: true,
+    wordwrap: false,
+    unorderedListItemPrefix: ' ',
+  } )
+  const remarkPostTime = postTime && new Date( postTime ).getTime()
   return {
     title,
-    abstract: getText(),
+    abstract: remarkAbstract,
     path,
     route,
-    postTime
+    postTime: remarkPostTime
   }
 }
 
 function getRemarkTitle( remark: TransformedMarkdownFile ) {
-  const { title } = remark.getMetadata()
+  const { title }: ClientRemarkMetadata = remark.getMetadata()
   return title || getRemarkFolderName( remark )
 }
 
 function getRemarkId( remark: TransformedMarkdownFile ) {
-  const { id } = remark.getMetadata()
+  const { id }: ClientRemarkMetadata = remark.getMetadata()
   const folderName = getRemarkFolderName( remark )
   const fileName = getRemarkFilerName( remark )
   return (
@@ -247,17 +259,18 @@ function getRemarkRoute( remark: TransformedMarkdownFile ) {
 
 function getRemarkBasicData( remark: TransformedMarkdownFile ): ClientRemark {
   const { getText } = remark
-  const { postTime, comment } = remark.getMetadata()
+  const { postTime, comment }: ClientRemarkMetadata = remark.getMetadata()
   const id = getRemarkId( remark )
   const title = getRemarkTitle( remark )
   const path = getRemarkCategoryPath( remark )
   const route = getRemarkRoute( remark )
+  const remarkPostTime = postTime && new Date( postTime ).getTime()
   return {
     id,
     title,
     path,
     text: getText(),
-    postTime,
+    postTime: remarkPostTime,
     comment
   }
 }

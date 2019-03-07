@@ -14,5 +14,15 @@ export class ClientListItemRemark {
   // foo/bar/zoo(foo/bar/zoo/article1/en.md)
   path: string
   route: string
-  postTime: string 
+  postTime: number 
+}
+
+
+
+export class ClientRemarkMetadata {
+  id?: string
+  title?: string
+  postTime?: string
+  abstract?: string
+  comment?: number
 }
