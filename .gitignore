@@ -17,3 +17,7 @@ node_modules
 
 # cache
 .cache
+
+# backup
+## i18n-sync backup files
+.backup

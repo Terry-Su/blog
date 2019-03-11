@@ -1,8 +1,17 @@
 import path from 'path'
+import showdown from 'showdown'
 
+import parse from '../i18n-sync/src/parse'
 import { Config } from '../tsblog/src/typings'
 import getPages from './tsblog/getPages'
 import setWebpack from './tsblog/setWebpack'
+
+const remarkParser = text => {
+  const newText = parse( text ).text
+  const converter = new showdown.Converter(  )
+  const html = converter.makeHtml( newText )
+  return html
+}
 
 const { resolve } = path
 
@@ -24,9 +33,13 @@ const config: Config = {
     reduxApp    : resolve( __dirname, "./src/state/app" ),
     getPages,
     setWebpack,
-    tsconfigPath: resolve( __dirname, "tsconfig.json" )
+    tsconfigPath: resolve( __dirname, "tsconfig.json" ),
+    dotDirectory: false,
   },
-  port: 3602
+  parser: {
+    ".md": remarkParser
+  },
+  port: 3600
 }
 
 export default config

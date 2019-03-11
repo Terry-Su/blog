@@ -59,7 +59,8 @@ export default class Header extends Component<Props, State> {
         >
           {[
             ["ARTICLES", "/"],
-            ["HOW IT WORKS SERIES", PATH_HOW_IT_WORKS_SERIES],
+            // ["HOW IT WORKS SERIES", PATH_HOW_IT_WORKS_SERIES],
+            ["WORKSPACE", PATH_HOW_IT_WORKS_SERIES],
             ["ABOUT", PATH_ABOUT],
             ["Github", ""]
           ].map(([value, path], index) => (

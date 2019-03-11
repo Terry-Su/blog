@@ -6,7 +6,7 @@ import {
     Config, PageInfo, TransformedData, TransformedMarkdownFile, TransformedYamlFile
 } from '../../tsblog/src/typings'
 import { EN, ZH_CN } from '../locale/names'
-import specialNameMap, { CN } from '../locale/specialNameMap'
+import specialNameMap, { CN, getSpeciaLocalelName } from '../locale/specialNameMap'
 import t from '../locale/t'
 import AbstractCategory from '../src/__typings__/AbstractCategory'
 import CategoryProp from '../src/__typings__/CategoryProp'
@@ -24,14 +24,28 @@ export default function getPagesByLocale(
 ): PageInfo[] {
   const { remarks, yamls, siteData } = transformedData
 
+  const localeName = specialNameMap[ locale ]
+  const root = locale === EN ? "/" : `/${localeName}/`
+  const absoluteRoot = '/'
+  const rootName = root.replace( /\/$/, "" )
+
   const { authorUrl, title } = siteData
   const commonData = {
     authorUrl,
     title: t( title, locale )
   }
 
+  
+
   const articleRemarks = remarks.filter(
-    remark => remark.relativePath.split( "/" ).length > 2
+    remark => {
+      const { relativePath } = remark
+      // is article folder
+      if ( relativePath.split( "/" ).length > 2 ) {
+        const localeName = getRemarkFilerName( remark )
+        return localeName === getSpeciaLocalelName( locale )
+      }
+    }
   )
 
   const {
@@ -43,19 +57,18 @@ export default function getPagesByLocale(
   } = siteData
 
   const categoryProps: CategoryProp[] = getCategoryProps( yamls )
-  const categories = getCategories( articleRemarks, categoryProps, locale )
+  const categories = getCategories( articleRemarks, categoryProps, locale, absoluteRoot )
+  // console.log( JSON.stringify( categories, null, 2 ) )
   const category = {
     name    : "All",
     categories,
     expanded: true
   }
 
-  const localeName = specialNameMap[ locale ]
-  const root = locale === EN ? "/" : `/${localeName}/`
-  const rootName = root.replace( /\/$/, "" )
+ 
 
   const newestRemarks = articleRemarks.map( remark =>
-    getClientListItemRemark( remark, root )
+    getClientListItemRemark( remark, absoluteRoot )
   )
 
   // # home page
@@ -72,7 +85,7 @@ export default function getPagesByLocale(
   // # article pages
   const remarkPageInfos = articleRemarks.map( remark => {
     const remarkBasicData = getRemarkBasicData( remark )
-    const route = getRemarkRoute( remark, root )
+    const route = getRemarkRoute( remark, absoluteRoot )
     return {
       path     : `${route}`,
       component: resolve(
@@ -144,7 +157,8 @@ function getCategoryProps( yamls: TransformedYamlFile[] ) {
 function getCategories(
   originalRemarks: TransformedMarkdownFile[],
   categoryProps: CategoryProp[],
-  locale: string
+  locale: string,
+  absoluteRoot: string
 ) {
   let remarks = cloneDeep( originalRemarks )
   remarks = remarks.map( remark => ( {
@@ -178,7 +192,7 @@ function getCategories(
         ( { parentOfCurrentFolder } ) =>
           parentOfCurrentFolder === tmpNames.join( "/" )
       )
-      .map( getClientListItemRemark )
+      .map( remark => getClientListItemRemark( remark, absoluteRoot ) )
   }
 
   const setValue = (
@@ -241,13 +255,13 @@ function getCategories(
   return root.categories
 }
 
-function getClientListItemRemark( remark, root: string ): ClientListItemRemark {
+function getClientListItemRemark( remark, absoluteRoot: string ): ClientListItemRemark {
   const { relativePath, getText, getMetadata }: TransformedMarkdownFile = remark
   const { postTime, id, abstract }: ClientRemarkMetadata = getMetadata()
 
   const title = getRemarkTitle( remark )
   const path = getRemarkCategoryPath( remark )
-  const route = getRemarkRoute( remark, root )
+  const route = getRemarkRoute( remark, absoluteRoot )
   const html = getText()
   const remarkAbstract =
     abstract ||
@@ -315,8 +329,8 @@ function getRemarkFilerName( remark: TransformedMarkdownFile ) {
   return names[ names.length - 1 ]
 }
 
-function getRemarkRoute( remark: TransformedMarkdownFile, root: string ) {
-  return `${root}${getRemarkId( remark )}`
+function getRemarkRoute( remark: TransformedMarkdownFile, absoluteRoot: string ) {
+  return `${absoluteRoot}${getRemarkId( remark )}`
 }
 
 function getRemarkBasicData( remark: TransformedMarkdownFile ): ClientRemark {
@@ -326,11 +340,12 @@ function getRemarkBasicData( remark: TransformedMarkdownFile ): ClientRemark {
   const title = getRemarkTitle( remark )
   const path = getRemarkCategoryPath( remark )
   const remarkPostTime = postTime && new Date( postTime ).getTime()
+  const text = getText()
   return {
     id,
     title,
     path,
-    text    : getText(),
+    text ,
     postTime: remarkPostTime,
     comment
   }
