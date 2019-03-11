@@ -35,7 +35,7 @@ export default connect(({ articles = {} }: any) => ({ articles }))(
                 <div
                   style={{
                     fontSize: `24px`,
-                    fontWeight: `bold`
+                    fontWeight: `bolder`
                   }}
                 >
                   <ResolvedLink to={remark.route}>{remark.title}</ResolvedLink>

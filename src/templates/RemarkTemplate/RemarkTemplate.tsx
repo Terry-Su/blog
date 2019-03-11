@@ -32,7 +32,8 @@ export default connect(({ article }: any) => ({
       } = getDefaultData()
       const { availableDisqusComment } = this.props
       return (
-        <LayoutHome>
+        <LayoutHome
+        isMiniHeader={true}>
           <div
             style={{
               width: `100%`
@@ -44,7 +45,7 @@ export default connect(({ article }: any) => ({
                 display: `flex`,
                 justifyContent: `center`,
                 width: `100%`,
-                padding: `40px 0 0 0`
+                padding: `0px 0 0 0`
               }}
             >
               <div

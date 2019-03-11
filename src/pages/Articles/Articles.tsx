@@ -52,7 +52,7 @@ class Articles extends Component<Props, State> {
     const { category }: { category: AbstractCategory } = getDefaultData()
 
     return (
-      <LayoutHome>
+      <LayoutHome overflowContent>
         <div
           style={{
             boxSizing: "border-box",
@@ -60,7 +60,7 @@ class Articles extends Component<Props, State> {
             // justifyContent: `space-between`,
             width: "100%",
             height: "100%",
-            padding: `40px 0 0 0`
+            padding: `15px 0 0 0`
             // overflow: `auto`
           }}
         >
@@ -79,8 +79,9 @@ class Articles extends Component<Props, State> {
           >
             <div
               style={{
+                // boxSizing: `border-box`,
                 height: `100%`,
-                overflow: `auto`
+                // padding: `0 0 50px 0`,
               }}
             >
               <div
@@ -100,6 +101,10 @@ class Articles extends Component<Props, State> {
                 category.categories.map((category, index) => (
                   <Category key={index} category={category} />
                 ))}
+              {/* taking space  */}
+              <div style={{
+                padding: '20px 0'
+              }}></div>
             </div>
           </div>
           <div

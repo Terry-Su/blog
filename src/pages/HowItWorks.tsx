@@ -20,7 +20,7 @@ export default class HowItWorks extends Component<Props, State> {
       remarkEndingWords
     } = getDefaultData()
     return (
-      <LayoutHome>
+      <LayoutHome overflowContent>
         <div
           style={{
             boxSizing: `border-box`,

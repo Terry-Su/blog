@@ -11,7 +11,7 @@ class State {}
 export default class About extends Component<Props, State> {
   render() {
     return (
-      <LayoutHome>
+      <LayoutHome overflowContent>
         <div
           style={{
             boxSizing: `border-box`,
