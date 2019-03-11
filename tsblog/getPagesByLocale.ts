@@ -265,13 +265,13 @@ function getClientListItemRemark( remark, absoluteRoot: string ): ClientListItem
   const html = getText()
   const remarkAbstract =
     abstract ||
-    htmlToText.fromString( html, {
+    (htmlToText.fromString( html, {
       ignoreImage            : true,
       noLinkBrackets         : true,
       ignoreHref             : true,
       wordwrap               : false,
       unorderedListItemPrefix: " "
-    } )
+    } ).substring( 0, 100 ) + '...')
   const remarkPostTime = postTime && new Date( postTime ).getTime()
   return {
     title,

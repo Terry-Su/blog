@@ -42,7 +42,7 @@ export default class Header extends Component<Props, State> {
             } />
             <span
               style={{
-                margin: "0 0 0 10px",
+                margin: ! isMini ? "0 0 0 15px" : "10px",
                 fontSize: 
                   ! isMini ? "24px" : "18px" 
                 ,

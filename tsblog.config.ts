@@ -8,7 +8,7 @@ import setWebpack from './tsblog/setWebpack'
 
 const remarkParser = text => {
   const newText = parse( text ).text
-  const converter = new showdown.Converter(  )
+  const converter = new showdown.Converter( {metadata: true} )
   const html = converter.makeHtml( newText )
   return html
 }

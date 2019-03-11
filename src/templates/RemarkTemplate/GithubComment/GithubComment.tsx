@@ -70,7 +70,6 @@ export default connect(({ article }: any) => ({
       const { remarkGithubIssuePageBase, comment } = getDefaultData()
       const { availableDisqusComment } = this.props
       const { comments } = this.state
-      console.log({ availableDisqusComment })
       return (
         <div
           style={{
