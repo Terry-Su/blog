@@ -1,3 +1,4 @@
+import throttle from 'lodash/throttle'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
@@ -8,7 +9,10 @@ import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 import Category from '@/components/Category/Category'
 import getDefaultData from '@/helpers/getDefaultData'
 import LayoutHome from '@/layouts/LayoutHome'
-import { STYLE_ARTICLES_SIDEBAR_WIDTH } from '@/styles/STYLES'
+import {
+    STYLE_ARTICLES_LIST_WIDTH, STYLE_ARTICLES_MAX_CONTENT_WIDTH, STYLE_ARTICLES_SIDEBAR_WIDTH,
+    STYLE_BOTTOM_HEIGHT, STYLE_LAYOUT_HOME_HEADER_HEIGHT, STYLE_LAYOUT_HOME_HEADER_TO_BOTTOM
+} from '@/styles/STYLES'
 
 import List from './List'
 
@@ -17,7 +21,8 @@ class Props extends DefaultComponentProps {
 }
 
 class State {
-  remarks: ClientListItemRemark[]
+  scrollY: number = 0
+  bodyHeight: number = 0
 }
 
 const Title = styled.h1`
@@ -29,6 +34,18 @@ const Title = styled.h1`
 const PADDING_TOP = 20
 
 class Articles extends Component<Props, State> {
+  state = new State()
+
+  scrollListener = throttle(() => {
+    const { scrollY } = window
+    this.setState({ scrollY })
+  }, 10)
+
+  resizeListener = throttle(() => {
+    const { height: bodyHeight } = document.body.getBoundingClientRect()
+    this.setState({ bodyHeight })
+  }, 10)
+
   componentDidMount() {
     const { listRemarks } = this.props.articles
     if (!listRemarks) {
@@ -38,6 +55,39 @@ class Articles extends Component<Props, State> {
         listRemarks: newestRemarks
       })
     }
+
+    this.scrollListener()
+    window.addEventListener("scroll", this.scrollListener)
+
+    this.resizeListener()
+    window.addEventListener("resize", this.resizeListener)
+  }
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.scrollListener)
+    window.removeEventListener("resize", this.resizeListener)
+  }
+
+  get isFixingSidebar(): boolean {
+    return (
+      this.state.scrollY >=
+        STYLE_LAYOUT_HOME_HEADER_HEIGHT + STYLE_LAYOUT_HOME_HEADER_TO_BOTTOM &&
+      !this.hasScrolledInBootom
+    )
+  }
+
+  get hasScrolledInBootom(): boolean {
+    const { innerHeight, scrollY } = window
+    return (
+      innerHeight + scrollY >= document.body.scrollHeight - STYLE_BOTTOM_HEIGHT
+    )
+  }
+
+  // sidebar to bottom while window scrolling in bottom
+  get sidebarToBottom(): number {
+    return (
+      STYLE_BOTTOM_HEIGHT -
+      (document.body.scrollHeight - (innerHeight + scrollY))
+    )
   }
 
   onNewestClick = () => {
@@ -50,38 +100,53 @@ class Articles extends Component<Props, State> {
 
   render() {
     const { category }: { category: AbstractCategory } = getDefaultData()
-
+    const sidebarStyle: any = this.isFixingSidebar
+      ? {
+          marginTop: `${this.state.scrollY -
+            STYLE_LAYOUT_HOME_HEADER_HEIGHT -
+            STYLE_LAYOUT_HOME_HEADER_TO_BOTTOM}px`
+        }
+      : this.hasScrolledInBootom
+      ? {
+          marginTop: `${this.state.scrollY -
+            STYLE_LAYOUT_HOME_HEADER_HEIGHT -
+            STYLE_LAYOUT_HOME_HEADER_TO_BOTTOM -
+            this.sidebarToBottom}px`
+        }
+      : {}
     return (
       <LayoutHome overflowContent>
         <div
           style={{
             boxSizing: "border-box",
             display: "flex",
-            // justifyContent: `space-between`,
+            justifyContent: `center`,
             width: "100%",
-            height: "100%",
-            padding: `30px 0 0 0`
-            // overflow: `auto`
+            maxWidth: `${STYLE_ARTICLES_MAX_CONTENT_WIDTH}px`,
+            margin: `0 auto`,
+            minHeight: "100%"
           }}
         >
+          {/* left sidebar */}
           <div
             style={{
-              boxSizing: `border-box`,
+              ...sidebarStyle,
+              boxSizing: "border-box",
               display: `flex`,
               justifyContent: `flex-end`,
-              // width: `${STYLE_ARTICLES_SIDEBAR_WIDTH}px`,
-              width: `30%`,
-              height: `100%`,
-              borderRight: `1px solid rgba(0,0,0,0.05)`,
-              padding: `10px 0 0 0`,
+              width: `${STYLE_ARTICLES_SIDEBAR_WIDTH}px`,
+              height: this.state.bodyHeight,
+              margin: `0 50px 0 0`,
+              borderRight: `1px solid rgba(0,0,0,0.02)`,
               overflow: `auto`
             }}
           >
             <div
               style={{
                 // boxSizing: `border-box`,
-                height: `100%`,
-                // padding: `0 0 50px 0`,
+                width: `100%`,
+                height: `100%`
+                // padding: `0 20px 0 0`
               }}
             >
               <div
@@ -91,6 +156,7 @@ class Articles extends Component<Props, State> {
                   alignItems: `center`,
                   height: `37px`,
                   padding: `0 50px 0 40px`,
+                  color: `#717171`,
                   cursor: `pointer`
                 }}
                 onClick={this.onNewestClick}
@@ -102,22 +168,38 @@ class Articles extends Component<Props, State> {
                   <Category key={index} category={category} />
                 ))}
               {/* taking space  */}
-              <div style={{
-                padding: '20px 0'
-              }}></div>
+              {/* <div
+                style={{
+                  padding: "20px 0"
+                }}
+              /> */}
             </div>
           </div>
+
+          {/* list */}
           <div
             style={{
               boxSizing: `border-box`,
-              // width: `656px`,
-              flex: `1 1 auto`,
-              height: `calc( 100% - ${10}px )`,
-              padding: `10px 0 0 40px`,
-              overflow: `auto`
+              width: `${STYLE_ARTICLES_LIST_WIDTH}px`,
+              height: `calc( 100% )`
+              // padding: `10px ${STYLE_ARTICLES_SIDEBAR_WIDTH}px 0 ${STYLE_ARTICLES_SIDEBAR_WIDTH}px`
             }}
           >
             <List />
+          </div>
+
+          {/* right sidebar */}
+          <div
+            style={{
+              // ...sidebarStyle,
+              width: STYLE_ARTICLES_SIDEBAR_WIDTH,
+              height: `auto`,
+              margin: `0 0 0 50px`,
+              // overflow: `auto`,
+              borderLeft: `1px solid rgba(0,0,0,0.02)`
+            }}
+          >
+            &nbsp;
           </div>
         </div>
       </LayoutHome>

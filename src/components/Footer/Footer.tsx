@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 import getDefaultData from '@/helpers/getDefaultData'
+import { STYLE_BOTTOM_HEIGHT } from '@/styles/STYLES'
 
 class Props extends DefaultComponentProps {}
 
@@ -13,11 +14,10 @@ export default class Footer extends Component<Props, State> {
     return (
       <div
         style={{
+          boxSizing: `border-box`,
           display: "grid",
           placeItems: "center",
-          height: "60px",
-          padding: `5px`,
-          margin: `40px 0 0 0`,
+          height: `${STYLE_BOTTOM_HEIGHT}px`,
           background: `#182633`
         }}
       >

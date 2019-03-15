@@ -28,6 +28,7 @@ const config: Config = {
     authorUrl          : "https://github.com/Terry-Su"
   },
   entry: {
+    title               : "Terry Su Blog",
     contents    : resolve( __dirname, "./contents" ),
     home        : resolve( __dirname, "./src/pages/Home" ),
     reduxApp    : resolve( __dirname, "./src/state/app" ),

@@ -43,15 +43,8 @@ export default connect(({ articles = {} }: any) => ({ articles }))(
                 <div
                   style={{
                     color: `#999`,
+                    fontSize: `13px`,
                     padding: `10px 0 10px 0`
-                  }}
-                >
-                  {remark.abstract}
-                </div>
-                <div
-                  style={{
-                    color: `#999`,
-                    fontSize: `13px`
                   }}
                 >
                   <span>
@@ -61,6 +54,15 @@ export default connect(({ articles = {} }: any) => ({ articles }))(
 
                   {/* <span>{remark.path}</span> */}
                 </div>
+                <div
+                  style={{
+                    color: `#999`,
+                    padding: `0px 0 10px 0`
+                  }}
+                >
+                  {remark.abstract}
+                </div>
+                
               </div>
             ))}
         </div>

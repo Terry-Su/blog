@@ -66,9 +66,9 @@ export default class Header extends Component<Props, State> {
             {[
               ["ARTICLES", "/"],
               // ["HOW IT WORKS SERIES", PATH_HOW_IT_WORKS_SERIES],
-              ["WORKSPACE", PATH_HOW_IT_WORKS_SERIES],
+              // ["WORKSPACE", PATH_HOW_IT_WORKS_SERIES],
               ["ABOUT", PATH_ABOUT],
-              ["Github", ""]
+              // ["Github", "https://github.com/Terry-Su"]
             ].map(([value, path], index) => (
               <ResolvedLink
                 key={index}
@@ -76,8 +76,8 @@ export default class Header extends Component<Props, State> {
                   fontSize: !isMini ? "16px" : "16px",
                   margin: !isMini ? "0 25px" : "0 10px",
                   letterSpacing: "1px",
-                  fontWeight: !isMini ? "bold" : "normal",
-                  color:  currentPath === path ? "black": "#aaa"  
+                  // fontWeight: !isMini ? "bold" : "normal",
+                  color:  !isMini ? (currentPath === path ? "#555": "#aaa") : "#aaa"  
                 }}
                 to={path}
               >

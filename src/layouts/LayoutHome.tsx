@@ -7,7 +7,9 @@ import Header from '@/components/Header/Header'
 import ResolvedLink from '@/components/ResolvedLink'
 import Logo from '@/components/svg/Logo'
 import { PATH_ABOUT, PATH_HOW_IT_WORKS_SERIES } from '@/constants/paths'
-import { STYLE_LAYOUT_HOME_HEADER_HEIGHT } from '@/styles/STYLES'
+import {
+    STYLE_LAYOUT_HOME_HEADER_HEIGHT, STYLE_LAYOUT_HOME_HEADER_TO_BOTTOM
+} from '@/styles/STYLES'
 
 // import { STYLE_LAYOUT_HOME_HEADER_HEIGHT } from '@/styles/STYLES.ts'
 import LayoutBasic from './LayoutBasic'
@@ -30,7 +32,22 @@ export default class LayoutHome extends Component<Props, State> {
         }}
       >
         <Header isMini={isMiniHeader} />
+
         <div
+          style={{
+            margin: `${STYLE_LAYOUT_HOME_HEADER_TO_BOTTOM}px 0 0 0`
+          }}
+        >
+          {...this.props.children}
+        </div>
+        {/* <div style={{
+          width: `100%`,
+          height: `100%`,
+          background: `skyblue`,
+        }}>
+         
+        </div> */}
+        {/* <div
           style={{
             width: "100%",
             height: overflowContent
@@ -40,8 +57,9 @@ export default class LayoutHome extends Component<Props, State> {
           }}
         >
           {...this.props.children}
-        </div>
-        {!overflowContent && <Footer />}
+        </div> */}
+        {/* {!overflowContent && <Footer />} */}
+        <Footer />
       </LayoutBasic>
     )
   }

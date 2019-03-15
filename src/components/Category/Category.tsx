@@ -42,7 +42,7 @@ const Category = connect()(
       return (
         <div
           style={{
-            width: "100%"
+            minWidth: "100%"
           }}
         >
           <div
@@ -52,10 +52,25 @@ const Category = connect()(
               alignItems: `center`,
               height: `37px`,
               padding: `0 40px 0 40px`,
+              color: `#717171`,
               cursor: `pointer`
             }}
           >
+            {!isLast && (
+              <span
+                style={{
+                  cursor: "pointer"
+                }}
+                onClick={this.onIconClick}
+              >
+                {isExpanding ? "∧" : "∨"}
+              </span>
+            )}
             <span
+              style={{
+                margin: `0 0 0 7px`,
+                whiteSpace: "nowrap"
+              }}
               onClick={() =>
                 this.props.dispatch({
                   type: "articles/UPDATE_LIST_REMARKS",
@@ -65,17 +80,6 @@ const Category = connect()(
             >
               {name}
             </span>
-            {!isLast && (
-              <span
-                style={{
-                  margin: `0 0 0 7px`,
-                  cursor: "pointer"
-                }}
-                onClick={this.onIconClick}
-              >
-                {isExpanding ? "∧" : "∨"}
-              </span>
-            )}
           </div>
           {/* # Following */}
           <div
