@@ -2,6 +2,8 @@ import htmlToText from 'html-to-text'
 import cloneDeep from 'lodash/cloneDeep'
 import path from 'path'
 
+import sortBlogsByPostTime from '@/utils/sortBlogsByPostTime'
+
 import {
     Config, PageInfo, TransformedData, TransformedMarkdownFile, TransformedYamlFile
 } from '../../tsblog/src/typings'
@@ -65,9 +67,9 @@ export default function getPagesByLocale(
     expanded: true
   }
 
-  const newestRemarks = articleRemarks.map( remark =>
-    getClientListItemRemark( remark, absoluteRoot )
-  )
+  const newestRemarks = articleRemarks
+    .map( remark => getClientListItemRemark( remark, absoluteRoot ) )
+    .sort( sortBlogsByPostTime )
 
   // # home page
   const homePageInfo = {

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 import ResolvedLink from '@/components/ResolvedLink'
 import { AppState } from '@/state/app'
+import sortBlogsByPostTime from '@/utils/sortBlogsByPostTime'
 import { formatNormalDate } from '@/utils/time'
 
 class Props extends DefaultComponentProps {
@@ -15,7 +16,7 @@ class State {}
 
 class List extends Component<Props, State> {
   render() {
-    const { listRemarks } = this.props.articles
+    const { listRemarks = [] } = this.props.articles || {}
     return (
       <div
         style={{
