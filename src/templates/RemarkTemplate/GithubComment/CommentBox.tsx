@@ -16,8 +16,6 @@ class State {
 export default class CommentBox extends Component<Props, State> {
   state: State = new State()
 
-  ref: any = React.createRef()
-
   componentDidUpdate(prevProps) {
     if (prevProps.remarkParser == null && this.props.remarkParser) {
       const remarked = this.props.remarkParser(this.props.comment.content)

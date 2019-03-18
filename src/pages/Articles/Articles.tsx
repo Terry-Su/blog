@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import AbstractCategory from '@/__typings__/AbstractCategory'
 import { ClientListItemRemark } from '@/__typings__/ClientRemark'
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
-import Category from '@/components/Category/Category'
+import Category, { CategoryItemColor } from '@/components/Category/Category'
 import getDefaultData from '@/helpers/getDefaultData'
 import LayoutHome from '@/layouts/LayoutHome'
 import {
@@ -56,7 +56,6 @@ class Articles extends Component<Props, State> {
       })
     }
 
-    console.log("mounted")
     this.scrollListener()
     window.addEventListener("scroll", this.scrollListener)
 
@@ -95,11 +94,20 @@ class Articles extends Component<Props, State> {
     )
   }
 
+  get isNewestCategroy(): boolean {
+    const { currentCategoryPath }: any = (this.props.articles as any) || {}
+    return currentCategoryPath == null
+  }
+
   onNewestClick = () => {
     const { newestRemarks } = getDefaultData()
     this.props.dispatch({
       type: "articles/UPDATE_LIST_REMARKS",
       listRemarks: newestRemarks
+    })
+    this.props.dispatch({
+      type: "articles/UPDATE_CURRENT_CATEGORY_PATH",
+      listRemarks: null
     })
   }
 
@@ -119,6 +127,7 @@ class Articles extends Component<Props, State> {
             this.sidebarToBottom}px`
         }
       : {}
+
     return (
       <LayoutHome overflowContent>
         <div
@@ -154,24 +163,29 @@ class Articles extends Component<Props, State> {
                 // padding: `0 20px 0 0`
               }}
             >
-              <div
+              <CategoryItemColor
                 style={{
                   boxSizing: `border-box`,
                   display: `inline-block`,
                   alignItems: `center`,
+                  minWidth: `100%`,
                   height: `37px`,
                   lineHeight: `37px`,
                   padding: `0 50px 0 40px`,
-                  color: `#717171`,
-                  cursor: `pointer`
+                  cursor: `default`
                 }}
                 onClick={this.onNewestClick}
+                persistent={this.isNewestCategroy}
               >
                 Newest
-              </div>
+              </CategoryItemColor>
               {category &&
                 category.categories.map((category, index) => (
-                  <Category key={index} category={category} />
+                  <Category
+                    key={index}
+                    category={category}
+                    currentPath={category.name}
+                  />
                 ))}
               {/* taking space  */}
               {/* <div

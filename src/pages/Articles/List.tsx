@@ -13,60 +13,59 @@ class Props extends DefaultComponentProps {
 
 class State {}
 
-export default connect(({ articles = {} }: any) => ({ articles }))(
-  class List extends Component<Props, State> {
-    render() {
-      const { listRemarks } = this.props.articles
-      return (
-        <div
-          style={{
-            boxSizing: `border-box`,
-            height: `100%`
-          }}
-        >
-          {listRemarks &&
-            listRemarks.map((remark, index) => (
+class List extends Component<Props, State> {
+  render() {
+    const { listRemarks } = this.props.articles
+    return (
+      <div
+        style={{
+          boxSizing: `border-box`,
+          height: `100%`
+        }}
+      >
+        {listRemarks &&
+          listRemarks.map((remark, index) => (
+            <div
+              key={index}
+              style={{
+                padding: `0 0 50px 0`
+              }}
+            >
               <div
-                key={index}
                 style={{
-                  padding: `0 0 50px 0`
+                  fontSize: `24px`,
+                  fontWeight: `bolder`
                 }}
               >
-                <div
-                  style={{
-                    fontSize: `24px`,
-                    fontWeight: `bolder`
-                  }}
-                >
-                  <ResolvedLink to={remark.route}>{remark.title}</ResolvedLink>
-                </div>
-                <div
-                  style={{
-                    color: `#999`,
-                    fontSize: `13px`,
-                    padding: `10px 0 10px 0`
-                  }}
-                >
-                  <span>
-                    {remark.postTime &&
-                      formatNormalDate(new Date(remark.postTime))}
-                  </span>
-
-                  {/* <span>{remark.path}</span> */}
-                </div>
-                <div
-                  style={{
-                    color: `#999`,
-                    padding: `0px 0 10px 0`
-                  }}
-                >
-                  {remark.abstract}
-                </div>
-                
+                <ResolvedLink to={remark.route}>{remark.title}</ResolvedLink>
               </div>
-            ))}
-        </div>
-      )
-    }
+              <div
+                style={{
+                  color: `#999`,
+                  fontSize: `13px`,
+                  padding: `10px 0 10px 0`
+                }}
+              >
+                <span>
+                  {remark.postTime &&
+                    formatNormalDate(new Date(remark.postTime))}
+                </span>
+
+                {/* <span>{remark.path}</span> */}
+              </div>
+              <div
+                style={{
+                  color: `#999`,
+                  padding: `0px 0 10px 0`
+                }}
+              >
+                {remark.abstract}
+              </div>
+            </div>
+          ))}
+      </div>
+    )
   }
-)
+}
+
+export default connect(({ articles = {} }: any) => ({ articles }))(List)
