@@ -5,7 +5,10 @@ export const getHours = ( date: Date ) => date.getHours()
 export const getMinutes = ( date: Date ) => date.getMinutes()
 export const getSeconds = ( date: Date ) => date.getSeconds()
 
-export const formatNormalDate = ( theDate: Date, showSeconds: boolean = false ) => {
+export const formatNormalDate = (
+  theDate: Date,
+  showSeconds: boolean = false
+) => {
   const year = getYear( theDate )
   const month = getMonth( theDate )
   const date = getDate( theDate )
@@ -13,5 +16,7 @@ export const formatNormalDate = ( theDate: Date, showSeconds: boolean = false ) 
   const minutes = getMinutes( theDate )
   const seconds = getSeconds( theDate )
 
-  return `${year}/${month}/${date} ${hours}:${minutes}${ showSeconds ? ':' + seconds : '' }`
+  return `${year}/${month}/${date} ${hours}:${
+    minutes < 10 ? `0${minutes}` : minutes
+  }${showSeconds ? ":" + ( seconds < 10 ? `0${seconds}` : seconds ) : ""}`
 }

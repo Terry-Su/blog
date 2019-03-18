@@ -173,6 +173,7 @@ class Articles extends Component<Props, State> {
                   height: `37px`,
                   lineHeight: `37px`,
                   padding: `0 50px 0 40px`,
+                  margin: `0 0 0 19px`,
                   cursor: `default`
                 }}
                 onClick={this.onNewestClick}

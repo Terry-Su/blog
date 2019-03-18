@@ -19,12 +19,12 @@ const remarkDirs = ( () => {
   return dirs
 } )()
 
-remarkDirs.map( remarkDir => {
-  const files = locales.map( name =>
-    path.resolve( remarkDir, `${name}${EXTENSION}` )
-  )
-  const backup = path.resolve( remarkDir, BACKUP_NAME )
-  sync( files, {
-    backup
-  } )
-} )
+// remarkDirs.map( remarkDir => {
+//   const files = locales.map( name =>
+//     path.resolve( remarkDir, `${name}${EXTENSION}` )
+//   )
+//   const backup = path.resolve( remarkDir, BACKUP_NAME )
+//   sync( files, {
+//     backup
+//   } )
+// } )

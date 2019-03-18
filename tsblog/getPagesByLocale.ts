@@ -235,12 +235,20 @@ function getCategories(
         return name
       } )()
 
-      root.categories.map( category => {
-        if ( category.name === localizedName ) {
-          found = true
-          tmp = category
-        }
-      } )
+      const search = ( category: AbstractCategory ) => {
+        category.categories &&
+          category.categories.length > 0 &&
+          category.categories.map( childCategory => {
+            if ( childCategory.name === localizedName ) {
+              found = true
+              tmp = childCategory
+            }
+            search( childCategory )
+          } )
+      }
+
+      search( root )
+
       if ( !found ) {
         tmp = {
           name      : localizedName,

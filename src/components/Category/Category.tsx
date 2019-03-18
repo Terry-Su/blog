@@ -92,6 +92,7 @@ const Category = connect(({ articles = {} }: any) => ({ articles }))(
             {!isLast && (
               <span
                 style={{
+                  width: `12px`,
                   cursor: "default"
                 }}
                 onClick={this.onIconClick}
@@ -101,7 +102,7 @@ const Category = connect(({ articles = {} }: any) => ({ articles }))(
             )}
             <span
               style={{
-                margin: `0 0 0 7px`,
+                margin: `0 0 0 ${isLast ? 12 + 7 : 7}px`,
                 whiteSpace: "nowrap"
               }}
             >
