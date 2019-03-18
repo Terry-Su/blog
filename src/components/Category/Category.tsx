@@ -48,9 +48,9 @@ const Category = connect()(
           <div
             style={{
               boxSizing: `border-box`,
-              display: `flex`,
-              alignItems: `center`,
+              display: `inline-block`,
               height: `37px`,
+              lineHeight: `37px`,
               padding: `0 40px 0 40px`,
               color: `#717171`,
               cursor: `pointer`

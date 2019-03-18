@@ -56,6 +56,7 @@ class Articles extends Component<Props, State> {
       })
     }
 
+    console.log("mounted")
     this.scrollListener()
     window.addEventListener("scroll", this.scrollListener)
 
@@ -80,6 +81,10 @@ class Articles extends Component<Props, State> {
     return (
       innerHeight + scrollY >= document.body.scrollHeight - STYLE_BOTTOM_HEIGHT
     )
+  }
+
+  get notFixingSidebar(): boolean {
+    return !this.isFixingSidebar
   }
 
   // sidebar to bottom while window scrolling in bottom
@@ -152,9 +157,10 @@ class Articles extends Component<Props, State> {
               <div
                 style={{
                   boxSizing: `border-box`,
-                  display: `flex`,
+                  display: `inline-block`,
                   alignItems: `center`,
                   height: `37px`,
+                  lineHeight: `37px`,
                   padding: `0 50px 0 40px`,
                   color: `#717171`,
                   cursor: `pointer`
