@@ -3,19 +3,19 @@ import zh_CN from './locales/zh_CN'
 import { EN, ZH_CN } from './names'
 
 const localeMap = {
-  [EN]: en,
-  [ZH_CN]: zh_CN
-} 
+  [ EN ]   : en,
+  [ ZH_CN ]: zh_CN
+}
 
-export default function t( key: string, locale: string ) {
+export default function translate( locale: string, key: string ): any {
   try {
     let res = localeMap[ locale ]
-    key.split('.').forEach( str => {
+    key.split( "." ).forEach( str => {
       res = res[ str ]
     } )
     return res != null ? res : key
-  } catch( e ) {
+  } catch ( e ) {
     console.log( e )
-    return key 
+    return key
   }
 }

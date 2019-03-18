@@ -36,6 +36,7 @@
     "@types/react-dom": "^16.8.2",
     "@types/react-redux": "^7.0.1",
     "@types/styled-components": "^4.1.11",
+    "@types/webpack-env": "^1.13.9",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
     "glob": "^7.1.3",

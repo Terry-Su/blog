@@ -8,34 +8,29 @@ import setWebpack from './tsblog/setWebpack'
 
 const remarkParser = text => {
   const newText = parse( text ).text
-  const converter = new showdown.Converter( {metadata: true} )
+  const converter = new showdown.Converter( { metadata: true } )
   const html = converter.makeHtml( newText )
   return html
 }
 
 const { resolve } = path
 
+export class SiteData {
+  remarkDisqusComment: string = `https://terrysu.disqus.com/embed.js`
+  authorUrl: string = "https://github.com/Terry-Su"
+}
+
 const config: Config = {
-  siteData: {
-    title               : "tsblogConfig.siteData.title",
-    remarkEndingWords   : ``,
-    remarkReprintingNote: `Author all rights reserved, reprint please indicate
-    the source, no commercial reprint`,
-    remarkGithubIssuePageBase: `https://github.com/Terry-Su/TSBlogComments-En/issues/`,
-    remarkGithubCommentBase  :
-      "https://api.github.com/repos/terry-su/tsblogcomments-en/issues/",
-    remarkDisqusComment: `https://terrysu.disqus.com/embed.js`,
-    authorUrl          : "https://github.com/Terry-Su"
-  },
-  entry: {
-    title               : "Terry Su Blog",
+  siteData: new SiteData(),
+  entry   : {
+    title       : "Terry Su Blog",
     contents    : resolve( __dirname, "./contents" ),
     home        : resolve( __dirname, "./src/pages/Home" ),
     reduxApp    : resolve( __dirname, "./src/state/app" ),
     getPages,
     setWebpack,
     tsconfigPath: resolve( __dirname, "tsconfig.json" ),
-    dotDirectory: false,
+    dotDirectory: false
   },
   parser: {
     ".md": remarkParser

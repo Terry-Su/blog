@@ -7,13 +7,14 @@ import {
 } from '../../tsblog/src/typings'
 import { EN, ZH_CN } from '../locale/names'
 import specialNameMap, { CN, getSpeciaLocalelName } from '../locale/specialNameMap'
-import t from '../locale/t'
+import translate from '../locale/translate'
 import AbstractCategory from '../src/__typings__/AbstractCategory'
 import CategoryProp from '../src/__typings__/CategoryProp'
 import ClientRemark, {
     ClientListItemRemark, ClientRemarkMetadata
 } from '../src/__typings__/ClientRemark'
 import { PATH_ABOUT, PATH_HOW_IT_WORKS_SERIES } from '../src/constants/paths'
+import { SiteData } from '../tsblog.config'
 import { CATEGORY_PROPS_FILE_NAME } from './constants'
 
 const { resolve } = path
@@ -22,17 +23,23 @@ export default function getPagesByLocale(
   transformedData: TransformedData,
   locale: string
 ): PageInfo[] {
-  const { remarks, yamls, siteData } = transformedData
+  const { remarks, yamls } = transformedData
+  const siteData: SiteData = transformedData.siteData
 
   const localeName = specialNameMap[ locale ]
   const root = locale === EN ? "/" : `/${localeName}/`
   const absoluteRoot = "/"
   const rootName = root.replace( /\/$/, "" )
 
-  const { authorUrl, title } = siteData
+  let t = text => translate( locale, text )
+  const { authorUrl } = siteData
   const commonData = {
+    pathnameRoot        : root,
     authorUrl,
-    title: t( title, locale )
+    locale,
+    // text
+    logoTitle           : t( `logoTitle` ),
+    noteIsAutoTranslated: t( `noteIsAutoTranslated` )
   }
 
   const articleRemarks = remarks.filter( remark => {
@@ -43,14 +50,6 @@ export default function getPagesByLocale(
       return localeName === getSpeciaLocalelName( locale )
     }
   } )
-
-  const {
-    remarkReprintingNote,
-    remarkEndingWords,
-    remarkGithubIssuePageBase,
-    remarkGithubCommentBase,
-    remarkDisqusComment
-  } = siteData
 
   const categoryProps: CategoryProp[] = getCategoryProps( yamls )
   const categories = getCategories(
@@ -77,11 +76,13 @@ export default function getPagesByLocale(
     data     : {
       ...commonData,
       category,
-      newestRemarks
+      newestRemarks,
+      texts: t( "home" )
     }
   }
 
   // # article pages
+  const { remarkDisqusComment } = siteData
   const remarkPageInfos = articleRemarks.map( remark => {
     const remarkBasicData = getRemarkBasicData( remark )
     const route = getRemarkRoute( remark, absoluteRoot )
@@ -94,41 +95,52 @@ export default function getPagesByLocale(
       data: {
         ...commonData,
         ...remarkBasicData,
-        remarkReprintingNote,
-        remarkEndingWords,
-        remarkGithubCommentBase,
-        remarkGithubIssuePageBase,
-        remarkDisqusComment
+        reprintingNote     : t( `article.reprintingNote` ),
+        endingWords        : t( `article.endingWords` ),
+        githubCommentBase  : t( `article.githubCommentBase` ),
+        githubIssuePageBase: t( `article.githubIssuePageBase` ),
+        remarkDisqusComment,
+        texts              : t( "home" )
       }
     }
   } )
 
   // # how it works series page
   const howItWorks = {
-    path     : `${rootName}${PATH_HOW_IT_WORKS_SERIES}`,
+    path     : `${root}${PATH_HOW_IT_WORKS_SERIES}`,
     component: resolve( __dirname, "../src/pages/HowItWorks" ),
     data     : ( () => {
-      const remark = remarks.find(
-        remark => getRemarkFolderPath( remark ) === "how it works series"
-      )
+      const remark = remarks.find( remark => {
+        const localeName = getRemarkFilerName( remark )
+        return (
+          localeName === getSpeciaLocalelName( locale ) &&
+          getRemarkFolderPath( remark ) === "how it works series"
+        )
+      } )
       return {
         ...commonData,
-        ...getRemarkBasicData( remark )
+        ...getRemarkBasicData( remark ),
+        texts: t( "home" )
       }
     } )()
   }
 
   // # about page
   const about = {
-    path     : `${rootName}${PATH_ABOUT}`,
+    path     : `${root}${PATH_ABOUT}`,
     component: resolve( __dirname, "../src/pages/About" ),
     data     : ( () => {
-      const remark = remarks.find(
-        remark => getRemarkFolderPath( remark ) === "about"
-      )
+      const remark = remarks.find( remark => {
+        const localeName = getRemarkFilerName( remark )
+        return (
+          localeName === getSpeciaLocalelName( locale ) &&
+          getRemarkFolderPath( remark ) === "about"
+        )
+      } )
       return {
         ...commonData,
-        ...getRemarkBasicData( remark )
+        ...getRemarkBasicData( remark ),
+        texts: t( "home" )
       }
     } )()
   }
@@ -338,6 +350,9 @@ function getRemarkRoute( remark: TransformedMarkdownFile, absoluteRoot: string )
 }
 
 function getRemarkBasicData( remark: TransformedMarkdownFile ): ClientRemark {
+  if ( !remark ) {
+    return null
+  }
   const { getText } = remark
   const {
     postTime,
@@ -349,6 +364,7 @@ function getRemarkBasicData( remark: TransformedMarkdownFile ): ClientRemark {
   const path = getRemarkCategoryPath( remark )
   const remarkPostTime = postTime && new Date( postTime ).getTime()
   const text = getText()
+
   return {
     id,
     title,

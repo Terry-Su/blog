@@ -1,5 +1,8 @@
 ---
-<0></0>
+<0>
+title: 动画演绎排序算法 
+isAutoTranslated: true
+</0>
 postTime: 2019/01/15 22:54
 comment: 13
 ---
@@ -7,9 +10,9 @@ comment: 13
 
 ![](https://terry-su.github.io/BlogCDN/images/simpson-evolution.jpg)    
 
-<1>After learning common sorting algorithms, feel like demonstrating them using not only brief description but also animated demos.</1>
+<1>在学习了常用的排序算法之后，不仅要使用简短的描述，还要使用动画演示来演示它们。</1>
 
-<2>Here contains 6 sorting algorithms, half are simple, half are advanced.</2>
+<2>这里包含6种排序算法，一半简单，一半先进。</2>
 * Bubble sort
 * Selection sort
 * Insertion sort

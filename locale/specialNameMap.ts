@@ -1,14 +1,14 @@
 import { ZH_CN } from './names'
 
-export const CN = 'cn'
+export const CN = "cn"
 
 const specialNameMap = {
-  [ZH_CN]: CN
-} 
+  [ ZH_CN ]: CN
+}
 
 export default specialNameMap
 
-export function getSpeciaLocalelName ( name: string ) {
+export function getSpeciaLocalelName( name: string ) {
   const res = specialNameMap[ name ]
   return res !== undefined ? res : name
 }

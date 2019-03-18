@@ -113,6 +113,7 @@ class Articles extends Component<Props, State> {
 
   render() {
     const { category }: { category: AbstractCategory } = getDefaultData()
+    const { texts } = getDefaultData()
     const sidebarStyle: any = this.isFixingSidebar
       ? {
           marginTop: `${this.state.scrollY -
@@ -177,7 +178,7 @@ class Articles extends Component<Props, State> {
                 onClick={this.onNewestClick}
                 persistent={this.isNewestCategroy}
               >
-                Newest
+                {texts.categoryNewest}
               </CategoryItemColor>
               {category &&
                 category.categories.map((category, index) => (

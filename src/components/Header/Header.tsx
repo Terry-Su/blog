@@ -18,6 +18,7 @@ export default class Header extends Component<Props, State> {
   render() {
     const { isMini = false } = this.props
     const currentPath = getCurrentPagePath()
+    const { pathnameRoot, logoTitle, texts = {} } = getDefaultData()
     return (
       <div
         style={{
@@ -29,7 +30,7 @@ export default class Header extends Component<Props, State> {
           height: `${STYLE_LAYOUT_HOME_HEADER_HEIGHT}px`
         }}
       >
-        <ResolvedLink to="/">
+        <ResolvedLink to={pathnameRoot}>
           <div
             style={{
               display: `flex`,
@@ -37,21 +38,17 @@ export default class Header extends Component<Props, State> {
               margin: !isMini ? "30px 0 0 0" : "0px"
             }}
           >
-            <Logo height={
-              ! isMini ? "36" : "30" 
-            } />
+            <Logo height={!isMini ? "36" : "30"} />
             <span
               style={{
-                margin: ! isMini ? "0 0 0 15px" : "10px",
-                fontSize: 
-                  ! isMini ? "24px" : "18px" 
-                ,
+                margin: !isMini ? "0 0 0 15px" : "10px",
+                fontSize: !isMini ? "24px" : "18px",
                 fontWeight: "bold",
                 letterSpacing: "0px",
                 color: `#555`
               }}
             >
-              Terry Su
+              {logoTitle}
             </span>
           </div>
         </ResolvedLink>
@@ -64,10 +61,10 @@ export default class Header extends Component<Props, State> {
             }}
           >
             {[
-              ["ARTICLES", "/"],
+              [texts.navArticles, pathnameRoot],
               // ["HOW IT WORKS SERIES", PATH_HOW_IT_WORKS_SERIES],
               // ["WORKSPACE", PATH_HOW_IT_WORKS_SERIES],
-              ["ABOUT", PATH_ABOUT],
+              [texts.navAbout, `${pathnameRoot}${PATH_ABOUT}`]
               // ["Github", "https://github.com/Terry-Su"]
             ].map(([value, path], index) => (
               <ResolvedLink
@@ -77,7 +74,11 @@ export default class Header extends Component<Props, State> {
                   margin: !isMini ? "0 25px" : "0 10px",
                   letterSpacing: "1px",
                   // fontWeight: !isMini ? "bold" : "normal",
-                  color:  !isMini ? (currentPath === path ? "#555": "#aaa") : "#aaa"  
+                  color: !isMini
+                    ? currentPath === path
+                      ? "#555"
+                      : "#aaa"
+                    : "#aaa"
                 }}
                 to={path}
               >

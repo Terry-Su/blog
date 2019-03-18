@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import LangSwitch from '@/components/LangSwitch/LangSwitch'
 import Markdown from '@/components/Markdown/Markdown'
+import NoteIsAutoTranslated from '@/components/Note/NoteIsAutoTranslated'
 import ResolvedLink from '@/components/ResolvedLink'
 import Logo from '@/components/svg/Logo'
 import getDefaultData from '@/helpers/getDefaultData'
@@ -27,8 +29,8 @@ export default connect(({ article }: any) => ({
         text,
         postTime,
         path,
-        remarkReprintingNote,
-        remarkEndingWords,
+        reprintingNote,
+        endingWords,
         isAutoTranslated
       } = getDefaultData()
       const { availableDisqusComment } = this.props
@@ -68,14 +70,10 @@ export default connect(({ article }: any) => ({
                 {isAutoTranslated && (
                   <div
                     style={{
-                      padding: "20px",
-                      margin: `40px 0 0 0`,
-                      border: `1px solid #1bc2fa`,
-                      borderRadius: `5px`,
-                      background: `white`
+                      margin: `40px 0 0 0`
                     }}
                   >
-                    This page was translated automatically.
+                    <NoteIsAutoTranslated />
                   </div>
                 )}
 
@@ -86,7 +84,7 @@ export default connect(({ article }: any) => ({
                 >
                   <Markdown />
                 </div>
-                <p>{remarkEndingWords}</p>
+                <p>{endingWords}</p>
                 <div
                   style={{
                     display: `flex`,
@@ -110,7 +108,7 @@ export default connect(({ article }: any) => ({
                       margin: `10px 0 0 0`
                     }}
                   >
-                    {remarkReprintingNote}
+                    {reprintingNote}
                   </div>
                 </div>
               </div>

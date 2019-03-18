@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 import Footer from '@/components/Footer/Footer'
 import Header from '@/components/Header/Header'
+import LangSwitch from '@/components/LangSwitch/LangSwitch'
 import ResolvedLink from '@/components/ResolvedLink'
 import Logo from '@/components/svg/Logo'
 import { PATH_ABOUT, PATH_HOW_IT_WORKS_SERIES } from '@/constants/paths'
@@ -31,6 +32,16 @@ export default class LayoutHome extends Component<Props, State> {
           height: "100%"
         }}
       >
+        <div
+          style={{
+            position: "absolute",
+            right: "20px",
+            top: `20px`
+          }}
+        >
+          <LangSwitch />
+        </div>
+
         <Header isMini={isMiniHeader} />
 
         <div

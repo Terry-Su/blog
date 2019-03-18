@@ -11,14 +11,6 @@ class State {}
 
 export default class HowItWorks extends Component<Props, State> {
   render() {
-    const {
-      title,
-      text,
-      postTime,
-      path,
-      remarkReprintingNote,
-      remarkEndingWords
-    } = getDefaultData()
     return (
       <LayoutHome overflowContent>
         <div

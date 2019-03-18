@@ -27,8 +27,8 @@ export default connect(({ article }: any) => ({
     private isUnmounting: boolean = false
 
     componentDidMount() {
-      const { remarkGithubCommentBase, comment } = getDefaultData()
-      const url = `${remarkGithubCommentBase}${comment}/comments`
+      const { githubCommentBase, comment } = getDefaultData()
+      const url = `${githubCommentBase}${comment}/comments`
       fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -67,7 +67,7 @@ export default connect(({ article }: any) => ({
     }
 
     render() {
-      const { remarkGithubIssuePageBase, comment } = getDefaultData()
+      const { githubIssuePageBase, comment } = getDefaultData()
       const { availableDisqusComment } = this.props
       const { comments } = this.state
       return (
@@ -88,7 +88,7 @@ export default connect(({ article }: any) => ({
                   color: `#4169e1`,
                   textDecoration: `none`
                 }}
-                href={`${remarkGithubIssuePageBase}${comment}`}
+                href={`${githubIssuePageBase}${comment}`}
               >
                 Comment on Github
               </a>

@@ -6,13 +6,10 @@ export default class CategoryProp {
 
   // # configure in `.category.yml`
   name: CategoryPropName
-} 
-
-
-
-export class CategoryPropName {
-  en: string
-  [ CN ]: string
 }
 
-
+// # configure in `.category.yml`
+export class CategoryPropName {
+  en: string;
+  [CN]: string
+}

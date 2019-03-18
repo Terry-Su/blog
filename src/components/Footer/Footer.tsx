@@ -30,6 +30,7 @@ export default class Footer extends Component<Props, State> {
           Copyright © 2017-{new Date().getFullYear()}{" "}
           <a
             style={{
+              margin: `0 6px`,
               color: `#19affc`
             }}
             href={authorUrl}

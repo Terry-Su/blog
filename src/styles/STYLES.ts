@@ -1,3 +1,8 @@
+// # Browser
+const { width, height } = document.body.getBoundingClientRect()
+export const BROWSER_WIDTH = width
+export const BROWSER_HEIGHT = height
+
 // # Layout Home
 export const STYLE_LAYOUT_HOME_HEADER_HEIGHT = 118
 export const STYLE_LAYOUT_HOME_HEADER_TO_BOTTOM = 50

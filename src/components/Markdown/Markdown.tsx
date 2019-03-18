@@ -11,14 +11,7 @@ class State {}
 
 export default class Markdown extends Component<Props, State> {
   render() {
-    const {
-      title,
-      text,
-      postTime,
-      path,
-      remarkReprintingNote,
-      remarkEndingWords
-    } = getDefaultData()
+    const { text } = getDefaultData()
     return (
       <React.Fragment>
         <div
