@@ -81,6 +81,7 @@ const Category = connect(({ articles = {} }: any) => ({ articles }))(
             style={{
               boxSizing: `border-box`,
               display: `inline-block`,
+              minWidth: "100%",
               height: `37px`,
               lineHeight: `37px`,
               padding: `0 40px 0 40px`,
