@@ -5,6 +5,7 @@ export default class ClientRemark {
   path: string
   postTime: number
   comment: number
+  isAutoTranslated: boolean
 }
 
 export class ClientListItemRemark {
@@ -14,10 +15,8 @@ export class ClientListItemRemark {
   // foo/bar/zoo(foo/bar/zoo/article1/en.md)
   path: string
   route: string
-  postTime: number 
+  postTime: number
 }
-
-
 
 export class ClientRemarkMetadata {
   id?: string
@@ -25,4 +24,5 @@ export class ClientRemarkMetadata {
   postTime?: string
   abstract?: string
   comment?: number
+  isAutoTranslated?: boolean
 }

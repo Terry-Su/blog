@@ -1,6 +1,7 @@
 ---
 postTime: 2019/01/15 22:54
 comment: 13
+isAutoTranslated: true
 ---
 
 ![](https://terry-su.github.io/BlogCDN/images/simpson-evolution.jpg)    

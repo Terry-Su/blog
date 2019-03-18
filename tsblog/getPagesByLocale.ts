@@ -26,7 +26,7 @@ export default function getPagesByLocale(
 
   const localeName = specialNameMap[ locale ]
   const root = locale === EN ? "/" : `/${localeName}/`
-  const absoluteRoot = '/'
+  const absoluteRoot = "/"
   const rootName = root.replace( /\/$/, "" )
 
   const { authorUrl, title } = siteData
@@ -35,18 +35,14 @@ export default function getPagesByLocale(
     title: t( title, locale )
   }
 
-  
-
-  const articleRemarks = remarks.filter(
-    remark => {
-      const { relativePath } = remark
-      // is article folder
-      if ( relativePath.split( "/" ).length > 2 ) {
-        const localeName = getRemarkFilerName( remark )
-        return localeName === getSpeciaLocalelName( locale )
-      }
+  const articleRemarks = remarks.filter( remark => {
+    const { relativePath } = remark
+    // is article folder
+    if ( relativePath.split( "/" ).length > 2 ) {
+      const localeName = getRemarkFilerName( remark )
+      return localeName === getSpeciaLocalelName( locale )
     }
-  )
+  } )
 
   const {
     remarkReprintingNote,
@@ -57,15 +53,18 @@ export default function getPagesByLocale(
   } = siteData
 
   const categoryProps: CategoryProp[] = getCategoryProps( yamls )
-  const categories = getCategories( articleRemarks, categoryProps, locale, absoluteRoot )
+  const categories = getCategories(
+    articleRemarks,
+    categoryProps,
+    locale,
+    absoluteRoot
+  )
   // console.log( JSON.stringify( categories, null, 2 ) )
   const category = {
     name    : "All",
     categories,
     expanded: true
   }
-
- 
 
   const newestRemarks = articleRemarks.map( remark =>
     getClientListItemRemark( remark, absoluteRoot )
@@ -255,7 +254,10 @@ function getCategories(
   return root.categories
 }
 
-function getClientListItemRemark( remark, absoluteRoot: string ): ClientListItemRemark {
+function getClientListItemRemark(
+  remark,
+  absoluteRoot: string
+): ClientListItemRemark {
   const { relativePath, getText, getMetadata }: TransformedMarkdownFile = remark
   const { postTime, id, abstract }: ClientRemarkMetadata = getMetadata()
 
@@ -265,13 +267,15 @@ function getClientListItemRemark( remark, absoluteRoot: string ): ClientListItem
   const html = getText()
   const remarkAbstract =
     abstract ||
-    (htmlToText.fromString( html, {
-      ignoreImage            : true,
-      noLinkBrackets         : true,
-      ignoreHref             : true,
-      wordwrap               : false,
-      unorderedListItemPrefix: " "
-    } ).substring( 0, 100 ) + '...')
+    htmlToText
+      .fromString( html, {
+        ignoreImage            : true,
+        noLinkBrackets         : true,
+        ignoreHref             : true,
+        wordwrap               : false,
+        unorderedListItemPrefix: " "
+      } )
+      .substring( 0, 100 ) + "..."
   const remarkPostTime = postTime && new Date( postTime ).getTime()
   return {
     title,
@@ -335,7 +339,11 @@ function getRemarkRoute( remark: TransformedMarkdownFile, absoluteRoot: string )
 
 function getRemarkBasicData( remark: TransformedMarkdownFile ): ClientRemark {
   const { getText } = remark
-  const { postTime, comment }: ClientRemarkMetadata = remark.getMetadata()
+  const {
+    postTime,
+    comment,
+    isAutoTranslated
+  }: ClientRemarkMetadata = remark.getMetadata()
   const id = getRemarkId( remark )
   const title = getRemarkTitle( remark )
   const path = getRemarkCategoryPath( remark )
@@ -345,8 +353,9 @@ function getRemarkBasicData( remark: TransformedMarkdownFile ): ClientRemark {
     id,
     title,
     path,
-    text ,
+    text,
     postTime: remarkPostTime,
-    comment
+    comment,
+    isAutoTranslated
   }
 }

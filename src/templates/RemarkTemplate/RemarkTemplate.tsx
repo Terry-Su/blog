@@ -28,12 +28,12 @@ export default connect(({ article }: any) => ({
         postTime,
         path,
         remarkReprintingNote,
-        remarkEndingWords
+        remarkEndingWords,
+        isAutoTranslated
       } = getDefaultData()
       const { availableDisqusComment } = this.props
       return (
-        <LayoutHome
-        isMiniHeader={true}>
+        <LayoutHome isMiniHeader={true}>
           <div
             style={{
               width: `100%`
@@ -63,6 +63,22 @@ export default connect(({ article }: any) => ({
                 >
                   {title}
                 </span>
+
+                {/* Note */}
+                {isAutoTranslated && (
+                  <div
+                    style={{
+                      padding: "20px",
+                      margin: `40px 0 0 0`,
+                      border: `1px solid #1bc2fa`,
+                      borderRadius: `5px`,
+                      background: `white`
+                    }}
+                  >
+                    This page was translated automatically.
+                  </div>
+                )}
+
                 <div
                   style={{
                     margin: `40px 0 0 0`
