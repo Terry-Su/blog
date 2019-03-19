@@ -8,7 +8,9 @@ import {
     Config, PageInfo, TransformedData, TransformedMarkdownFile, TransformedYamlFile
 } from '../../tsblog/src/typings'
 import { EN, ZH_CN } from '../locale/names'
-import specialNameMap, { CN, getSpeciaLocalelName } from '../locale/specialNameMap'
+import specialNameMap, {
+    CN, getSpeciaLocalelName, specialNameToLocaleMap
+} from '../locale/specialNameMap'
 import translate from '../locale/translate'
 import AbstractCategory from '../src/__typings__/AbstractCategory'
 import CategoryProp from '../src/__typings__/CategoryProp'
@@ -18,6 +20,8 @@ import ClientRemark, {
 import { PATH_ABOUT, PATH_HOW_IT_WORKS_SERIES } from '../src/constants/paths'
 import { SiteData } from '../tsblog.config'
 import { CATEGORY_PROPS_FILE_NAME } from './constants'
+
+import console = require( "console" )
 
 const { resolve } = path
 
@@ -44,11 +48,20 @@ export default function getPagesByLocale(
     noteIsAutoTranslated: t( `noteIsAutoTranslated` )
   }
 
+  const normalRemarks = remarks.filter( remark => {
+    const { relativePath } = remark
+    // is article folder
+    if ( relativePath.split( "/" ).length >= 2 ) {
+      const localeName = getRemarkFileName( remark )
+      return specialNameToLocaleMap[ localeName ] != null
+    }
+  } )
+
   const articleRemarks = remarks.filter( remark => {
     const { relativePath } = remark
     // is article folder
     if ( relativePath.split( "/" ).length > 2 ) {
-      const localeName = getRemarkFilerName( remark )
+      const localeName = getRemarkFileName( remark )
       return localeName === getSpeciaLocalelName( locale )
     }
   } )
@@ -86,7 +99,7 @@ export default function getPagesByLocale(
   // # article pages
   const { remarkDisqusComment } = siteData
   const remarkPageInfos = articleRemarks.map( remark => {
-    const remarkBasicData = getRemarkBasicData( remark )
+    const remarkBasicData = getRemarkBasicData( remark, normalRemarks, locale )
     const route = getRemarkRoute( remark, absoluteRoot )
     return {
       path     : `${route}`,
@@ -113,7 +126,7 @@ export default function getPagesByLocale(
     component: resolve( __dirname, "../src/pages/HowItWorks" ),
     data     : ( () => {
       const remark = remarks.find( remark => {
-        const localeName = getRemarkFilerName( remark )
+        const localeName = getRemarkFileName( remark )
         return (
           localeName === getSpeciaLocalelName( locale ) &&
           getRemarkFolderPath( remark ) === "how it works series"
@@ -121,7 +134,7 @@ export default function getPagesByLocale(
       } )
       return {
         ...commonData,
-        ...getRemarkBasicData( remark ),
+        ...getRemarkBasicData( remark, normalRemarks, locale ),
         texts: t( "home" )
       }
     } )()
@@ -133,7 +146,7 @@ export default function getPagesByLocale(
     component: resolve( __dirname, "../src/pages/About" ),
     data     : ( () => {
       const remark = remarks.find( remark => {
-        const localeName = getRemarkFilerName( remark )
+        const localeName = getRemarkFileName( remark )
         return (
           localeName === getSpeciaLocalelName( locale ) &&
           getRemarkFolderPath( remark ) === "about"
@@ -141,7 +154,7 @@ export default function getPagesByLocale(
       } )
       return {
         ...commonData,
-        ...getRemarkBasicData( remark ),
+        ...getRemarkBasicData( remark, normalRemarks, locale ),
         texts: t( "home" )
       }
     } )()
@@ -316,7 +329,7 @@ function getRemarkTitle( remark: TransformedMarkdownFile ) {
 function getRemarkId( remark: TransformedMarkdownFile ) {
   const { id }: ClientRemarkMetadata = remark.getMetadata()
   const folderName = getRemarkFolderName( remark )
-  const fileName = getRemarkFilerName( remark )
+  const fileName = getRemarkFileName( remark )
   return (
     id ||
     `${fileName === "en" ? "" : `${fileName}/`}${folderName.replace( / /g, "-" )}`
@@ -350,7 +363,7 @@ function getRemarkFolderName( remark: TransformedMarkdownFile ) {
   return names[ names.length - 2 ]
 }
 
-function getRemarkFilerName( remark: TransformedMarkdownFile ) {
+function getRemarkFileName( remark: TransformedMarkdownFile ) {
   const names = remark.relativePath.split( "/" )
   return names[ names.length - 1 ]
 }
@@ -359,7 +372,11 @@ function getRemarkRoute( remark: TransformedMarkdownFile, absoluteRoot: string )
   return `${absoluteRoot}${getRemarkId( remark )}`
 }
 
-function getRemarkBasicData( remark: TransformedMarkdownFile ): ClientRemark {
+function getRemarkBasicData(
+  remark: TransformedMarkdownFile,
+  normalRemarks: TransformedMarkdownFile[],
+  locale: string
+): ClientRemark {
   if ( !remark ) {
     return null
   }
@@ -374,6 +391,11 @@ function getRemarkBasicData( remark: TransformedMarkdownFile ): ClientRemark {
   const path = getRemarkCategoryPath( remark )
   const remarkPostTime = postTime && new Date( postTime ).getTime()
   const text = getText()
+  const availableOtherLocales = getAvailableOtherLocales(
+    remark,
+    normalRemarks,
+    locale
+  )
 
   return {
     id,
@@ -382,6 +404,32 @@ function getRemarkBasicData( remark: TransformedMarkdownFile ): ClientRemark {
     text,
     postTime: remarkPostTime,
     comment,
-    isAutoTranslated
+    isAutoTranslated,
+    availableOtherLocales
   }
+}
+
+function getAvailableOtherLocales(
+  remark: TransformedMarkdownFile,
+  normalRemarks: TransformedMarkdownFile[],
+  locale: string
+): string[] {
+  let res = []
+  const folderPath = getRemarkFolderPath( remark )
+  const localeName = getRemarkFileName( remark )
+  console.log( localeName )
+
+  normalRemarks
+    .filter( normalRemark => {
+      const normalFolderPath = getRemarkFolderPath( normalRemark )
+      return normalFolderPath === folderPath && normalRemark !== remark
+    } )
+    .forEach( normalRemark => {
+      const normalLocaleName = getRemarkFileName( normalRemark )
+      if ( specialNameToLocaleMap[ normalLocaleName ] != null ) {
+        const locale = specialNameToLocaleMap[ normalLocaleName ]
+        res.push( locale )
+      }
+    } )
+  return res
 }

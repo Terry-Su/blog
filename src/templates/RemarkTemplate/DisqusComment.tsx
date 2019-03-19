@@ -13,6 +13,10 @@ export default connect()(
     private isUnmounting: boolean = false
 
     componentDidMount() {
+      if (location) {
+        return
+      }
+
       const self = this
       const { dispatch } = this.props
       const { remarkDisqusComment, id: PAGE_IDENTIFIER } = getDefaultData()

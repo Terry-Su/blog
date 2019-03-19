@@ -14,7 +14,6 @@ class State {}
 export default class About extends Component<Props, State> {
   render() {
     const { isAutoTranslated } = getDefaultData()
-    console.log(getDefaultData())
     return (
       <LayoutHome overflowContent>
         {/* Note */}

@@ -6,6 +6,7 @@ export default class ClientRemark {
   postTime: number
   comment: number
   isAutoTranslated: boolean
+  availableOtherLocales: string[]
 }
 
 export class ClientListItemRemark {

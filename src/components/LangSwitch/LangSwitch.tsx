@@ -33,7 +33,23 @@ export default class LangSwitch extends Component<Props, State> {
     return locale
   }
 
+  get showingNames(): string[] {
+    const { availableOtherLocales } = getDefaultData()
+
+    // # indicate current page isn't an markdown page
+    if (availableOtherLocales === undefined) {
+      return Object.values(names)
+    } else {
+      return Object.values(names).filter(name =>
+        availableOtherLocales.includes(name)
+      )
+    }
+  }
+
   getHref(name: any): string {
+    if (!location) {
+      return "#"
+    }
     if (!Object.values(names).includes(name)) {
       return "#"
     }
@@ -61,7 +77,7 @@ export default class LangSwitch extends Component<Props, State> {
     return (
       <div>
         <div>
-          {Object.values(names)
+          {this.showingNames
             .filter(v => v !== this.currentLocale)
             .map((v, index) => (
               <StyledLink key={index} href={this.getHref(v)}>

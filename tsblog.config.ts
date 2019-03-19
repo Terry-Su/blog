@@ -25,6 +25,7 @@ const config: Config = {
   entry   : {
     title       : "Terry Su Blog",
     contents    : resolve( __dirname, "./contents" ),
+    // contents    : resolve( __dirname, "./contents-test" ),
     home        : resolve( __dirname, "./src/pages/Home" ),
     reduxApp    : resolve( __dirname, "./src/state/app" ),
     getPages,

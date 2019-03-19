@@ -36,15 +36,15 @@ const PADDING_TOP = 20
 class Articles extends Component<Props, State> {
   state = new State()
 
-  scrollListener = throttle(() => {
+  scrollListener = () => {
     const { scrollY } = window
     this.setState({ scrollY })
-  }, 10)
+  }
 
-  resizeListener = throttle(() => {
+  resizeListener = () => {
     const { height: bodyHeight } = document.body.getBoundingClientRect()
     this.setState({ bodyHeight })
-  }, 10)
+  }
 
   componentDidMount() {
     const { listRemarks } = this.props.articles
