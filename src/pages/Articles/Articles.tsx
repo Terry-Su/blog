@@ -6,12 +6,13 @@ import styled from 'styled-components'
 import AbstractCategory from '@/__typings__/AbstractCategory'
 import { ClientListItemRemark } from '@/__typings__/ClientRemark'
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
-import Category, { CategoryItemColor } from '@/components/Category/Category'
+import Category, { StyledCategoryItem } from '@/components/Category/Category'
 import getDefaultData from '@/helpers/getDefaultData'
 import LayoutHome from '@/layouts/LayoutHome'
 import {
-    STYLE_ARTICLES_LIST_WIDTH, STYLE_ARTICLES_MAX_CONTENT_WIDTH, STYLE_ARTICLES_SIDEBAR_WIDTH,
-    STYLE_BOTTOM_HEIGHT, STYLE_LAYOUT_HOME_HEADER_HEIGHT, STYLE_LAYOUT_HOME_HEADER_TO_BOTTOM
+    BROWSER_HEIGHT, STYLE_ARTICLES_LIST_WIDTH, STYLE_ARTICLES_MAX_CONTENT_WIDTH,
+    STYLE_ARTICLES_SIDEBAR_WIDTH, STYLE_BOTTOM_HEIGHT, STYLE_LAYOUT_HOME_HEADER_HEIGHT,
+    STYLE_LAYOUT_HOME_HEADER_TO_BOTTOM
 } from '@/styles/STYLES'
 
 import List from './List'
@@ -22,7 +23,7 @@ class Props extends DefaultComponentProps {
 
 class State {
   scrollY: number = 0
-  bodyHeight: number = 0
+  bodyHeight: number = BROWSER_HEIGHT
 }
 
 const Title = styled.h1`
@@ -47,21 +48,13 @@ class Articles extends Component<Props, State> {
   }
 
   componentDidMount() {
-    const { listRemarks } = this.props.articles
-    if (!listRemarks) {
-      const { newestRemarks } = getDefaultData()
-      this.props.dispatch({
-        type: "articles/UPDATE_LIST_REMARKS",
-        listRemarks: newestRemarks
-      })
-    }
-
     this.scrollListener()
     window.addEventListener("scroll", this.scrollListener)
 
     this.resizeListener()
     window.addEventListener("resize", this.resizeListener)
   }
+
   componentWillUnmount() {
     window.removeEventListener("scroll", this.scrollListener)
     window.removeEventListener("resize", this.resizeListener)
@@ -164,23 +157,16 @@ class Articles extends Component<Props, State> {
                 // padding: `0 20px 0 0`
               }}
             >
-              <CategoryItemColor
+              <StyledCategoryItem
                 style={{
-                  boxSizing: `border-box`,
-                  display: `inline-block`,
-                  alignItems: `center`,
-                  minWidth: `100%`,
-                  height: `37px`,
-                  lineHeight: `37px`,
                   padding: `0 50px 0 40px`,
-                  margin: `0 0 0 19px`,
-                  cursor: `default`
+                  margin: `0 0 0 19px`
                 }}
                 onClick={this.onNewestClick}
                 persistent={this.isNewestCategroy}
               >
                 {texts.categoryNewest}
-              </CategoryItemColor>
+              </StyledCategoryItem>
               {category &&
                 category.categories.map((category, index) => (
                   <Category

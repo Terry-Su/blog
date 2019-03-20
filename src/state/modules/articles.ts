@@ -1,13 +1,16 @@
 import { ClientListItemRemark } from '@/__typings__/ClientRemark'
+import getDefaultData from '@/helpers/getDefaultData'
 import reduxReducerHelper from '@/state/reduxReducerHelper'
 
 const nameSpace = "articles"
+
+const { newestRemarks = [] } = getDefaultData()
 
 export class ArticlesState {
   // # e.g.
   // foo/bar
   currentCategoryPath: string = null
-  listRemarks: ClientListItemRemark[]
+  listRemarks: ClientListItemRemark[] = newestRemarks
 }
 
 class Actions {

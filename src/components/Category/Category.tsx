@@ -17,12 +17,6 @@ class State {
   isExpanding: boolean
 }
 
-export const CategoryItemColor: any = styled.div`
-  color: #717171;
-  ${(props: any) =>
-    props.persistent ? "color: #111;" : ":hover { color: #333; }"}
-`
-
 const Category = connect(({ articles = {} }: any) => ({ articles }))(
   class extends Component<Props, State> {
     state: State = {
@@ -77,16 +71,8 @@ const Category = connect(({ articles = {} }: any) => ({ articles }))(
             minWidth: "100%"
           }}
         >
-          <CategoryItemColor
-            style={{
-              boxSizing: `border-box`,
-              display: `inline-block`,
-              minWidth: "100%",
-              height: `37px`,
-              lineHeight: `37px`,
-              padding: `0 40px 0 40px`,
-              cursor: `default`
-            }}
+          <StyledCategoryItem
+            style={{ padding: `0 40px 0 40px` }}
             persistent={this.isActivated}
             onClick={this.onItemClick}
           >
@@ -109,7 +95,7 @@ const Category = connect(({ articles = {} }: any) => ({ articles }))(
             >
               {name}
             </span>
-          </CategoryItemColor>
+          </StyledCategoryItem>
           {/* # Following */}
           <div
             style={{
@@ -133,3 +119,16 @@ const Category = connect(({ articles = {} }: any) => ({ articles }))(
 )
 
 export default Category
+
+export const StyledCategoryItem: any = styled.div`
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 100%;
+  height: 37px;
+  line-height: 37px;
+  cursor: default;
+  color: #717171;
+
+  ${(props: any) =>
+    props.persistent ? "color: #111;" : ":hover { color: #333; }"}
+`

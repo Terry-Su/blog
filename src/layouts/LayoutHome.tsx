@@ -46,7 +46,8 @@ export default class LayoutHome extends Component<Props, State> {
 
         <div
           style={{
-            margin: `${STYLE_LAYOUT_HOME_HEADER_TO_BOTTOM}px 0 0 0`
+            margin: `${STYLE_LAYOUT_HOME_HEADER_TO_BOTTOM}px 0 0 0`,
+            minHeight: `calc(100% - ${STYLE_LAYOUT_HOME_HEADER_HEIGHT}px - ${STYLE_LAYOUT_HOME_HEADER_TO_BOTTOM}px)`
           }}
         >
           {...this.props.children}

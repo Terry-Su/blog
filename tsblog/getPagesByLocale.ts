@@ -21,8 +21,6 @@ import { PATH_ABOUT, PATH_HOW_IT_WORKS_SERIES } from '../src/constants/paths'
 import { SiteData } from '../tsblog.config'
 import { CATEGORY_PROPS_FILE_NAME } from './constants'
 
-import console = require( "console" )
-
 const { resolve } = path
 
 export default function getPagesByLocale(
@@ -417,7 +415,6 @@ function getAvailableOtherLocales(
   let res = []
   const folderPath = getRemarkFolderPath( remark )
   const localeName = getRemarkFileName( remark )
-  console.log( localeName )
 
   normalRemarks
     .filter( normalRemark => {
