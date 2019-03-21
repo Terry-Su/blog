@@ -47,9 +47,6 @@ export default class LangSwitch extends Component<Props, State> {
   }
 
   getHref(name: any): string {
-    if (!location) {
-      return "#"
-    }
     if (!Object.values(names).includes(name)) {
       return "#"
     }
