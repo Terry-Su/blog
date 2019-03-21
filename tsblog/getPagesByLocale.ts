@@ -331,7 +331,7 @@ function getRemarkId( remark: TransformedMarkdownFile ) {
   return (
     id ||
     `${fileName === "en" ? "" : `${fileName}/`}${folderName.replace( / /g, "-" )}`
-  )
+  ).toLowerCase()
 }
 
 function getFilerName( relativePath: string ) {
@@ -367,7 +367,8 @@ function getRemarkFileName( remark: TransformedMarkdownFile ) {
 }
 
 function getRemarkRoute( remark: TransformedMarkdownFile, absoluteRoot: string ) {
-  return `${absoluteRoot}${getRemarkId( remark )}`
+  const name = getRemarkId( remark )
+  return `${absoluteRoot}${name}`
 }
 
 function getRemarkBasicData(
