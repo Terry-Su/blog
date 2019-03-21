@@ -9,6 +9,7 @@ class Props extends DefaultComponentProps {
   history?: any
   className?: any
   style?: any
+  onClick?: any
 }
 
 class State {}

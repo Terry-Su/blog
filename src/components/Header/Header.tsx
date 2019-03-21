@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 import { PATH_ABOUT, PATH_HOW_IT_WORKS_SERIES } from '@/constants/paths'
@@ -10,11 +11,16 @@ import Logo from '../svg/Logo'
 
 class Props extends DefaultComponentProps {
   isMini?: boolean
+  history?: any
 }
 
 class State {}
 
-export default class Header extends Component<Props, State> {
+class Header extends Component<Props, State> {
+  onLogoClick = (event, defaultOnClick) => {
+    defaultOnClick(event)
+  }
+
   render() {
     const { isMini = false } = this.props
     const currentPath = getCurrentPagePath()
@@ -30,7 +36,7 @@ export default class Header extends Component<Props, State> {
           height: `${STYLE_LAYOUT_HOME_HEADER_HEIGHT}px`
         }}
       >
-        <ResolvedLink to={pathnameRoot}>
+        <ResolvedLink to={pathnameRoot} onClick={this.onLogoClick}>
           <div
             style={{
               display: `flex`,
@@ -91,3 +97,5 @@ export default class Header extends Component<Props, State> {
     )
   }
 }
+
+export default withRouter(Header)

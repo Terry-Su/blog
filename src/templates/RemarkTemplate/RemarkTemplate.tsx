@@ -23,6 +23,9 @@ export default connect(({ article }: any) => ({
   availableDisqusComment: article.availableDisqusComment
 }))(
   class RemarkTemplate extends Component<Props, State> {
+    componentDidMount() {
+      window.scrollTo(0, 0)
+    }
     render() {
       const {
         title,
