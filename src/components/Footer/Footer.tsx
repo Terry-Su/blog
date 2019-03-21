@@ -10,7 +10,8 @@ class State {}
 
 export default class Footer extends Component<Props, State> {
   render() {
-    const { authorUrl } = getDefaultData()
+    const { authorUrl, copyright = {} } = getDefaultData()
+    const { left, center, right } = copyright
     return (
       <div
         style={{
@@ -27,7 +28,8 @@ export default class Footer extends Component<Props, State> {
             fontSize: "14px"
           }}
         >
-          Copyright © 2017-{new Date().getFullYear()}{" "}
+          {left}
+          {new Date().getFullYear()}{" "}
           <a
             style={{
               margin: `0 6px`,
@@ -35,9 +37,9 @@ export default class Footer extends Component<Props, State> {
             }}
             href={authorUrl}
           >
-            Terry Su
+            {center}
           </a>{" "}
-          ALL RIGHTS RESERVED
+          {right}
         </span>
       </div>
     )

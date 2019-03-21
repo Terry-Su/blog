@@ -43,7 +43,8 @@ export default function getPagesByLocale(
     locale,
     // text
     logoTitle           : t( `logoTitle` ),
-    noteIsAutoTranslated: t( `noteIsAutoTranslated` )
+    noteIsAutoTranslated: t( `noteIsAutoTranslated` ),
+    copyright           : t( `copyright` )
   }
 
   const normalRemarks = remarks.filter( remark => {

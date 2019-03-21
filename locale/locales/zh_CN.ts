@@ -14,5 +14,10 @@ export default {
     githubIssuePageBase: `https://github.com/Terry-Su/TSBlogComments-En/issues/`,
     githubCommentBase  :
       "https://api.github.com/repos/terry-su/tsblogcomments-en/issues/"
+  },
+  copyright: {
+    left  : `版权 © 2017-`,
+    center: `苏溪云`,
+    right : `保留所有权利`
   }
 }
