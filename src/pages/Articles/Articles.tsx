@@ -37,55 +37,7 @@ const PADDING_TOP = 20
 class Articles extends Component<Props, State> {
   state = new State()
 
-  scrollListener = () => {
-    const { scrollY } = window
-    this.setState({ scrollY })
-  }
-
-  resizeListener = () => {
-    const { height: bodyHeight } = document.body.getBoundingClientRect()
-    this.setState({ bodyHeight })
-  }
-
-  componentDidMount() {
-    this.scrollListener()
-    window.addEventListener("scroll", this.scrollListener)
-
-    this.resizeListener()
-    window.addEventListener("resize", this.resizeListener)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.scrollListener)
-    window.removeEventListener("resize", this.resizeListener)
-  }
-
-  get isFixingSidebar(): boolean {
-    return (
-      this.state.scrollY >=
-        STYLE_LAYOUT_HOME_HEADER_HEIGHT + STYLE_LAYOUT_HOME_HEADER_TO_BOTTOM &&
-      !this.hasScrolledInBootom
-    )
-  }
-
-  get hasScrolledInBootom(): boolean {
-    const { innerHeight, scrollY } = window
-    return (
-      innerHeight + scrollY >= document.body.scrollHeight - STYLE_BOTTOM_HEIGHT
-    )
-  }
-
-  get notFixingSidebar(): boolean {
-    return !this.isFixingSidebar
-  }
-
-  // sidebar to bottom while window scrolling in bottom
-  get sidebarToBottom(): number {
-    return (
-      STYLE_BOTTOM_HEIGHT -
-      (document.body.scrollHeight - (innerHeight + scrollY))
-    )
-  }
+  componentDidMount() {}
 
   get isNewestCategroy(): boolean {
     const { currentCategoryPath }: any = (this.props.articles as any) || {}
@@ -107,48 +59,22 @@ class Articles extends Component<Props, State> {
   render() {
     const { category }: { category: AbstractCategory } = getDefaultData()
     const { texts } = getDefaultData()
-    const sidebarStyle: any = this.isFixingSidebar
-      ? {
-          marginTop: `${this.state.scrollY -
-            STYLE_LAYOUT_HOME_HEADER_HEIGHT -
-            STYLE_LAYOUT_HOME_HEADER_TO_BOTTOM}px`
-        }
-      : this.hasScrolledInBootom
-      ? {
-          marginTop: `${this.state.scrollY -
-            STYLE_LAYOUT_HOME_HEADER_HEIGHT -
-            STYLE_LAYOUT_HOME_HEADER_TO_BOTTOM -
-            this.sidebarToBottom}px`
-        }
-      : {}
 
     return (
       <LayoutHome overflowContent>
-        <div
+        <StyledRoot
           style={{
-            boxSizing: "border-box",
+            // boxSizing: "border-box",
             display: "flex",
             justifyContent: `center`,
             width: "100%",
             maxWidth: `${STYLE_ARTICLES_MAX_CONTENT_WIDTH}px`,
-            margin: `0 auto`,
-            minHeight: "100%"
+            margin: `0 auto`
+            // minHeight: "100%"
           }}
         >
           {/* left sidebar */}
-          <div
-            style={{
-              ...sidebarStyle,
-              boxSizing: "border-box",
-              display: `flex`,
-              justifyContent: `flex-end`,
-              width: `${STYLE_ARTICLES_SIDEBAR_WIDTH}px`,
-              height: this.state.bodyHeight,
-              margin: `0 50px 0 0`,
-              borderRight: `1px solid rgba(0,0,0,0.02)`,
-              overflow: `auto`
-            }}
-          >
+          <StyleLeftSidebar bodyHeight={this.state.bodyHeight}>
             <div
               style={{
                 // boxSizing: `border-box`,
@@ -182,7 +108,7 @@ class Articles extends Component<Props, State> {
                 }}
               /> */}
             </div>
-          </div>
+          </StyleLeftSidebar>
 
           {/* list */}
           <div
@@ -209,9 +135,26 @@ class Articles extends Component<Props, State> {
           >
             &nbsp;
           </div>
-        </div>
+        </StyledRoot>
       </LayoutHome>
     )
   }
 }
 export default connect(({ articles = {} }: any) => ({ articles }))(Articles)
+
+const StyledRoot = styled.div``
+
+const StyleLeftSidebar: any = styled.div`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+  align-self: flex-start;
+  display: flex;
+  justify-content: flex-end;
+  width: ${STYLE_ARTICLES_SIDEBAR_WIDTH}px;
+  height: ${(props: any) => props.bodyHeight};
+  margin: 0 50px 0 0;
+  border-right: 1px solid rgba(0, 0, 0, 0.02);
+  overflow: auto;
+`
