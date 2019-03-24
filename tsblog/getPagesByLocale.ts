@@ -72,7 +72,6 @@ export default function getPagesByLocale(
     locale,
     absoluteRoot
   )
-  // console.log( JSON.stringify( categories, null, 2 ) )
   const category = {
     name    : "All",
     categories,
@@ -89,9 +88,10 @@ export default function getPagesByLocale(
     component: resolve( __dirname, "../src/pages/Home" ),
     data     : {
       ...commonData,
+      siteTitle: t( "home.siteTitle" ),
       category,
       newestRemarks,
-      texts: t( "home" )
+      texts    : t( "home" )
     }
   }
 
@@ -99,6 +99,7 @@ export default function getPagesByLocale(
   const { remarkDisqusComment } = siteData
   const remarkPageInfos = articleRemarks.map( remark => {
     const remarkBasicData = getRemarkBasicData( remark, normalRemarks, locale )
+    const { title } = remarkBasicData
     const route = getRemarkRoute( remark, absoluteRoot )
     return {
       path     : `${route}`,
@@ -109,6 +110,7 @@ export default function getPagesByLocale(
       data: {
         ...commonData,
         ...remarkBasicData,
+        siteTitle          : `${title}(${t( "home.siteTitle" )})`,
         reprintingNote     : t( `article.reprintingNote` ),
         endingWords        : t( `article.endingWords` ),
         githubCommentBase  : t( `article.githubCommentBase` ),
@@ -133,8 +135,9 @@ export default function getPagesByLocale(
       } )
       return {
         ...commonData,
+        siteTitle: `${t( "howItWorks.siteTitle" )}(${t( "home.siteTitle" )})`,
         ...getRemarkBasicData( remark, normalRemarks, locale ),
-        texts: t( "home" )
+        texts    : t( "home" )
       }
     } )()
   }
@@ -153,8 +156,9 @@ export default function getPagesByLocale(
       } )
       return {
         ...commonData,
+        siteTitle: `${t( "about.siteTitle" )}(${t( "home.siteTitle" )})`,
         ...getRemarkBasicData( remark, normalRemarks, locale ),
-        texts: t( "home" )
+        texts    : t( "home" )
       }
     } )()
   }

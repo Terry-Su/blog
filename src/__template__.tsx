@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 
-class Props extends DefaultComponentProps {
+class Props extends DefaultComponentProps {}
 
-}
-
-class State {
-
-}
-
-
+class State {}
 
 export default class Template extends Component<Props, State> {
   render() {
-    return <div>Template</div>
+    return <StyledRoot>Template</StyledRoot>
   }
 }
+
+const StyledRoot = styled.div``

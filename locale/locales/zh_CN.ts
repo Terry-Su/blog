@@ -2,7 +2,7 @@ export default {
   logoTitle           : `苏溪云`,
   noteIsAutoTranslated: `本文为自动翻译内容。`,
   home                : {
-    documentTitile: `苏溪云的博客`,
+    siteTitle     : `苏溪云的博客`,
     categoryNewest: `最新文章`,
     navArticles   : `所有文章`,
     navAbout      : `关于我`
@@ -19,5 +19,11 @@ export default {
     left  : `版权 © 2017-`,
     center: `苏溪云`,
     right : `保留所有权利`
+  },
+  howItWorks: {
+    siteTitle: `原理实现系列`
+  },
+  about: {
+    siteTitle: `关于`
   }
 }

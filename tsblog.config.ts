@@ -23,7 +23,6 @@ export class SiteData {
 const config: Config = {
   siteData: new SiteData(),
   entry   : {
-    title       : "Terry Su Blog",
     contents    : resolve( __dirname, "./contents" ),
     // contents    : resolve( __dirname, "./contents-test" ),
     home        : resolve( __dirname, "./src/pages/Home" ),

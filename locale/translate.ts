@@ -10,9 +10,12 @@ const localeMap = {
 export default function translate( locale: string, key: string ): any {
   try {
     let res = localeMap[ locale ]
-    key.split( "." ).forEach( str => {
-      res = res[ str ]
-    } )
+    key
+      .split( "." )
+      .filter( v => v !== "" )
+      .forEach( str => {
+        res = res[ str ]
+      } )
     return res != null ? res : key
   } catch ( e ) {
     console.log( e )

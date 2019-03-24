@@ -2,7 +2,7 @@ export default {
   logoTitle           : `Terry Su`,
   noteIsAutoTranslated: `This page was translated automatically.`,
   home                : {
-    documentTitile: `Terry Su Blog`,
+    siteTitle     : `Terry Su Blog`,
     categoryNewest: `Newest Blogs`,
     navArticles   : `ARTICLES`,
     navAbout      : `ABOUT`
@@ -19,5 +19,11 @@ export default {
     left  : `Copyright © 2017-`,
     center: `Terry Su`,
     right : `ALL RIGHTS RESERVED`
+  },
+  howItWorks: {
+    siteTitle: `How It Works Series`
+  },
+  about: {
+    siteTitle: `About`
   }
 }
