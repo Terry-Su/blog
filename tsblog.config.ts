@@ -6,11 +6,9 @@ import { Config } from '../tsblog/src/typings'
 import getPages from './tsblog/getPages'
 import setWebpack from './tsblog/setWebpack'
 
-const remarkParser = text => {
+const remarkPreParser = text => {
   const newText = parse( text ).text
-  const converter = new showdown.Converter( { metadata: true } )
-  const html = converter.makeHtml( newText )
-  return html
+  return newText
 }
 
 const { resolve } = path
@@ -32,8 +30,8 @@ const config: Config = {
     tsconfigPath: resolve( __dirname, "tsconfig.json" ),
     dotDirectory: false
   },
-  parser: {
-    ".md": remarkParser
+  preParser: {
+    ".md": remarkPreParser
   },
   port: 3600
 }

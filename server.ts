@@ -1,7 +1,7 @@
 import glob from 'glob'
 import path from 'path'
 
-import sync from '../i18n-sync/src/index'
+import sync, { PuppeteerModel } from '../i18n-sync/src/index'
 import { run } from '../tsblog/src/index'
 import config from './tsblog.config'
 
@@ -19,12 +19,12 @@ const remarkDirs = ( () => {
   return dirs
 } )()
 
-// remarkDirs.map( remarkDir => {
-//   const files = locales.map( name =>
-//     path.resolve( remarkDir, `${name}${EXTENSION}` )
-//   )
-//   const backup = path.resolve( remarkDir, BACKUP_NAME )
-//   sync( files, {
-//     backup
-//   } )
-// } )
+remarkDirs.map( remarkDir => {
+  const files = locales.map( name =>
+    path.resolve( remarkDir, `${name}${EXTENSION}` )
+  )
+  const backup = path.resolve( remarkDir, BACKUP_NAME )
+  sync( files, {
+    backup
+  } )
+} )
