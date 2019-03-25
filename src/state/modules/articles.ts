@@ -4,13 +4,16 @@ import reduxReducerHelper from '@/state/reduxReducerHelper'
 
 const nameSpace = "articles"
 
-const { newestRemarks = [] } = getDefaultData()
-
 export class ArticlesState {
   // # e.g.
   // foo/bar
   currentCategoryPath: string = null
-  listRemarks: ClientListItemRemark[] = newestRemarks
+  listRemarks: ClientListItemRemark[]
+
+  constructor() {
+    const { newestRemarks = [] } = getDefaultData()
+    this.listRemarks = newestRemarks
+  }
 }
 
 class Actions {

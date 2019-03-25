@@ -37,7 +37,16 @@ const PADDING_TOP = 20
 class Articles extends Component<Props, State> {
   state = new State()
 
-  componentDidMount() {}
+  componentDidMount() {
+    const { listRemarks } = this.props.articles
+    if (!listRemarks || listRemarks.length === 0) {
+      const { newestRemarks } = getDefaultData()
+      this.props.dispatch({
+        type: "articles/UPDATE_LIST_REMARKS",
+        listRemarks: newestRemarks
+      })
+    }
+  }
 
   get isNewestCategroy(): boolean {
     const { currentCategoryPath }: any = (this.props.articles as any) || {}
