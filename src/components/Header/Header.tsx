@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import styled from 'styled-components'
 
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 import { PATH_ABOUT, PATH_HOW_IT_WORKS_SERIES } from '@/constants/paths'
@@ -73,23 +74,25 @@ class Header extends Component<Props, State> {
               [texts.navAbout, `${pathnameRoot}${PATH_ABOUT}`]
               // ["Github", "https://github.com/Terry-Su"]
             ].map(([value, path], index) => (
-              <ResolvedLink
+              <StyledLinkWrapper
                 key={index}
-                style={{
-                  fontSize: !isMini ? "16px" : "16px",
-                  margin: !isMini ? "0 25px" : "0 10px",
-                  letterSpacing: "1px",
-                  // fontWeight: !isMini ? "bold" : "normal",
-                  color: !isMini
-                    ? currentPath === path
-                      ? "#555"
-                      : "#aaa"
-                    : "#aaa"
-                }}
-                to={path}
+                isMini={isMini}
+                currentPath={currentPath}
+                path={path}
               >
-                {value}
-              </ResolvedLink>
+                <ResolvedLink
+                  style={{
+                    fontSize: !isMini ? "16px" : "16px",
+                    margin: !isMini ? "0 25px" : "0 10px",
+                    letterSpacing: "1px"
+                    // fontWeight: !isMini ? "bold" : "normal",
+                    // color:
+                  }}
+                  to={path}
+                >
+                  {value}
+                </ResolvedLink>
+              </StyledLinkWrapper>
             ))}
           </div>
         )}
@@ -99,3 +102,12 @@ class Header extends Component<Props, State> {
 }
 
 export default withRouter(Header)
+
+export const StyledLinkWrapper: any = styled.div`
+  color: ${({ isMini, currentPath, path }: any) =>
+    !isMini ? (currentPath === path ? "#555!important" : "#aaa") : "#aaa"};
+
+  :hover {
+    color: #888;
+  }
+`

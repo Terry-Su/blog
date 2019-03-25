@@ -110,7 +110,7 @@ export default function getPagesByLocale(
       data: {
         ...commonData,
         ...remarkBasicData,
-        siteTitle          : `${title}(${t( "home.siteTitle" )})`,
+        siteTitle          : `${title}(${t( "commonSiteTitle" )})`,
         reprintingNote     : t( `article.reprintingNote` ),
         endingWords        : t( `article.endingWords` ),
         githubCommentBase  : t( `article.githubCommentBase` ),
@@ -135,7 +135,7 @@ export default function getPagesByLocale(
       } )
       return {
         ...commonData,
-        siteTitle: `${t( "howItWorks.siteTitle" )}(${t( "home.siteTitle" )})`,
+        siteTitle: `${t( "howItWorks.siteTitle" )}(${t( "commonSiteTitle" )})`,
         ...getRemarkBasicData( remark, normalRemarks, locale ),
         texts    : t( "home" )
       }
@@ -156,7 +156,7 @@ export default function getPagesByLocale(
       } )
       return {
         ...commonData,
-        siteTitle: `${t( "about.siteTitle" )}(${t( "home.siteTitle" )})`,
+        siteTitle: `${t( "about.siteTitle" )}(${t( "commonSiteTitle" )})`,
         ...getRemarkBasicData( remark, normalRemarks, locale ),
         texts    : t( "home" )
       }

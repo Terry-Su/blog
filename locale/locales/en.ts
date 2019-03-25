@@ -1,8 +1,9 @@
 export default {
   logoTitle           : `Terry Su`,
   noteIsAutoTranslated: `This page is translated automatically.`,
+  commonSiteTitle     : "Terry Su Blog",
   home                : {
-    siteTitle     : `Terry Su Blog`,
+    siteTitle     : `A personal blog by Terry Su`,
     categoryNewest: `Newest Blogs`,
     navArticles   : `ARTICLES`,
     navAbout      : `ABOUT`

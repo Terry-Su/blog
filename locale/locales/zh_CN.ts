@@ -1,6 +1,7 @@
 export default {
   logoTitle           : `苏溪云`,
   noteIsAutoTranslated: `本文为自动翻译。`,
+  commonSiteTitle     : "苏溪云的博客",
   home                : {
     siteTitle     : `苏溪云的博客`,
     categoryNewest: `最新文章`,

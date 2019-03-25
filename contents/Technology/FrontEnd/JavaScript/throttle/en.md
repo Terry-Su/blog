@@ -1,42 +1,41 @@
 ---
-title: 节流 - 理解，实践与实现
+title: <0>Understand and Make the Throttle</0>
 postTime: 2018/9/20 18:27
 comment: 3
 ---
-
-节流(分流)，与防抖（去抖）实现原理相似。本文主要讨论节流，镜像文章：[防抖 - 理解，实践与实现](/cn/detail/debounce.html)。分开讨论防抖和节流，主要是为了让一些还不太了解节流防抖的读者能够有针对性地，逐一掌握它们。  
-如何用代码实现节流也是一个要点。本文采用循序渐进地方式，先绘制一个案例的流程图，再根据流程图的逻辑编写节流功能代码。
-
+<1>The principle of throttling (shunt) is similar to that of anti-shake (de-shake). This article mainly discusses throttling, mirroring articles:</1>[<2>Anti - shake - understanding, practice and implementation</2>](/cn/detail/debounce.html)<5>.</5><3>The main purpose of the separate discussion of control and control is to let some readers who are not familiar with control and control can grasp them one by one.</3>  
+<4>How to implement throttling in code is also an important point. This paper adopts the method of step-by-step, first draw a flowchart of the case, and then write the throttling function code according to the logic of the flowchart.</4>
 
 
-## 节流案例
+
+## <6>Throttling case</6>
 <br/>
 <iframe src="https://terry-su.github.io/BlogCDN/iframes/js/throttle/mousemove/index.html?mode=result" ></iframe>
 
-当鼠标移动时，mousemove事件频繁被触发。上方为未节流模式，每一次mousemove触发都会绘制一个圆点。而下方为节流模式，尽管mosuemove在鼠标移动时被多次触发，但只有在限定时间间隔才会绘制圆点。
+<7>Mousemove events are frequently triggered when the mouse moves. The top is in unthrottled mode, and each mousemove trigger draws a dot. On the bottom is the throttling mode. Although mosuemove is triggered many times when the mouse moves, it only draws the dots in a limited time interval.</7>
 
 
-## 理解和实现节流
-通过上方案例，可以基本了解节流的作用: 频繁触发的事件，事件处理函数在一定的时间间隔内只执行一次。
+## <8>Understand and implement throttling</8>
+<9>From the above example, we can get a basic understanding of the role of throttling: frequently triggered events, event handlers only execute once in a certain time interval.</9>
 
-不过节流函数是如何做到的？ 以上方案例为例，绘制其流程图如下。  
+<10>But how does the throttle function do that? The above scheme is taken as an example and its flow chart is drawn as follows.</10>  
 
-核心参数: 
-1. 间隔时长
-2. 计时器
+<11>Core parameter</11>: 
+1. <12>The interval time</12>
+2. <13>The timer</13>
 
 ```
 graph TB
-开始 --> IF1{计时器是否为空}
+<22>start</22> --> IF1{<23>Whether the timer is empty</23>}
 
-IF1 --> |是| A(绘制圆点)
-A --> B(添加计时器, 过了 间隔时长 后, 清除计时器)
-B --> 结束
+IF1 --> |<24>is</24>| A(<25>Draw the dot</25>)
+A --> B(<26>Add a timer,</26> <27>After the</27> <28>The interval time</28> <29>after</29>, <30>Clear timer</30>)
+B --> <31>The end of the</31>
 
-IF1 --> |否| 结束
+IF1 --> |<32>no</32>| <33>The end of the</33>
 ```
 
-根据流程图的思路实现分流函数：
+<14>The fractional flow function is realized according to the flow chart</14>：
 ```js
 function throttle( func, wait ) {
   let timer
@@ -69,18 +68,18 @@ function throttle( func, wait ) {
 }
 ```
 
-接下来，用编写的节流函数实现上方案例
+<15>Next, implement the above example with the throttling function you wrote</15>
 <iframe src="https://terry-su.github.io/BlogCDN/iframes/js/throttle/test-mousemove/index.html?mode=result" ></iframe>
 
 
 
-## 应用场景
-无限的滚动条
+## <16>Application scenarios</16>
+<17>Unlimited scroll bars</17>
 <iframe src="https://terry-su.github.io/BlogCDN/iframes/js/throttle/infinite-scrolling/index.html?mode=result" ></iframe>
 
 
 
-## 总结
-节流和防抖类似，都能有效优化系统性能，不过使用业务场景有所区别：
-* 防抖既可用于在多次触发的事件（如文本框逐个输入文字），也可用于在频繁触发的事件（如调整窗口尺寸）。
-* 节流多只用在频繁触发的事件（如滚动滚动条）上。
+## <18>conclusion</18>
+<19>Similar to throttling and stabilization, both can effectively optimize system performance, but using business scenarios makes a difference</19>：
+* <20>Anti-shake can be used for events that are triggered multiple times (such as text box input text one by one), or for events that are triggered frequently (such as resizing a window).</20>
+* <21>Throttling is mostly used for frequently triggered events such as scroll bars.</21>

@@ -41,7 +41,8 @@ export default function i18nContents( source: string, output: string ) {
     )
     const backup = path.resolve( markdownDir, BACKUP_NAME )
     sync( files, {
-      backup
+      backup,
+      enableTranslation: true
     } )
   } )
 
