@@ -1,6 +1,6 @@
 export default {
   logoTitle           : `Terry Su`,
-  noteIsAutoTranslated: `This page was translated automatically.`,
+  noteIsAutoTranslated: `This page is translated automatically.`,
   home                : {
     siteTitle     : `Terry Su Blog`,
     categoryNewest: `Newest Blogs`,

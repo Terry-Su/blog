@@ -1,10 +1,13 @@
-<4></4>
-<0>Hi, glad to meet you, welcome to visit my blog. I'm Terry Su, a 3 years Front-End engineer from China, who loves English very much.</0>
+<4>---
+postTime: 2019/01/15 22:54
+isAutoTranslated: true
+---</4>
+<0>你好，很高兴认识你，欢迎访问我的博客。我是Terry Su，来自中国，做了3年的前端工程师，非常喜欢英语。</0>
 
-<1>I've learned English seriously these years and kept practicing thinking in English, and it turns out that now I can express my ideas in English naturally without interpreting them from Chinese, though it may be non-native.</1>
+<1>这些年来，我认真学习英语，不断练习用英语思考，现在我可以用英语自然地表达我的想法，而不需要从中文翻译，虽然可能不是母语。</1>
 
 
 
-<2>You can contact me by</2>:
-* <3>Email</3>: theterrysu@163.com
+<2>你可以跟我联系</2>:
+* <3>电子邮件</3>: theterrysu@163.com
 * Github: [Terry-Su](https://github.com/Terry-Su)
