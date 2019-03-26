@@ -6,7 +6,7 @@ export default {
     siteTitle     : `苏溪云的博客`,
     categoryNewest: `最新文章`,
     navArticles   : `所有文章`,
-    navAbout      : `关于我`
+    navAbout      : `关于作者`
   },
   article: {
     endingWords   : ``,

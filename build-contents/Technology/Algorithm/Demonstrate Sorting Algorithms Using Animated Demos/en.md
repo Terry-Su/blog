@@ -2,6 +2,7 @@
 postTime: 2019/01/15 22:54
 comment: 13
 
+
 ---
 
 
@@ -9,7 +10,7 @@ comment: 13
 
 After learning common sorting algorithms, feel like demonstrating them using not only brief description but also animated demos.
 
-Here contains 6 sorting algorithms, half are simple, half are advanced.
+Here contains 6 sorting algorithms, half are simple, half are advanced:
 * Bubble sort
 * Selection sort
 * Insertion sort
@@ -34,8 +35,8 @@ Start from leftmost.
 
 ## Selection sort
 Start from leftmost too.
-1. look for minimum player from current position to right
-2. swap minimum player with the player at current position
+1. look for shortest player from current position to right
+2. swap shortest player with the player at current position
 2. move one position right
 
 <iframe src="https://terry-su.github.io/BlogCDN/iframes/algorithm/selection-sort/index.html?mode=result" ></iframe>
