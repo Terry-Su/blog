@@ -9,22 +9,6 @@ const locales = [ "en", "cn" ]
 const EXTENSION = ".md"
 const BACKUP_NAME = ".backup"
 
-// const remarkDirs = ( () => {
-//   const enFiles = glob.sync( `${contents}/**/en.md` )
-//   const dirs = enFiles.map( enFile => path.resolve( enFile, "../" ) )
-//   return dirs
-// } )()
-
-// remarkDirs.map( remarkDir => {
-// const files = locales.map( name =>
-//   path.resolve( remarkDir, `${name}${EXTENSION}` )
-// )
-// const backup = path.resolve( remarkDir, BACKUP_NAME )
-// sync( files, {
-//   backup
-// } )
-// } )
-
 export default function i18nContents( source: string, output: string ) {
   const markdownDirs = ( () => {
     const files = glob.sync( `${source}/**/*${EXTENSION}` )
