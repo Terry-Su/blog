@@ -1,0 +1,22 @@
+
+logoTitle: <0>Terry Su</0>
+noteIsAutoTranslated: <1>This page is translated automatically.</1>
+commonSiteTitle: <2>Terry Su Blog</2>
+home:
+  siteTitle: <3>A personal blog by Terry Su</3>
+  categoryNewest: <4>Newest Blogs</4>
+  navArticles: <5>ARTICLES</5>
+  navAbout: <6>ABOUT</6>
+article:
+  endingWords: 
+  reprintingNote: <7>Author all rights reserved reprint please indicate the source no commercial reprint</7>
+  githubIssuePageBase: <8>https://github.com/Terry-Su/TSBlogComments-En/issues/</8>
+  githubCommentBase: <9>https://api.github.com/repos/terry-su/tsblogcomments-en/issues/</9>
+copyright:
+  left: <10>Copyright © 2017-</10>
+  center: <11>Terry Su</11>
+  right: <12>ALL RIGHTS RESERVED</12>
+howItWorks:
+  siteTitle: <13>How It Works Series</13>
+about:
+  siteTitle: <14>About</14>

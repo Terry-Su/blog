@@ -1,0 +1,22 @@
+
+logoTitle: <0>苏溪云</0>
+noteIsAutoTranslated: <1>本文为自动翻译。</1>
+commonSiteTitle: <2>苏溪云的博客</2>
+home:
+  siteTitle: <3>苏溪云的博客</3>
+  categoryNewest: <4>最新文章</4>
+  navArticles: <5>所有文章</5>
+  navAbout: <6>关于作者</6>
+article:
+  endingWords: 
+  reprintingNote: <7>作者版权所有，转载请注明出处，请勿转载</7>
+  githubIssuePageBase: <8>https://github.com/Terry-Su/TSBlogComments-En/issues/</8>
+  githubCommentBase: <9>https://api.github.com/repos/terry-su/tsblogcomments-en/issues/</9>
+copyright:
+  left: <10>版权 © 2017-</10>
+  center: <11>苏溪云</11>
+  right: <12>保留所有权利</12>
+howItWorks:
+  siteTitle: <13>原理实现系列</13>
+about:
+  siteTitle: <14>关于</14>

@@ -1,3 +1,4 @@
+import glob from 'glob'
 import path from 'path'
 import showdown from 'showdown'
 
@@ -12,6 +13,8 @@ const remarkPreParser = text => {
 }
 
 const { resolve } = path
+
+const watching = [ ...glob.sync( `${path.resolve( __dirname, "locales" )}/**/*` ) ]
 
 export class SiteData {
   remarkDisqusComment: string = `https://terrysu.disqus.com/embed.js`
@@ -28,7 +31,8 @@ const config: Config = {
     getPages,
     setWebpack,
     tsconfigPath: resolve( __dirname, "tsconfig.json" ),
-    dotDirectory: false
+    dotDirectory: false,
+    watching
   },
   preParser: {
     ".md": remarkPreParser

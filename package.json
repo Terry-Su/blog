@@ -5,13 +5,13 @@
   "main": ".eslintrc.js",
   "scripts": {
     "start": "cross-env DEV=true nodemon --verbose -e ts,tsx,md",
-    "build": "nodemon --verbose -e ts,tsx,md"
+    "build": "nodemon --verbose -e ts,tsx,md",
+    "i18n": "cross-env TS_NODE_PROJECT=tsconfig.node.json ts-node i18n"
   },
   "nodemonConfig": {
     "watch": [
       "tsblog.config.ts",
       "tsblog/**/*",
-      "locale/**/*",
       "server.ts",
       "i18nContents.ts",
       "../tsblog/src/**/*"
