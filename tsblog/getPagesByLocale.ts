@@ -111,12 +111,15 @@ export default function getPagesByLocale(
         ...commonData,
         ...remarkBasicData,
         siteTitle          : `${title}(${t( "commonSiteTitle" )})`,
+        categoryTitle      : t( "article.category" ),
+        postTimeTitle      : t( "article.postTime" ),
         reprintingNote     : t( `article.reprintingNote` ),
         endingWords        : t( `article.endingWords` ),
         githubCommentBase  : t( `article.githubCommentBase` ),
         githubIssuePageBase: t( `article.githubIssuePageBase` ),
         remarkDisqusComment,
-        texts              : t( "home" )
+        texts              : t( "home" ),
+        articleTexts       : t( "article" )
       }
     }
   } )

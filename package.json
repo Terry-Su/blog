@@ -11,7 +11,6 @@
   "nodemonConfig": {
     "watch": [
       "tsblog.config.ts",
-      "tsblog/**/*",
       "server.ts",
       "i18nContents.ts",
       "../tsblog/src/**/*"

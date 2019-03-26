@@ -10,13 +10,16 @@ home:
 article:
   endingWords: 
   reprintingNote: 作者版权所有，转载请注明出处，请勿转载
-  githubIssuePageBase: 
-  githubCommentBase: 
+  category: 分类
+  postTime: 发布时间
+  githubIssuePageBase: https://github.com/Terry-Su/TSBlogComments-Cn/issues/
+  githubCommentBase: https://api.github.com/repos/terry-su/tsblogcomments-cn/issues/
+  commentOnGithub: 添加Github评论
 copyright:
-  left: 
-  center: 
-  right: 
+  left: 版权 © 2017-
+  center: 苏溪云
+  right: 保留所有权利
 howItWorks:
-  siteTitle: 
+  siteTitle: 原理实现系列
 about:
-  siteTitle: 
+  siteTitle: 关于

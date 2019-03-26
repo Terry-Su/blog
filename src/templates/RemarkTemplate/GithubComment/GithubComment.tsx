@@ -67,7 +67,7 @@ export default connect(({ article }: any) => ({
     }
 
     render() {
-      const { githubIssuePageBase, comment } = getDefaultData()
+      const { githubIssuePageBase, comment, articleTexts } = getDefaultData()
       const { availableDisqusComment } = this.props
       const { comments } = this.state
       return (
@@ -90,7 +90,7 @@ export default connect(({ article }: any) => ({
                 }}
                 href={`${githubIssuePageBase}${comment}`}
               >
-                Comment on Github
+                {articleTexts.commentOnGithub}
               </a>
             </div>
           )}

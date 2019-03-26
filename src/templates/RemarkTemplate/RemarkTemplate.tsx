@@ -34,7 +34,9 @@ export default connect(({ article }: any) => ({
         path,
         reprintingNote,
         endingWords,
-        isAutoTranslated
+        isAutoTranslated,
+        categoryTitle,
+        postTimeTitle
       } = getDefaultData()
       const { availableDisqusComment } = this.props
       return (
@@ -97,14 +99,14 @@ export default connect(({ article }: any) => ({
                   }}
                 >
                   <div>
-                    Post Time: {new Date(postTime).toLocaleDateString()}
+                    {postTimeTitle}: {new Date(postTime).toLocaleDateString()}
                   </div>
                   <div
                     style={{
                       margin: `10px 0 0 0`
                     }}
                   >
-                    Category: {path}
+                    {categoryTitle}: {path}
                   </div>
                   <div
                     style={{
