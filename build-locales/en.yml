@@ -14,7 +14,7 @@ article:
   postTime: Post Time
   githubIssuePageBase: https://github.com/Terry-Su/TSBlogComments-En/issues/
   githubCommentBase: https://api.github.com/repos/terry-su/tsblogcomments-en/issues/
-  commentOnGithub: Comment on Github
+  commentOnGithub: Comment by Github
 copyright:
   left: Copyright © 2017-
   center: Terry Su

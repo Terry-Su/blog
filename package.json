@@ -6,7 +6,6 @@
   "scripts": {
     "start": "cross-env DEV=true nodemon --verbose -e ts,tsx,md",
     "build": "ts-node --project tsconfig.node.json -r tsconfig-paths/register server",
-    "build1": "nodemon --verbose -e ts,tsx,md",
     "publish": "npm run tsnode scripts/publish",
     "i18n": "npm run tsnode scripts/i18n",
     "other": "npm run tsnode scripts/buildContentsOnOtherPlatforms",

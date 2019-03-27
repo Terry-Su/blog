@@ -14,7 +14,7 @@ article:
   postTime: <16>发布时间</16>
   githubIssuePageBase: <8>https://github.com/Terry-Su/TSBlogComments-Cn/issues/</8>
   githubCommentBase: <9>https://api.github.com/repos/terry-su/tsblogcomments-cn/issues/</9>
-  commentOnGithub: <17>添加Github评论</17>
+  commentOnGithub: <17>使用Github评论</17>
 copyright:
   left: <10>版权 © 2017-</10>
   center: <11>苏溪云</11>
