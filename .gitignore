@@ -22,6 +22,9 @@ node_modules
 ## i18n-sync backup files
 .backup
 
+# built contents for other platforms
+build-contents-on-other-platforms
 
 # site
 Terry-Su.github.io
+

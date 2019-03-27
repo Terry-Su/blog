@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 import { PATH_ABOUT, PATH_HOW_IT_WORKS_SERIES } from '@/constants/paths'
+import { URL_GITHUB } from '@/constants/urls'
 import getDefaultData, { getCurrentPagePath } from '@/helpers/getDefaultData'
 import { STYLE_LAYOUT_HOME_HEADER_HEIGHT } from '@/styles/STYLES'
 
@@ -72,7 +73,6 @@ class Header extends Component<Props, State> {
               // ["HOW IT WORKS SERIES", PATH_HOW_IT_WORKS_SERIES],
               // ["WORKSPACE", PATH_HOW_IT_WORKS_SERIES],
               [texts.navAbout, `${pathnameRoot}${PATH_ABOUT}`]
-              // ["Github", "https://github.com/Terry-Su"]
             ].map(([value, path], index) => (
               <StyledLinkWrapper
                 key={index}
@@ -80,20 +80,12 @@ class Header extends Component<Props, State> {
                 currentPath={currentPath}
                 path={path}
               >
-                <ResolvedLink
-                  style={{
-                    fontSize: !isMini ? "16px" : "16px",
-                    margin: !isMini ? "0 25px" : "0 10px",
-                    letterSpacing: "1px"
-                    // fontWeight: !isMini ? "bold" : "normal",
-                    // color:
-                  }}
-                  to={path}
-                >
-                  {value}
-                </ResolvedLink>
+                <ResolvedLink to={path}>{value}</ResolvedLink>
               </StyledLinkWrapper>
             ))}
+            <StyledLinkWrapper isMini={isMini} currentPath={currentPath}>
+              <a href={URL_GITHUB}>Github</a>
+            </StyledLinkWrapper>
           </div>
         )}
       </div>
@@ -107,7 +99,23 @@ export const StyledLinkWrapper: any = styled.div`
   color: ${({ isMini, currentPath, path }: any) =>
     !isMini ? (currentPath === path ? "#555!important" : "#aaa") : "#aaa"};
 
+  letter-spacing: 1px;
+
   :hover {
     color: #888;
+  }
+
+  a {
+    font-size: 16px;
+    color: unset;
+    text-decoration: none;
+    ${(props: any) =>
+      !props.isMini
+        ? `
+    margin: 0 25px;
+    `
+        : `
+    margin: 0 10px;
+    `}
   }
 `

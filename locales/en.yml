@@ -8,7 +8,7 @@ home:
   navArticles: <5>ARTICLES</5>
   navAbout: <6>ABOUT</6>
 article:
-  endingWords: 
+  endingWords: <18>" "</18>
   reprintingNote: <7>Author all rights reserved reprint please indicate the source no commercial reprint</7>
   category: <15>Category</15>
   postTime: <16>Post Time</16>

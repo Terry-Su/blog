@@ -8,7 +8,7 @@ home:
   navArticles: ARTICLES
   navAbout: ABOUT
 article:
-  endingWords: 
+  endingWords: " "
   reprintingNote: Author all rights reserved reprint please indicate the source no commercial reprint
   category: Category
   postTime: Post Time

@@ -3,10 +3,12 @@ import fs from 'fs-extra'
 import glob from 'glob'
 import path from 'path'
 
-import sync, { i18nContents, parse } from '../i18n-sync/src/index'
+import sync, { i18nContents, parse } from '../../i18n-sync/src/index'
+import { fileLocaleNames } from './shared'
 
+i18n()
 export default function i18n() {
-  const locales = [ "en", "cn" ]
+  const locales = fileLocaleNames
   const backupName = ".backup"
   const syncConfig = {
     enableTranslation: true
@@ -39,5 +41,3 @@ export default function i18n() {
     i18nContents( source, target, config )
   }
 }
-
-i18n()

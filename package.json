@@ -6,7 +6,9 @@
   "scripts": {
     "start": "cross-env DEV=true nodemon --verbose -e ts,tsx,md",
     "build": "nodemon --verbose -e ts,tsx,md",
-    "i18n": "cross-env TS_NODE_PROJECT=tsconfig.node.json ts-node i18n"
+    "tsnode": "cross-env TS_NODE_PROJECT=tsconfig.node.json ts-node",
+    "i18n": "npm run tsnode scripts/i18n",
+    "other": "npm run tsnode scripts/buildContentsOnOtherPlatforms"
   },
   "nodemonConfig": {
     "watch": [

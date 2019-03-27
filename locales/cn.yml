@@ -8,8 +8,8 @@ home:
   navArticles: <5>所有文章</5>
   navAbout: <6>关于作者</6>
 article:
-  endingWords: 
-  reprintingNote: <7>作者版权所有，转载请注明出处，请勿转载</7>
+  endingWords: <18>" "</18>
+  reprintingNote: <7>作者版权所有，转载请注明出处，禁止商业转载</7>
   category: <15>分类</15>
   postTime: <16>发布时间</16>
   githubIssuePageBase: <8>https://github.com/Terry-Su/TSBlogComments-Cn/issues/</8>
