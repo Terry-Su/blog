@@ -15,8 +15,8 @@ export default function i18n() {
   }
   // # markdown
   {
-    const source = path.resolve( __dirname, "contents" )
-    const target = path.resolve( __dirname, "build-contents" )
+    const source = path.resolve( __dirname, "../contents" )
+    const target = path.resolve( __dirname, "../build-contents" )
     const extension = ".md"
     const config = {
       locales,
@@ -36,8 +36,8 @@ export default function i18n() {
       backupName,
       syncConfig
     }
-    const source = path.resolve( __dirname, "locales" )
-    const target = path.resolve( __dirname, "build-locales" )
+    const source = path.resolve( __dirname, "../locales" )
+    const target = path.resolve( __dirname, "../build-locales" )
     i18nContents( source, target, config )
   }
 }
