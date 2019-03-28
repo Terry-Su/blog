@@ -35,7 +35,7 @@ export default class LayoutHome extends Component<Props, State> {
         <div
           style={{
             position: "absolute",
-            right: "20px",
+            right: "40px",
             top: `20px`
           }}
         >

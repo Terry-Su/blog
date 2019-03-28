@@ -1,6 +1,10 @@
 import path from 'path'
 
 export default function setWebpack( webpackConfig ) {
+  webpackConfig.module.rules.push( {
+    test: /\.css$/,
+    use : [ "style-loader", "css-loader" ]
+  } )
   webpackConfig.resolve.alias = {
     "@"      : path.resolve( __dirname, "../src" ),
     "@cache" : path.resolve( __dirname, "../.cache" ),

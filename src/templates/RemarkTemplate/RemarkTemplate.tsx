@@ -1,3 +1,4 @@
+import Prism from 'prismjs'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
@@ -13,6 +14,9 @@ import LayoutHome from '@/layouts/LayoutHome'
 import DisqusComment from './DisqusComment'
 import GithubComment from './GithubComment/GithubComment'
 
+// support jsx
+require("prismjs/components/prism-jsx.min")
+
 class Props {
   availableDisqusComment: boolean
 }
@@ -25,6 +29,8 @@ export default connect(({ article }: any) => ({
   class RemarkTemplate extends Component<Props, State> {
     componentDidMount() {
       window.scrollTo(0, 0)
+
+      Prism.highlightAll()
     }
     render() {
       const {

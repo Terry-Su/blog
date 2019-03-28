@@ -100,8 +100,8 @@ const App = connect( mapStateToProps, mapDispatchToProps )( class extends React.
    this.props.increment()
   }  
   render() {
-        return 
-          <p>Count: { this.props.count }
+        return <div>
+          <p>Count: { this.props.count }</p>
           <button onClick={ this.onClick }>+</button>
         </div>
     }
