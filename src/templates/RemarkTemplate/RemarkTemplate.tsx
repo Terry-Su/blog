@@ -1,6 +1,7 @@
 import Prism from 'prismjs'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
 import LangSwitch from '@/components/LangSwitch/LangSwitch'
 import Markdown from '@/components/Markdown/Markdown'
@@ -38,13 +39,19 @@ export default connect(({ article }: any) => ({
         text,
         postTime,
         path,
-        reprintingNote,
-        endingWords,
+
         isAutoTranslated,
         categoryTitle,
-        postTimeTitle
+        postTimeTitle,
+        articleTexts
       } = getDefaultData()
       const { availableDisqusComment } = this.props
+      const {
+        reprintingNote,
+        endingWords,
+        endingWordsExtra,
+        qrcodeImageUrl
+      } = articleTexts
       return (
         <LayoutHome isMiniHeader={true}>
           <div
@@ -95,7 +102,17 @@ export default connect(({ article }: any) => ({
                 >
                   <Markdown />
                 </div>
-                <p>{endingWords}</p>
+                <StyledEndingWordsWrapper className="markdown-body">
+                  <p>
+                    <b>{endingWords}</b>
+                  </p>
+                  <p>
+                    <b>{endingWordsExtra}</b>
+                  </p>
+                  <p className="imageWrapper">
+                    <img src={qrcodeImageUrl} />
+                  </p>
+                </StyledEndingWordsWrapper>
                 <div
                   style={{
                     display: `flex`,
@@ -160,3 +177,14 @@ export default connect(({ article }: any) => ({
     }
   }
 )
+
+const StyledEndingWordsWrapper = styled.div`
+  margin-top: 40px;
+  > .imageWrapper {
+    display: flex;
+    justify-content: center;
+    > img {
+      max-width: 100%;
+    }
+  }
+`

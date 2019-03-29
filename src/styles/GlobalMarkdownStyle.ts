@@ -4,7 +4,7 @@ const GlobalMarkdownStyle = createGlobalStyle`
 
 .markdown-body .highlight pre, .markdown-body pre {
   /* background: hsl(27, 39%, 93%)!important; */
-  background: hsl(24, 39%, 97%)!important;
+  background: hsl(24, 39%, 99%)!important;
   /* background: hsl(24, 20%, 95%)!important; */
 
   .token.operator {

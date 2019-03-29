@@ -8,7 +8,9 @@ home:
   navArticles: ARTICLES
   navAbout: ABOUT
 article:
-  endingWords: " "
+  endingWords: Thank you for taking the time to read this article. If you like this article, welcome to jump over the platform thumb up, collection and share, let more people see this article, this is also the biggest encouragement and support for me!
+  endingWordsExtra: "At the same time, please follow my WeChat subscription number and read my latest original blog as soon as possible:"
+  qrcodeImageUrl:  https://terry-su.github.io/BlogCDN/images/qrcode.jpg 
   reprintingNote: Author all rights reserved reprint please indicate the source no commercial reprint
   category: Category
   postTime: Post Time

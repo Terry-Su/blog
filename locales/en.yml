@@ -8,7 +8,9 @@ home:
   navArticles: <5>ARTICLES</5>
   navAbout: <6>ABOUT</6>
 article:
-  endingWords: <18>" "</18>
+  endingWords: <18>Thank you for taking the time to read this article. If you like this article, welcome to jump over the platform thumb up, collection and share, let more people see this article, this is also the biggest encouragement and support for me!</18>
+  endingWordsExtra: <19>"At the same time, please follow my WeChat subscription number and read my latest original blog as soon as possible:"</19>
+  qrcodeImageUrl:  https://terry-su.github.io/BlogCDN/images/qrcode.jpg 
   reprintingNote: <7>Author all rights reserved reprint please indicate the source no commercial reprint</7>
   category: <15>Category</15>
   postTime: <16>Post Time</16>
