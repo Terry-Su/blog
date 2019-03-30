@@ -3,10 +3,11 @@
     "./tsblog.config.ts",
     "src/**/*",
     "./locale/**/*",
+    "./scripts/**/*",
     ".cache/**/*",
     "./tsblog/**/*",
     "../tsblog/**/*",
-    "../i18n-sync/src"
+    "../i18n-sync/src",
   ],
   "exclude": ["node_modules"],
   "compilerOptions": {

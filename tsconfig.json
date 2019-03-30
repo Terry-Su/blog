@@ -16,6 +16,9 @@
       "@tsblog/*": [
         "../tsblog/src/*"
       ],
+      "@examples/*": [
+        "../examples/src/*"
+      ],
     },
     "module": "esnext",
 		"target": "es5",
@@ -25,6 +28,10 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "lib": ["dom" ],
+    "typeRoots": [
+      "node_modules/@types",
+      "./src/__typings__/**/*",
+    ],
     "esModuleInterop": true,
   }
 }

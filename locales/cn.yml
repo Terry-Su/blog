@@ -8,7 +8,7 @@ home:
   navArticles: <5>所有文章</5>
   navAbout: <6>关于作者</6>
 article:
-  endingWords: <18>感谢你花时间阅读这篇文章。如果是从其他平台跳转过来，如果你喜欢这篇文章，欢迎在原平台上点赞、收藏和分享，让更多的人看到这篇文章，这也是对我最大的鼓励和支持！</18>
+  endingWords: <18>感谢你花时间阅读这篇文章。如果是从其他平台跳转过来，如果喜欢这篇文章，欢迎在原平台文章上点赞、收藏和分享，让更多的人看到这篇文章，这也是对我最大的鼓励和支持！</18>
   endingWordsExtra: <19>同时欢迎关注我的微信订阅号，第一时间阅读我的最新原创前端技术博客：</19>
   qrcodeImageUrl:  https://terry-su.github.io/BlogCDN/images/qrcode.jpg 
   reprintingNote: <7>作者版权所有，转载请注明出处，禁止商业转载</7>
