@@ -7,6 +7,7 @@ export default class ClientRemark {
   comment: number
   isAutoTranslated: boolean
   availableOtherLocales: string[]
+  componentTextMap: any
 }
 
 export class ClientListItemRemark {
@@ -26,4 +27,8 @@ export class ClientRemarkMetadata {
   abstract?: string
   comment?: number
   isAutoTranslated?: boolean
+  // component path map
+  // path is relative to examples/
+  // e.g. { App: '' }
+  components?: any
 }

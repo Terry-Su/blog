@@ -43,7 +43,7 @@ export default connect(({ article }: any) => ({
         isAutoTranslated,
         categoryTitle,
         postTimeTitle,
-        articleTexts
+        articleTexts = {}
       } = getDefaultData()
       const { availableDisqusComment } = this.props
       const {

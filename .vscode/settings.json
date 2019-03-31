@@ -18,10 +18,14 @@
   "importSorter.generalConfiguration.sortOnBeforeSave": true,
   "importSorter.importStringConfiguration.hasSemicolon": false,
 
+  "files.associations": {
+    "*.md": "mdx"
+  },
+
   "files.exclude": {
     "**/.backup": true,
     "build-contents": true,
     "build-locales": true,
     "build-contents-on-other-platforms": true,
-  }
+  },
 }

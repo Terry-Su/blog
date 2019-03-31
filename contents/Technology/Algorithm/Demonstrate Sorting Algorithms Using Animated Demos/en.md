@@ -3,6 +3,7 @@ postTime: 2019/01/15 22:54
 comment: <42>13</42>
 <0>
 </0>
+<43></43>
 ---
 
 
@@ -29,8 +30,9 @@ Start from leftmost.</11>
 2. <13>if the one on the left is taller, swap them. Otherwise, no action.</13>
 3. <14>move one position right</14>
 
-<iframe src="https://terry-su.github.io/BlogCDN/iframes/algorithm/bubble-sort/index.html?mode=result" ></iframe>
+<div>
 
+</div>
 
 
 ## <15>Selection sort</15>

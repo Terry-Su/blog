@@ -1,3 +1,4 @@
+import fs from 'fs-extra'
 import htmlToText from 'html-to-text'
 import cloneDeep from 'lodash/cloneDeep'
 import path from 'path'
@@ -8,6 +9,7 @@ import sortBlogsByPostTime from '@/utils/sortBlogsByPostTime'
 import {
     Config, PageInfo, TransformedData, TransformedMarkdownFile, TransformedYamlFile
 } from '../../tsblog/src/typings'
+import { PATH_REACT_LIVE_COMPONENTS_ROOT } from '../config'
 import { EN, ZH_CN } from '../locale/names'
 import specialNameMap, {
     CN, getSpeciaLocalelName, specialNameToLocaleMap
@@ -370,7 +372,7 @@ function getRemarkCategoryPath( remark: TransformedMarkdownFile ) {
 }
 
 // # e.g. foo/bar/articleName
-function getRemarkFolderPath( remark: TransformedMarkdownFile ) {
+export function getRemarkFolderPath( remark: TransformedMarkdownFile ) {
   return getFileFolderPath( remark.relativePath )
 }
 
@@ -401,7 +403,8 @@ function getRemarkBasicData(
   const {
     postTime,
     comment,
-    isAutoTranslated
+    isAutoTranslated,
+    components = {}
   }: ClientRemarkMetadata = remark.getMetadata()
   const id = getRemarkId( remark )
   const title = getRemarkTitle( remark )
@@ -414,6 +417,18 @@ function getRemarkBasicData(
     locale
   )
 
+  // # get react-live component texts
+  let componentTextMap = {}
+  for ( let key in components ) {
+    const relativePath = components[ key ]
+    const file = resolve( PATH_REACT_LIVE_COMPONENTS_ROOT, relativePath )
+    let text = "render(<span></span>)"
+    if ( fs.existsSync( file ) ) {
+      text = fs.readFileSync( file, { encoding: "utf8" } )
+    }
+    componentTextMap[ key ] = text
+  }
+
   return {
     id,
     title,
@@ -422,7 +437,8 @@ function getRemarkBasicData(
     postTime: remarkPostTime,
     comment,
     isAutoTranslated,
-    availableOtherLocales
+    availableOtherLocales,
+    componentTextMap
   }
 }
 

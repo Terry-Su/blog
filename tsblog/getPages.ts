@@ -3,7 +3,7 @@ import path from 'path'
 import { Config, PageInfo, TransformedData } from '../../tsblog/src/typings'
 import * as namesMap from '../locale/names'
 import { __DEV__ } from '../scripts/global'
-import getPagesByLocale from './getPagesByLocale'
+import getPagesByLocale, { getRemarkFolderPath } from './getPagesByLocale'
 
 export default function getPages(
   transformedData: TransformedData,
@@ -16,17 +16,40 @@ export default function getPages(
   } )
 
   if ( __DEV__ ) {
-    res.push( {
-      path     : "/standalone",
+    // # standalone page
+    // const standAlonepage = {
+    //   path     : "/standalone",
+    //   component: path.resolve(
+    //     __dirname,
+    //     "../src/components/Standalone/Standalone"
+    //   )
+    // }
+    // res.push( standAlonepage )
+    // console.log(
+    //   `Test standalone component at: http://localhost:${config.port}/standalone`
+    // )
+
+    // # test page
+    const { remarks } = transformedData
+    const remark = remarks.find(
+      remark => getRemarkFolderPath( remark ) === "test"
+    )
+    const testPage = {
+      path     : "/test",
       component: path.resolve(
         __dirname,
-        "../src/components/Standalone/Standalone"
-      )
-    } )
-
-    console.log(
-      `Test standalone component at: http://localhost:${config.port}/standalone`
-    )
+        "../src/templates/RemarkTemplate/RemarkTemplate"
+      ),
+      data: {
+        text            : remark && remark.getText(),
+        componentTextMap: {
+          TestApp: `
+          render(<h1>Test App</h1>)
+          `
+        }
+      }
+    }
+    res.push( testPage )
   }
 
   return res

@@ -2,8 +2,10 @@
 postTime: 2019/01/15 22:54
 comment: <42>5</42>
 <0>
-title: 动画演绎排序算法 
+title: 动画演绎排序算法
 </0>
+<43>
+</43>
 ---
 
 
@@ -29,8 +31,9 @@ title: 动画演绎排序算法
 2. <13>如果左边的高一些，就换掉。否则,不做任何操作。</13>
 3. <14>向右移动一个位置</14>
 
-<iframe src="https://terry-su.github.io/BlogCDN/iframes/algorithm/bubble-sort/index.html?mode=result" ></iframe>
+<div>
 
+</div>
 
 
 ## <15>选择排序</15>

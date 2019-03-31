@@ -7,7 +7,7 @@
     ".cache/**/*",
     "./tsblog/**/*",
     "../tsblog/**/*",
-    "../i18n-sync/src",
+    "../i18n-sync/src"
   ],
   "exclude": ["node_modules"],
   "compilerOptions": {
@@ -16,6 +16,7 @@
       "@/*": ["./src/*"],
       "@locale/*": ["./locale/*"],
       "@cache/*": ["./.cache/*"],
+      "@examples/*": ["../examples/src/*"],
       "@tsblog/*": ["../tsblog/src/*"]
     },
     "module": "commonJS",

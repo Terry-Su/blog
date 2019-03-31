@@ -3,6 +3,7 @@ postTime: 2019/01/15 22:54
 comment: 13
 
 
+
 ---
 
 
@@ -29,8 +30,9 @@ Start from leftmost.
 2. if the one on the left is taller, swap them. Otherwise, no action.
 3. move one position right
 
-<iframe src="https://terry-su.github.io/BlogCDN/iframes/algorithm/bubble-sort/index.html?mode=result" ></iframe>
+<div>
 
+</div>
 
 
 ## Selection sort

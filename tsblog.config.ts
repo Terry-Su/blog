@@ -2,6 +2,8 @@ import glob from 'glob'
 import path from 'path'
 import showdown from 'showdown'
 
+import mdx from '@mdx-js/mdx'
+
 import parse from '../i18n-sync/src/parse'
 import { Config } from '../tsblog/src/typings'
 import getPages from './tsblog/getPages'
@@ -9,6 +11,25 @@ import setWebpack from './tsblog/setWebpack'
 
 const remarkPreParser = text => {
   const newText = parse( text ).text
+  return newText
+}
+
+const remarkParser = text => {
+  const YAML_REGEXP = new RegExp( `^---[\\s\\S]*?---\\n`, "m" )
+  const removedYmlText = text.replace( YAML_REGEXP, "" )
+  const jsx = mdx.sync( removedYmlText )
+
+  // remove `export default`
+  let newText = jsx.replace(
+    "export default class MDXContent",
+    "class MDXContent"
+  )
+
+  // insert react-live's render method
+  newText = `${newText}
+render( <MDXContent /> )
+  `
+
   return newText
 }
 
@@ -36,6 +57,9 @@ const config: Config = {
   },
   preParser: {
     ".md": remarkPreParser
+  },
+  parser: {
+    ".md": remarkParser
   },
   port: 3601
 }
