@@ -4,7 +4,7 @@ noteIsAutoTranslated: This page is translated automatically.
 commonSiteTitle: Terry Su Blog
 home:
   siteTitle: Terry Su Blog
-  categoryNewest: Newest Blogs
+  categoryNewest: Latest Blogs
   navArticles: ARTICLES
   navAbout: ABOUT
 article:
@@ -14,8 +14,8 @@ article:
   reprintingNote: Author all rights reserved reprint please indicate the source no commercial reprint
   category: Category
   postTime: Post Time
-  githubIssuePageBase: https://github.com/Terry-Su/TSBlogComments-En/issues/
-  githubCommentBase: https://api.github.com/repos/terry-su/tsblogcomments-en/issues/
+  githubIssuePageBase: https://github.com/Terry-Su/blogs/issues/
+  githubCommentBase: https://api.github.com/repos/terry-su/blogs/issues/
   commentOnGithub: Comment by Github
 copyright:
   left: Copyright © 2017-
@@ -25,3 +25,6 @@ howItWorks:
   siteTitle: How It Works Series
 about:
   siteTitle: About
+forGithubRepo:
+  newest: "Latest 5 Blogs:"
+  markdownJumpNote: "[中文版点击这里](https://github.com/Terry-Su/blogs-cn)"

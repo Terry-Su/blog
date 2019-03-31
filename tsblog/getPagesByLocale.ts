@@ -1,6 +1,7 @@
 import htmlToText from 'html-to-text'
 import cloneDeep from 'lodash/cloneDeep'
 import path from 'path'
+import buildCategoriesForGithubRepo from 'scripts/buildCategoriesForGithubRepo'
 
 import sortBlogsByPostTime from '@/utils/sortBlogsByPostTime'
 
@@ -166,6 +167,15 @@ export default function getPagesByLocale(
     } )()
   }
 
+  // ========================
+  // # !! effects
+  // ========================
+  buildCategoriesForGithubRepo( {
+    locale,
+    categories,
+    newestRemarks,
+    t
+  } )
   return [ homePageInfo, ...remarkPageInfos, howItWorks, about ]
 }
 

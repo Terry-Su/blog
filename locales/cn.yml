@@ -14,8 +14,8 @@ article:
   reprintingNote: <7>作者版权所有，转载请注明出处，禁止商业转载</7>
   category: <15>分类</15>
   postTime: <16>发布时间</16>
-  githubIssuePageBase: <8>https://github.com/Terry-Su/TSBlogComments-Cn/issues/</8>
-  githubCommentBase: <9>https://api.github.com/repos/terry-su/tsblogcomments-cn/issues/</9>
+  githubIssuePageBase: <8>https://github.com/Terry-Su/blogs-cn/issues/</8>
+  githubCommentBase: <9>https://api.github.com/repos/terry-su/blogs-cn/issues/</9>
   commentOnGithub: <17>使用Github评论</17>
 copyright:
   left: <10>版权 © 2017-</10>
@@ -25,3 +25,6 @@ howItWorks:
   siteTitle: <13>原理实现系列</13>
 about:
   siteTitle: <14>关于</14>
+forGithubRepo:
+  newest: <20>最近更新：</20>
+  markdownJumpNote: <21>"[For Enlgish Version, Click Here](https://github.com/Terry-Su/blogs)"</21>

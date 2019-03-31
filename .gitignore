@@ -25,6 +25,8 @@ node_modules
 # built contents for other platforms
 build-contents-on-other-platforms
 
-# site
+# git repository
 Terry-Su.github.io
+blogs
+blogs-cn
 

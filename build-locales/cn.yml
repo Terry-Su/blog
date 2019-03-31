@@ -14,8 +14,8 @@ article:
   reprintingNote: 作者版权所有，转载请注明出处，禁止商业转载
   category: 分类
   postTime: 发布时间
-  githubIssuePageBase: https://github.com/Terry-Su/TSBlogComments-Cn/issues/
-  githubCommentBase: https://api.github.com/repos/terry-su/tsblogcomments-cn/issues/
+  githubIssuePageBase: https://github.com/Terry-Su/blogs-cn/issues/
+  githubCommentBase: https://api.github.com/repos/terry-su/blogs-cn/issues/
   commentOnGithub: 使用Github评论
 copyright:
   left: 版权 © 2017-
@@ -25,3 +25,6 @@ howItWorks:
   siteTitle: 原理实现系列
 about:
   siteTitle: 关于
+forGithubRepo:
+  newest: 最近更新：
+  markdownJumpNote: "[For Enlgish Version, Click Here](https://github.com/Terry-Su/blogs)"

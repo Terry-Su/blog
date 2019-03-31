@@ -4,7 +4,7 @@ noteIsAutoTranslated: <1>This page is translated automatically.</1>
 commonSiteTitle: <2>Terry Su Blog</2>
 home:
   siteTitle: <3>Terry Su Blog</3>
-  categoryNewest: <4>Newest Blogs</4>
+  categoryNewest: <4>Latest Blogs</4>
   navArticles: <5>ARTICLES</5>
   navAbout: <6>ABOUT</6>
 article:
@@ -14,8 +14,8 @@ article:
   reprintingNote: <7>Author all rights reserved reprint please indicate the source no commercial reprint</7>
   category: <15>Category</15>
   postTime: <16>Post Time</16>
-  githubIssuePageBase: <8>https://github.com/Terry-Su/TSBlogComments-En/issues/</8>
-  githubCommentBase: <9>https://api.github.com/repos/terry-su/tsblogcomments-en/issues/</9>
+  githubIssuePageBase: <8>https://github.com/Terry-Su/blogs/issues/</8>
+  githubCommentBase: <9>https://api.github.com/repos/terry-su/blogs/issues/</9>
   commentOnGithub: <17>Comment by Github</17>
 copyright:
   left: <10>Copyright © 2017-</10>
@@ -25,3 +25,6 @@ howItWorks:
   siteTitle: <13>How It Works Series</13>
 about:
   siteTitle: <14>About</14>
+forGithubRepo:
+  newest: <20>"Latest 5 Blogs:"</20>
+  markdownJumpNote: <21>"[中文版点击这里](https://github.com/Terry-Su/blogs-cn)"</21>
