@@ -3,6 +3,7 @@ import htmlToText from 'html-to-text'
 import cloneDeep from 'lodash/cloneDeep'
 import path from 'path'
 import buildCategoriesForGithubRepo from 'scripts/buildCategoriesForGithubRepo'
+import showdown from 'showdown'
 
 import sortBlogsByPostTime from '@/utils/sortBlogsByPostTime'
 
@@ -318,24 +319,20 @@ function getClientListItemRemark(
   remark,
   absoluteRoot: string
 ): ClientListItemRemark {
-  const { relativePath, getText, getMetadata }: TransformedMarkdownFile = remark
+  const {
+    relativePath,
+    getText,
+    getMetadata,
+    getSourceText
+  }: TransformedMarkdownFile = remark
   const { postTime, id, abstract }: ClientRemarkMetadata = getMetadata()
 
   const title = getRemarkTitle( remark )
   const path = getRemarkCategoryPath( remark )
   const route = getRemarkRoute( remark, absoluteRoot )
-  const html = getText()
+  const sourceText = getSourceText()
   const remarkAbstract =
-    abstract ||
-    htmlToText
-      .fromString( html, {
-        ignoreImage            : true,
-        noLinkBrackets         : true,
-        ignoreHref             : true,
-        wordwrap               : false,
-        unorderedListItemPrefix: " "
-      } )
-      .substring( 0, 100 ) + "..."
+    abstract != null ? abstract : getRemarkAbstract( sourceText )
   const remarkPostTime = postTime && new Date( postTime ).getTime()
   return {
     title,
@@ -486,4 +483,20 @@ function getAvailableOtherLocales(
       }
     } )
   return res
+}
+
+function getRemarkAbstract( sourceText: string ) {
+  const converter = new showdown.Converter( { metadata: true } )
+  const html = converter.makeHtml( sourceText )
+  return (
+    htmlToText
+      .fromString( html, {
+        ignoreImage            : true,
+        noLinkBrackets         : true,
+        ignoreHref             : true,
+        wordwrap               : false,
+        unorderedListItemPrefix: " "
+      } )
+      .substring( 0, 100 ) + "..."
+  )
 }
