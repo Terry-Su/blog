@@ -15,6 +15,8 @@ import specialNameMap, {
     CN, getSpeciaLocalelName, specialNameToLocaleMap
 } from '../locale/specialNameMap'
 import translate from '../locale/translate'
+import buildReactLiveHtmlByRemark from '../scripts/buildReactLiveHtmlByRemark'
+import { PATH_CONTENTS } from '../shared/constants'
 import AbstractCategory from '../src/__typings__/AbstractCategory'
 import CategoryProp from '../src/__typings__/CategoryProp'
 import ClientRemark, {
@@ -101,7 +103,12 @@ export default function getPagesByLocale(
   // # article pages
   const { remarkDisqusComment } = siteData
   const remarkPageInfos = articleRemarks.map( remark => {
-    const remarkBasicData = getRemarkBasicData( remark, normalRemarks, locale )
+    const remarkBasicData = getRemarkBasicData(
+      remark,
+      normalRemarks,
+      locale,
+      absoluteRoot
+    )
     const { title } = remarkBasicData
     const route = getRemarkRoute( remark, absoluteRoot )
     return {
@@ -142,7 +149,7 @@ export default function getPagesByLocale(
       return {
         ...commonData,
         siteTitle: `${t( "howItWorks.siteTitle" )}(${t( "commonSiteTitle" )})`,
-        ...getRemarkBasicData( remark, normalRemarks, locale ),
+        ...getRemarkBasicData( remark, normalRemarks, locale, absoluteRoot ),
         texts    : t( "home" )
       }
     } )()
@@ -163,14 +170,14 @@ export default function getPagesByLocale(
       return {
         ...commonData,
         siteTitle: `${t( "about.siteTitle" )}(${t( "commonSiteTitle" )})`,
-        ...getRemarkBasicData( remark, normalRemarks, locale ),
+        ...getRemarkBasicData( remark, normalRemarks, locale, absoluteRoot ),
         texts    : t( "home" )
       }
     } )()
   }
 
   // ========================
-  // # !! effects
+  // # !! Side effects
   // ========================
   buildCategoriesForGithubRepo( {
     locale,
@@ -394,7 +401,8 @@ function getRemarkRoute( remark: TransformedMarkdownFile, absoluteRoot: string )
 function getRemarkBasicData(
   remark: TransformedMarkdownFile,
   normalRemarks: TransformedMarkdownFile[],
-  locale: string
+  locale: string,
+  absoluteRoot: string
 ): ClientRemark {
   if ( !remark ) {
     return null
@@ -417,14 +425,27 @@ function getRemarkBasicData(
     locale
   )
 
+  const route = getRemarkRoute( remark, absoluteRoot )
+
   // # get react-live component texts
   let componentTextMap = {}
   for ( let key in components ) {
-    const relativePath = components[ key ]
-    const file = resolve( PATH_REACT_LIVE_COMPONENTS_ROOT, relativePath )
+    const { relativePath } = remark
+    const relativePathFolder = getFileFolderPath( relativePath )
+    const relativeComponentPath = components[ key ]
+    const file = resolve(
+      PATH_CONTENTS,
+      relativePathFolder,
+      relativeComponentPath
+    )
     let text = "render(<span></span>)"
     if ( fs.existsSync( file ) ) {
       text = fs.readFileSync( file, { encoding: "utf8" } )
+
+      // ========================
+      // # !! Side effects
+      // ========================
+      buildReactLiveHtmlByRemark( file, route, text )
     }
     componentTextMap[ key ] = text
   }
@@ -433,6 +454,7 @@ function getRemarkBasicData(
     id,
     title,
     path,
+    route,
     text,
     postTime: remarkPostTime,
     comment,

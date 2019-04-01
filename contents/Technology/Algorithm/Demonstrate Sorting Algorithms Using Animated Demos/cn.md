@@ -5,9 +5,12 @@ comment: <42>5</42>
 title: 动画演绎排序算法
 </0>
 <43>
+components:
+  TestApp: TestApp.js
 </43>
 ---
 
+<TestApp />
 
 ![](https://terry-su.github.io/BlogCDN/images/simpson-evolution.jpg)    
 

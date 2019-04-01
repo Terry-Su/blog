@@ -3,6 +3,7 @@ export default class ClientRemark {
   title: string
   text: string
   path: string
+  route: string
   postTime: number
   comment: number
   isAutoTranslated: boolean
