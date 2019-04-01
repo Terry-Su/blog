@@ -6,16 +6,15 @@ title: 动画演绎排序算法
 </0>
 <43>
 components:
-  Common: Common.js
-  Bubble: Bubble.js
-  Selection: Selection.js
-  Insert: Insert.js
-  Merge: Merge.js
-  Shell: Shell.js
-  Quick: Quick.js
+  Common: components/Common.js
+  Bubble: components/Bubble.js
+  Selection: components/Selection.js
+  Insert: components/Insert.js
+  Merge: components/Merge.js
+  Shell: components/Shell.js
+  Quick: components/Quick.js
 </43>
 ---
-<Common standalone/>
 
 ![](https://terry-su.github.io/BlogCDN/images/simpson-evolution.jpg)    
 
@@ -39,7 +38,7 @@ components:
 2. <13>如果左边的高一些，就换掉。否则,不做任何操作。</13>
 3. <14>向右移动一个位置</14>
 
-<Bubble standalone />
+<Bubble />
 
 
 ## <15>选择排序</15>
@@ -49,7 +48,7 @@ components:
 2. <19>向右移动一个位置</19>
 
 
-<Selection standalone />
+<Selection />
 
 
 ## <20>插入排序</20>
@@ -60,7 +59,7 @@ components:
 3. <25>将比标记球员矮的球员移到右边</25>
 4. <26>将标记的球员插入到第一个移动过位置的球员的前一个位置。</26>
 
-<Insert standalone />
+<Insert />
 
 
 
@@ -74,7 +73,7 @@ components:
 1. <30>将数字分成两部分</30>
 2. <31>合并两部分</31>
 
-<Merge standalone />
+<Merge />
 
 ## <32>希尔排序</32>
 <33>“Shell排序”的名称是以发现它的Donald Shell命名的。它基于**插入排序**，但是增加了一个新特性，从而极大地提高了插入排序的性能。</33>  
@@ -83,7 +82,7 @@ components:
 1. <35>将数组按区间(例如3)划分为若干组，并对它们进行一直排序，直到所有元素都被划分和排序为止。</35>
 2. <36>缩小区间，继续进行分割和排序，直到区间变为1。</36>
 
-<Shell standalone />
+<Shell />
 
 
 
@@ -94,4 +93,4 @@ components:
 2. <40>将数组划分为左子数组(比参考元素小的所有元素)和右子数组(比参考元素大的所有元素)</40>
 3. <41>对左子数组和右子数组重复步骤2</41>
 
-<Quick standalone />
+<Quick />

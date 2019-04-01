@@ -2,6 +2,7 @@ import fs from 'fs-extra'
 import path from 'path'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
+import { ServerStyleSheet } from 'styled-components'
 
 import ClientRemark from '@/__typings__/ClientRemark'
 import ReactLiveComponent from '@/components/ReactLive/ReactLiveComponent'
@@ -17,7 +18,11 @@ export default function buildReactLiveHtmlByRemark(
   const componentMap = getReactLiveComponentMap(componentTextMap)
 
   const buildByComponent = (key, Component) => {
-    const domStr = ReactDOMServer.renderToString(<Component standalone />)
+    const sheet = new ServerStyleSheet()
+    const domStr = ReactDOMServer.renderToString(
+      sheet.collectStyles(<Component />)
+    )
+    const styleTags = sheet.getStyleTags()
     const name = key
     const htmlText = `<!DOCTYPE html>
     <html lang="en">
@@ -26,6 +31,7 @@ export default function buildReactLiveHtmlByRemark(
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>${name}</title>
+      ${styleTags}
     </head>
     <body>
       ${domStr}

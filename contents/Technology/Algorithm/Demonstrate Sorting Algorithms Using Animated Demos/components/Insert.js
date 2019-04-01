@@ -28,19 +28,20 @@ class App extends React.Component {
     }, this.time)
   }
 
-  bubbleSort(arr) {
-    const { length } = arr
-    for (let i = length - 1; i > 0; i--) {
-      for (let j = 0; j < i; j++) {
-        this.asyncUpdate(arr, i, j)
-        if (arr[j] > arr[j + 1]) {
-          // swap
-          const tmp = arr[j]
-          arr[j] = arr[j + 1]
-          arr[j + 1] = tmp
-          this.asyncUpdate(arr, i, j)
-        }
+  insertionSort(arr) {
+    let i
+    let j // j is marked item's index
+    for (j = 1; j < arr.length; j++) {
+      const tmp = arr[j] // removed marked item
+      i = j
+      this.asyncUpdate(arr, i, j)
+      while (i > 0 && arr[i - 1] >= tmp) {
+        arr[i] = arr[i - 1] // shift item right
+        i = i - 1
       }
+      // insert
+      arr[i] = tmp
+      this.asyncUpdate(arr, i, j)
     }
     this.asyncUpdate(arr)
   }
@@ -49,22 +50,16 @@ class App extends React.Component {
     if (this.state.currentJ === index) {
       return "red"
     }
-    if (this.state.currentJ != null && this.state.currentJ + 1 === index) {
-      return "orange"
-    }
     if (this.state.currentI === index) {
-      return "purple"
-    }
-    if (this.state.currentI != null && index > this.state.currentI) {
-      return "deepSkyBlue"
+      return "grey"
     }
     return "blue"
   }
 
-  play() {
+  play(index) {
     this.time = 0
     this.setState({ data: [...this.data], isRunning: true }, () =>
-      this.bubbleSort(this.state.data)
+      this.insertionSort(this.state.data)
     )
   }
 
@@ -106,3 +101,5 @@ class App extends React.Component {
     )
   }
 }
+
+render(<App />)

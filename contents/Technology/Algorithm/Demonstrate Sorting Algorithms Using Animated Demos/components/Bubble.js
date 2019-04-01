@@ -1,12 +1,14 @@
 class App extends React.Component {
   constructor(props) {
     this.time = 0
+
     this.data = [8, 9, 4, 6, 3, 2, 1, 7, 5]
 
     this.state = {
       data: [...this.data],
       currentI: null,
-      currentJ: null
+      currentJ: null,
+      isRunning: false
     }
   }
 
@@ -26,61 +28,60 @@ class App extends React.Component {
     }, this.time)
   }
 
-  shellSort(arr) {
-    this.insertionSortByH(arr, 3)
-    this.insertionSortByH(arr, 1)
-    this.asyncUpdate(arr)
-  }
-
-  insertionSortByH(a, h) {
-    const length = a.length
-    for (let i = 0; i < h; i++) {
-      let size = Math.floor((length - i) / h)
-      if (size > 0) {
-        // insertion sort
-        let input
-        let out // out is marked item
-
-        for (out = i; out < length; out += h) {
-          const tmp = a[out] // removed marked item
-          input = out
-
-          this.asyncUpdate(a, input, out)
-          while (input > 0 && input - h >= 0 && a[input - h] >= tmp) {
-            a[input] = a[input - h] // shift item right
-            input = input - h
-          }
-
-          // insert
-          a[input] = tmp
-          this.asyncUpdate(a, input, out)
+  bubbleSort(arr) {
+    const { length } = arr
+    for (let i = length - 1; i > 0; i--) {
+      for (let j = 0; j < i; j++) {
+        this.asyncUpdate(arr, i, j)
+        if (arr[j] > arr[j + 1]) {
+          // swap
+          const tmp = arr[j]
+          arr[j] = arr[j + 1]
+          arr[j + 1] = tmp
+          this.asyncUpdate(arr, i, j)
         }
       }
     }
+    this.asyncUpdate(arr)
   }
 
   getItemStyleBackground(index) {
     if (this.state.currentJ === index) {
       return "red"
     }
-    if (this.state.currentI === index) {
-      return "grey"
+    if (this.state.currentJ != null && this.state.currentJ + 1 === index) {
+      return "orange"
     }
-
+    if (this.state.currentI === index) {
+      return "purple"
+    }
+    if (this.state.currentI != null && index > this.state.currentI) {
+      return "deepSkyBlue"
+    }
     return "blue"
   }
 
   play() {
     this.time = 0
     this.setState({ data: [...this.data], isRunning: true }, () =>
-      this.shellSort(this.state.data)
+      this.bubbleSort(this.state.data)
     )
   }
 
   render() {
     const { data, activeI, activeJ, isRunning } = this.state
+    const { Common } = components
+    console.log( Common )
     return (
-      <div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+      <Common />
         <div
           style={{
             display: "flex",
@@ -115,3 +116,5 @@ class App extends React.Component {
     )
   }
 }
+
+// render( <App /> )

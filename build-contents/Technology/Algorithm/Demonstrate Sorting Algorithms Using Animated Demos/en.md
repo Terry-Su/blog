@@ -5,7 +5,6 @@ comment: 13
 
 
 ---
-<Common standalone/>
 
 ![](https://terry-su.github.io/BlogCDN/images/simpson-evolution.jpg)    
 
@@ -30,7 +29,7 @@ Start from leftmost.
 2. if the one on the left is taller, swap them. Otherwise, no action.
 3. move one position right
 
-<Bubble standalone />
+<Bubble />
 
 
 ## Selection sort
@@ -40,7 +39,7 @@ Start from leftmost too.
 2. move one position right
 
 
-<Selection standalone />
+<Selection />
 
 
 ## Insertion sort
@@ -51,7 +50,7 @@ The steps is somewhat complicated than sorts above.Start from leftmost.
 3. shift the players shorter than marked player to right
 4. insert marked player into the previous  position of first shifted player.
 
-<Insert standalone />
+<Insert />
 
 
 
@@ -65,7 +64,7 @@ As shown in picture, main steps are:
 1. Recur to split numbers into 2 parts
 2. merge 2 parts
 
-<Merge standalone />
+<Merge />
 
 ## Shell sort
 The name "Shell sort" is named for Donald Shell, who discovered it. It's based on **insertion sort**, but adds a new feature that dramatically improves the insertion sort's performance.  
@@ -74,7 +73,7 @@ Main steps
 1. divide array into groups by interval(3 for example) and sort them continously until all items are divided and sorted.
 2. diminish the interval and continue to divide and sort until the interval becomes 1.
 
-<Shell standalone />
+<Shell />
 
 
 
@@ -85,4 +84,4 @@ In the majority of situations, this is the fastest sort.
 2. partition the array into left sub array(smaller keys) and right sub array(larger keys)
 3. recur step2 to left sub array and right sub array
 
-<Quick standalone />
+<Quick />

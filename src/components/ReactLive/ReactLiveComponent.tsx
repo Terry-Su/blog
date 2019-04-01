@@ -8,16 +8,20 @@ const basicScope = {
 }
 
 export default function ReactLiveComponent(props: any = {}) {
-  const { code, noInline = true, standalone } = props
+  const { code } = props
   const scope = {
     ...basicScope,
     ...props,
     ...(props.scope || {})
   }
-  const computedNoInline = standalone != null ? !standalone : noInline
   return (
-    <LiveProvider scope={scope} noInline={computedNoInline} code={code}>
-      <LiveError />
+    <LiveProvider scope={scope} noInline={true} code={code}>
+      <LiveError
+        style={{
+          width: "100%",
+          height: "100%"
+        }}
+      />
       <LivePreview
         className="markdown-body"
         style={{
