@@ -12,11 +12,11 @@ const outputDir = path.resolve(
 
 const localeMap = {
   cn: {
-    prefix : ``,
+    prefix : `> 欢迎在Github上Star和订阅[我的原创前端技术博客](https://github.com/Terry-Su/blogs-cn)。`,
     postfix: `  
     
 **感谢你花时间阅读这篇文章。如果你喜欢这篇文章,欢迎点赞、收藏和分享，让更多的人看到这篇文章，这也是对我最大的鼓励和支持！**  
-**同时欢迎阅读我的更多原创前端技术博客: [苏溪云的博客](https://terry-su.github.io/cn/)。**`,
+**欢迎在Github上Star和订阅[我的原创前端技术博客](https://github.com/Terry-Su/blogs-cn)。**`,
     runCase: `点击运行案例`
   },
   en: {
@@ -75,7 +75,8 @@ function transform( text: string, locale: string ) {
   } )
 
   // # add postfiex
-  res = `${res}
+  res = `${localeTextsMap.prefix}
+${res}
 ${localeTextsMap.postfix}`
 
   return res

@@ -18,6 +18,7 @@ import specialNameMap, {
 import translate from '../locale/translate'
 import buildReactLiveHtmlByRemark from '../scripts/buildReactLiveHtmlByRemark'
 import { PATH_CONTENTS } from '../shared/constants'
+import remarkParser from '../shared/server/remarkParser'
 import AbstractCategory from '../src/__typings__/AbstractCategory'
 import CategoryProp from '../src/__typings__/CategoryProp'
 import ClientRemark, {
@@ -112,6 +113,7 @@ export default function getPagesByLocale(
     )
     const { title } = remarkBasicData
     const route = getRemarkRoute( remark, absoluteRoot )
+
     return {
       path     : `${route}`,
       component: resolve(
@@ -121,16 +123,17 @@ export default function getPagesByLocale(
       data: {
         ...commonData,
         ...remarkBasicData,
-        siteTitle          : `${title}(${t( "commonSiteTitle" )})`,
-        categoryTitle      : t( "article.category" ),
-        postTimeTitle      : t( "article.postTime" ),
-        reprintingNote     : t( `article.reprintingNote` ),
-        endingWords        : t( `article.endingWords` ),
-        githubCommentBase  : t( `article.githubCommentBase` ),
-        githubIssuePageBase: t( `article.githubIssuePageBase` ),
+        siteTitle             : `${title}(${t( "commonSiteTitle" )})`,
+        categoryTitle         : t( "article.category" ),
+        postTimeTitle         : t( "article.postTime" ),
+        reprintingNote        : t( `article.reprintingNote` ),
+        endingWords           : t( `article.endingWords` ),
+        githubCommentBase     : t( `article.githubCommentBase` ),
+        githubIssuePageBase   : t( `article.githubIssuePageBase` ),
         remarkDisqusComment,
-        texts              : t( "home" ),
-        articleTexts       : t( "article" )
+        texts                 : t( "home" ),
+        articleTexts          : t( "article" ),
+        markedEndingWordsExtra: remarkParser( t( "article.endingWordsExtra" ) )
       }
     }
   } )

@@ -39,6 +39,9 @@ function getMarkdownText(
   // # locales note
   res = res + `${t( "forGithubRepo.markdownJumpNote" )}\n`
 
+  // # subscription note
+  res = res + `${t( "forGithubRepo.subscriptionNote" )}\n`
+
   // # newest blogs
   res = res + `# ${t( "forGithubRepo.newest" )}\n`
   newestRemarks

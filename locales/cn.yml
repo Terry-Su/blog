@@ -8,9 +8,9 @@ home:
   navArticles: <5>所有文章</5>
   navAbout: <6>关于作者</6>
 article:
-  endingWords: <18>感谢你花时间阅读这篇文章。如果是从其他平台跳转过来，如果喜欢这篇文章，欢迎在原平台文章上点赞、收藏和分享，让更多的人看到这篇文章，这也是对我最大的鼓励和支持！</18>
-  endingWordsExtra: <19>同时欢迎关注我的微信订阅号，第一时间阅读我的最新原创前端技术博客：</19>
-  qrcodeImageUrl:  https://terry-su.github.io/BlogCDN/images/qrcode.jpg 
+  endingWords: <18>感谢你花时间阅读这篇文章。如是其他平台来的读者，喜欢这篇文章的话欢迎在原平台文章上点赞、收藏和分享，让更多的人看到这篇文章，这也是对我最大的鼓励和支持！</18>
+  endingWordsExtra: <19>欢迎在Github上Star和订阅</19>[<22>我的原创前端技术博客。</22>](<23>https://github.com/Terry-Su/blogs-cn</23>)
+  qrcodeImageUrl:  ""
   reprintingNote: <7>作者版权所有，转载请注明出处，禁止商业转载</7>
   category: <15>分类</15>
   postTime: <16>发布时间</16>
@@ -26,5 +26,6 @@ howItWorks:
 about:
   siteTitle: <14>关于</14>
 forGithubRepo:
+  subscriptionNote: <24>"### 如何订阅\n点击右上角的“Watch”按钮后，在下拉菜单中选择”Releases only“即可（有最新博客Github将为你发送一份邮件通知）。"</24>
   newest: <20>最近更新：</20>
-  markdownJumpNote: <21>"[For Enlgish Version, Click Here](https://github.com/Terry-Su/blogs)"</21>
+  markdownJumpNote: <21>"[English Version, Click Here](https://github.com/Terry-Su/blogs)"</21>

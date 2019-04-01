@@ -43,15 +43,11 @@ export default connect(({ article }: any) => ({
         isAutoTranslated,
         categoryTitle,
         postTimeTitle,
-        articleTexts = {}
+        articleTexts = {},
+        markedEndingWordsExtra = ""
       } = getDefaultData()
       const { availableDisqusComment } = this.props
-      const {
-        reprintingNote,
-        endingWords,
-        endingWordsExtra,
-        qrcodeImageUrl
-      } = articleTexts
+      const { reprintingNote, endingWords, endingWordsExtra } = articleTexts
       return (
         <LayoutHome isMiniHeader={true}>
           <div
@@ -107,10 +103,11 @@ export default connect(({ article }: any) => ({
                     <b>{endingWords}</b>
                   </p>
                   <p>
-                    <b>{endingWordsExtra}</b>
-                  </p>
-                  <p className="imageWrapper">
-                    <img src={qrcodeImageUrl} />
+                    <b
+                      dangerouslySetInnerHTML={{
+                        __html: markedEndingWordsExtra
+                      }}
+                    />
                   </p>
                 </StyledEndingWordsWrapper>
                 <div
@@ -179,7 +176,9 @@ export default connect(({ article }: any) => ({
 )
 
 const StyledEndingWordsWrapper = styled.div`
-  margin-top: 40px;
+  margin-top: 80px;
+  padding-top: 80px;
+  border-top: 1px solid #ddd;
   > .imageWrapper {
     display: flex;
     justify-content: center;

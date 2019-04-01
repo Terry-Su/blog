@@ -13,7 +13,6 @@ components:
   Shell: components/Shell.js
   Quick: components/Quick.js
 ---
-<Test />
 <Common />
 
 ![](https://terry-su.github.io/BlogCDN/images/simpson-evolution.jpg)    
