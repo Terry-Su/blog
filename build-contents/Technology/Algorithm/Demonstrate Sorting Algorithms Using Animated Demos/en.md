@@ -3,8 +3,18 @@ postTime: 2019/01/15 22:54
 comment: 13
 
 
-
+components:
+  Test: components/Test.js
+  Common: components/Common.js
+  Bubble: components/Bubble.js
+  Selection: components/Selection.js
+  Insert: components/Insert.js
+  Merge: components/Merge.js
+  Shell: components/Shell.js
+  Quick: components/Quick.js
 ---
+<Test />
+<Common />
 
 ![](https://terry-su.github.io/BlogCDN/images/simpson-evolution.jpg)    
 

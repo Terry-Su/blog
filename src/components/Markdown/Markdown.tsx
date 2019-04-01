@@ -30,6 +30,9 @@ export default class Markdown extends Component<Props, State> {
   get componentMap() {
     const { componentTextMap = {} } = getDefaultData()
     const res = getReactLiveComponentMap(componentTextMap)
+    if (Object.keys(res).length > 0) {
+      debugger
+    }
     return res
   }
 

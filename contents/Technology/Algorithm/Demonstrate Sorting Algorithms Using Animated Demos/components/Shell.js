@@ -1,3 +1,5 @@
+const { StyledRoot, StyledPlayButton } = sharing
+
 class App extends React.Component {
   constructor(props) {
     this.time = 0
@@ -80,7 +82,7 @@ class App extends React.Component {
   render() {
     const { data, activeI, activeJ, isRunning } = this.state
     return (
-      <div>
+      <StyledRoot>
         <div
           style={{
             display: "flex",
@@ -106,12 +108,14 @@ class App extends React.Component {
           ))}
         </div>
         <br />
-        {!isRunning && (
-          <button onClick={() => this.play()} onMouseOver={() => this.play()}>
-            play
-          </button>
-        )}
-      </div>
+        <StyledPlayButton
+          isRunning={isRunning}
+          onClick={() => this.play()}
+          onMouseOver={() => this.play()}
+        >
+          play
+        </StyledPlayButton>
+      </StyledRoot>
     )
   }
 }

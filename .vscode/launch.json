@@ -18,7 +18,7 @@
       "protocol": "inspector",
       "env": {
         "NODE_ENV": "development",
-        "DEV": "true",
+        // "DEV": "true",
         "TS_NODE_PROJECT": "tsconfig.node.json"
       },
       "sourceMaps": true

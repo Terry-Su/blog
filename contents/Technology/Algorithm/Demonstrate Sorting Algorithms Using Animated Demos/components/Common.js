@@ -1,11 +1,12 @@
-const Button = styled.div`
+sharing.StyledRoot = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 200px;
-  height: 100px;
-  background: deepskyblue;
-  color: white;
 `
 
-render( <Button>Styled Button</Button> )
+sharing.StyledPlayButton = styled.button`
+  visibility: ${ props => props.isRunning ? 'hidden' : 'visible' };
+`
+
+
+render(<span></span>)

@@ -4,8 +4,8 @@ comment: <42>5</42>
 <0>
 title: 动画演绎排序算法
 </0>
-<43>
 components:
+  Test: components/Test.js
   Common: components/Common.js
   Bubble: components/Bubble.js
   Selection: components/Selection.js
@@ -13,8 +13,9 @@ components:
   Merge: components/Merge.js
   Shell: components/Shell.js
   Quick: components/Quick.js
-</43>
 ---
+<Test />
+<Common />
 
 ![](https://terry-su.github.io/BlogCDN/images/simpson-evolution.jpg)    
 
