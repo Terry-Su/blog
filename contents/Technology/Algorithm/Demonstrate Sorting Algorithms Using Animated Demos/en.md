@@ -5,8 +5,7 @@ comment: <42>13</42>
 </0>
 <43></43>
 ---
-
-<TestApp />
+<Common standalone/>
 
 ![](https://terry-su.github.io/BlogCDN/images/simpson-evolution.jpg)    
 
@@ -31,9 +30,7 @@ Start from leftmost.</11>
 2. <13>if the one on the left is taller, swap them. Otherwise, no action.</13>
 3. <14>move one position right</14>
 
-<div>
-
-</div>
+<Bubble standalone />
 
 
 ## <15>Selection sort</15>
@@ -42,8 +39,8 @@ Start from leftmost.</11>
 2. <18>swap shortest player with the player at current position</18>
 2. <19>move one position right</19>
 
-<iframe src="https://terry-su.github.io/BlogCDN/iframes/algorithm/selection-sort/index.html?mode=result" ></iframe>
 
+<Selection standalone />
 
 
 ## <20>Insertion sort</20>
@@ -54,7 +51,8 @@ Start from leftmost.</11>
 3. <25>shift the players shorter than marked player to right</25>
 4. <26>insert marked player into the previous  position of first shifted player.</26>
 
-<iframe src="https://terry-su.github.io/BlogCDN/iframes/algorithm/insertion-sort/index.html?mode=result" ></iframe>
+<Insert standalone />
+
 
 
 
@@ -67,9 +65,7 @@ Start from leftmost.</11>
 1. <30>Recur to split numbers into 2 parts</30>
 2. <31>merge 2 parts</31>
 
-<iframe src="https://terry-su.github.io/BlogCDN/iframes/algorithm/merge-sort/index.html?mode=result" ></iframe>
-
-
+<Merge standalone />
 
 ## <32>Shell sort</32>
 <33>The name "Shell sort" is named for Donald Shell, who discovered it. It's based on **insertion sort**, but adds a new feature that dramatically improves the insertion sort's performance.</33>  
@@ -78,8 +74,7 @@ Start from leftmost.</11>
 1. <35>divide array into groups by interval(3 for example) and sort them continously until all items are divided and sorted.</35>
 2. <36>diminish the interval and continue to divide and sort until the interval becomes 1.</36>
 
-<iframe src="https://terry-su.github.io/BlogCDN/iframes/algorithm/shell-sort/index.html?mode=result" ></iframe>
-
+<Shell standalone />
 
 
 
@@ -90,4 +85,4 @@ Start from leftmost.</11>
 2. <40>partition the array into left sub array(smaller keys) and right sub array(larger keys)</40>
 3. <41>recur step2 to left sub array and right sub array</41>
 
-<iframe src="https://terry-su.github.io/BlogCDN/iframes/algorithm/quick-sort/index.html?mode=result" ></iframe>
+<Quick standalone />

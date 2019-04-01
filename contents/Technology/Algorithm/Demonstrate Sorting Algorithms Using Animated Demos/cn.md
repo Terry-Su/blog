@@ -6,11 +6,16 @@ title: 动画演绎排序算法
 </0>
 <43>
 components:
-  TestApp: TestApp.js
+  Common: Common.js
+  Bubble: Bubble.js
+  Selection: Selection.js
+  Insert: Insert.js
+  Merge: Merge.js
+  Shell: Shell.js
+  Quick: Quick.js
 </43>
 ---
-
-<TestApp />
+<Common standalone/>
 
 ![](https://terry-su.github.io/BlogCDN/images/simpson-evolution.jpg)    
 
@@ -34,9 +39,7 @@ components:
 2. <13>如果左边的高一些，就换掉。否则,不做任何操作。</13>
 3. <14>向右移动一个位置</14>
 
-<div>
-
-</div>
+<Bubble standalone />
 
 
 ## <15>选择排序</15>
@@ -45,8 +48,8 @@ components:
 2. <18>将最矮球员与当前位置的球员交换</18>
 2. <19>向右移动一个位置</19>
 
-<iframe src="https://terry-su.github.io/BlogCDN/iframes/algorithm/selection-sort/index.html?mode=result" ></iframe>
 
+<Selection standalone />
 
 
 ## <20>插入排序</20>
@@ -57,7 +60,8 @@ components:
 3. <25>将比标记球员矮的球员移到右边</25>
 4. <26>将标记的球员插入到第一个移动过位置的球员的前一个位置。</26>
 
-<iframe src="https://terry-su.github.io/BlogCDN/iframes/algorithm/insertion-sort/index.html?mode=result" ></iframe>
+<Insert standalone />
+
 
 
 
@@ -70,9 +74,7 @@ components:
 1. <30>将数字分成两部分</30>
 2. <31>合并两部分</31>
 
-<iframe src="https://terry-su.github.io/BlogCDN/iframes/algorithm/merge-sort/index.html?mode=result" ></iframe>
-
-
+<Merge standalone />
 
 ## <32>希尔排序</32>
 <33>“Shell排序”的名称是以发现它的Donald Shell命名的。它基于**插入排序**，但是增加了一个新特性，从而极大地提高了插入排序的性能。</33>  
@@ -81,8 +83,7 @@ components:
 1. <35>将数组按区间(例如3)划分为若干组，并对它们进行一直排序，直到所有元素都被划分和排序为止。</35>
 2. <36>缩小区间，继续进行分割和排序，直到区间变为1。</36>
 
-<iframe src="https://terry-su.github.io/BlogCDN/iframes/algorithm/shell-sort/index.html?mode=result" ></iframe>
-
+<Shell standalone />
 
 
 
@@ -93,4 +94,4 @@ components:
 2. <40>将数组划分为左子数组(比参考元素小的所有元素)和右子数组(比参考元素大的所有元素)</40>
 3. <41>对左子数组和右子数组重复步骤2</41>
 
-<iframe src="https://terry-su.github.io/BlogCDN/iframes/algorithm/quick-sort/index.html?mode=result" ></iframe>
+<Quick standalone />

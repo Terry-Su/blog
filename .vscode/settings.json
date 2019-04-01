@@ -19,7 +19,7 @@
   "importSorter.importStringConfiguration.hasSemicolon": false,
 
   "files.associations": {
-    "*.md": "mdx"
+    "*.md": "mdx",
   },
 
   "files.exclude": {

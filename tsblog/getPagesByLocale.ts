@@ -438,14 +438,14 @@ function getRemarkBasicData(
     let text = "render(<span></span>)"
     if ( fs.existsSync( file ) ) {
       text = fs.readFileSync( file, { encoding: "utf8" } )
-
-      // ========================
-      // # !! Side effects
-      // ========================
-      buildReactLiveHtmlByRemark( file, route, text )
     }
     componentTextMap[ key ] = text
   }
+
+  // ========================
+  // # !! Side effects
+  // ========================
+  buildReactLiveHtmlByRemark( componentTextMap, route, text )
 
   return {
     id,

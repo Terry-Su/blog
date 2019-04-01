@@ -7,6 +7,7 @@ import getDefaultData from '@/helpers/getDefaultData'
 import GlobalMarkdownStyle from '@/styles/GlobalMarkdownStyle'
 import { MDXTag } from '@mdx-js/tag'
 
+import getReactLiveComponentMap from '../../../shared/getReactLiveComponentMap'
 import ReactLiveComponent from '../ReactLive/ReactLiveComponent'
 
 class Props extends DefaultComponentProps {}
@@ -20,27 +21,27 @@ const basicScope = {
   LiveError,
   LivePreview,
   LiveEditor,
-  styled
+  styled,
+  // For local scope
+  scope: {}
 }
 
 export default class Markdown extends Component<Props, State> {
   get componentMap() {
-    let res = {}
     const { componentTextMap = {} } = getDefaultData()
-    for (let key in componentTextMap) {
-      const componentText =
-        componentTextMap[key] != null ? componentTextMap[key] : ""
-      const Component = props => (
-        <ReactLiveComponent {...props} code={componentText} />
-      )
-      res[key] = Component
-    }
+    const res = getReactLiveComponentMap(componentTextMap)
     return res
   }
+
+  transformedCode(code: string) {
+    // const res = babel.transform(code, {
+    //   presets: ["react"],
+    // }).code
+    return code
+  }
+
   render() {
     const { text } = getDefaultData()
-
-    // console.log(text)
     const scope = {
       ...basicScope,
       ...this.componentMap
