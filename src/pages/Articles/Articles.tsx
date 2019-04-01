@@ -120,16 +120,9 @@ class Articles extends Component<Props, State> {
           </StyleLeftSidebar>
 
           {/* list */}
-          <div
-            style={{
-              boxSizing: `border-box`,
-              width: `${STYLE_ARTICLES_LIST_WIDTH}px`,
-              height: `calc( 100% )`
-              // padding: `10px ${STYLE_ARTICLES_SIDEBAR_WIDTH}px 0 ${STYLE_ARTICLES_SIDEBAR_WIDTH}px`
-            }}
-          >
+          <StyledListWrapper>
             <List />
-          </div>
+          </StyledListWrapper>
 
           {/* right sidebar */}
           <div
@@ -165,5 +158,11 @@ const StyleLeftSidebar: any = styled.div`
   height: ${(props: any) => props.bodyHeight};
   margin: 0 50px 0 0;
   border-right: 1px solid rgba(0, 0, 0, 0.02);
-  overflow: auto;
+  /* overflow: auto; */
+`
+
+const StyledListWrapper: any = styled.div`
+  box-sizing: border-box;
+  width: ${(props: any) => STYLE_ARTICLES_LIST_WIDTH}px;
+  height: 100%;
 `

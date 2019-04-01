@@ -15,16 +15,6 @@ const langMap = {
   [names.ZH_CN]: "中文版"
 }
 
-const StyledLink = styled.a`
-  font-size: 15px;
-  letter-spacing: 1px;
-  color: #4169e1;
-  text-decoration: none;
-  :hover {
-    text-decoration: underline;
-  }
-`
-
 export default class LangSwitch extends Component<Props, State> {
   componentDidMount() {}
 
@@ -86,3 +76,13 @@ export default class LangSwitch extends Component<Props, State> {
     )
   }
 }
+
+const StyledLink = styled.a`
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: #4169e1;
+  text-decoration: none;
+  :hover {
+    text-decoration: underline;
+  }
+`

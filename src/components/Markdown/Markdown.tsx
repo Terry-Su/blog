@@ -36,12 +36,9 @@ export default class Markdown extends Component<Props, State> {
     return res
   }
 
-  transformedCode(code: string) {
-    // const res = babel.transform(code, {
-    //   presets: ["react"],
-    // }).code
-    return code
-  }
+  // transformedCode(code: string) {
+  //   return code
+  // }
 
   render() {
     const { text } = getDefaultData()
@@ -60,25 +57,24 @@ export default class Markdown extends Component<Props, State> {
         >
           <div dangerouslySetInnerHTML={{ __html: text }} />
         </div> */}
-        <div
-          style={{
-            width: "100%",
-            height: "100%"
-          }}
-        >
+        <StyledRoot>
           <LiveProvider scope={scope} noInline={true} code={text}>
             <LiveError />
-            <LivePreview
-              className="markdown-body"
-              style={{
-                width: "100%",
-                height: "100%"
-              }}
-            />
+            <LivePreview className="markdown-body" />
           </LiveProvider>
-        </div>
+        </StyledRoot>
         <GlobalMarkdownStyle />
       </React.Fragment>
     )
   }
 }
+
+const StyledRoot = styled.div`
+  width: 100%;
+  height: 100%;
+
+  .markdown-body {
+    width: 100%;
+    height: 100%;
+  }
+`

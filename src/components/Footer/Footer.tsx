@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 import getDefaultData from '@/helpers/getDefaultData'
@@ -13,35 +14,35 @@ export default class Footer extends Component<Props, State> {
     const { authorUrl, copyright = {} } = getDefaultData()
     const { left, center, right } = copyright
     return (
-      <div
-        style={{
-          boxSizing: `border-box`,
-          display: "grid",
-          placeItems: "center",
-          height: `${STYLE_BOTTOM_HEIGHT}px`,
-          background: `#182633`
-        }}
-      >
-        <span
-          style={{
-            color: `rgba(255, 255, 255, 0.5)`,
-            fontSize: "14px"
-          }}
-        >
+      <StyledRoot>
+        <span className="contentWrapper">
           {left}
-          {new Date().getFullYear()}{" "}
-          <a
-            style={{
-              margin: `0 6px`,
-              color: `#19affc`
-            }}
-            href={authorUrl}
-          >
+          {new Date().getFullYear()}
+          <a className="authorLink" href={authorUrl}>
             {center}
-          </a>{" "}
+          </a>
           {right}
         </span>
-      </div>
+      </StyledRoot>
     )
   }
 }
+
+const StyledRoot = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: ${STYLE_BOTTOM_HEIGHT}px;
+  background: #182633;
+
+  > .contentWrapper {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+
+    > .authorLink {
+      margin: 0 6px;
+      color: #19affc;
+    }
+  }
+`

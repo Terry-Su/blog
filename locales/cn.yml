@@ -26,6 +26,6 @@ howItWorks:
 about:
   siteTitle: <14>关于</14>
 forGithubRepo:
-  subscriptionNote: <24>"### 如何订阅\n点击右上角的“Watch”按钮后，在下拉菜单中选择”Releases only“即可（有最新博客Github将为你发送一份邮件通知）。"</24>
+  subscriptionNote: <24>"### 如何订阅？\n点击右上角的“Watch”按钮后，在下拉菜单中选择”Releases only“即可（有最新博客Github将为你发送一份邮件通知）。"</24>
   newest: <20>最近更新：</20>
   markdownJumpNote: <21>"[English Version, Click Here](https://github.com/Terry-Su/blogs)"</21>

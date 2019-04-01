@@ -81,5 +81,7 @@ function getMarkdownText(
   }
   categories.forEach( v => recur( v, 1 ) )
 
+  // # license
+
   return res
 }

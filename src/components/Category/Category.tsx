@@ -54,56 +54,26 @@ const Category = connect(({ articles = {} }: any) => ({ articles }))(
     }
 
     render() {
-      const {
-        name,
-        categories,
-        expanded,
-        hasRemarks,
-        remarks
-      } = this.props.category
+      const { name, categories } = this.props.category
       const { currentPath } = this.props
       const isLast = categories.length === 0
       const { isExpanding } = this.state
 
       return (
-        <div
-          style={{
-            minWidth: "100%"
-          }}
-        >
+        <StyledRoot>
           <StyledCategoryItem
-            style={{ padding: `0 40px 0 40px` }}
+            isLast={isLast}
             persistent={this.isActivated}
             onClick={this.onItemClick}
           >
             {!isLast && (
-              <span
-                style={{
-                  width: `12px`,
-                  cursor: "default"
-                }}
-                onClick={this.onIconClick}
-              >
+              <span className="icon" onClick={this.onIconClick}>
                 {isExpanding ? "∧" : "∨"}
               </span>
             )}
-            <span
-              style={{
-                margin: `0 0 0 ${isLast ? 12 + 7 : 7}px`,
-                whiteSpace: "nowrap"
-              }}
-            >
-              {name}
-            </span>
+            <span className="text">{name}</span>
           </StyledCategoryItem>
-          {/* # Following */}
-          <div
-            style={{
-              boxSizing: "border-box",
-              padding: `0 0 0 ${STYLE_CATEGORY_PADDING_WIDTH}px`,
-              display: isExpanding ? "block" : "none"
-            }}
-          >
+          <StyledSubCategoriesWrapper isExpanding={isExpanding}>
             {categories.map((category, index) => (
               <Category
                 key={index}
@@ -111,8 +81,8 @@ const Category = connect(({ articles = {} }: any) => ({ articles }))(
                 currentPath={`${currentPath}/${category.name}`}
               />
             ))}
-          </div>
-        </div>
+          </StyledSubCategoriesWrapper>
+        </StyledRoot>
       )
     }
   }
@@ -120,15 +90,36 @@ const Category = connect(({ articles = {} }: any) => ({ articles }))(
 
 export default Category
 
+const StyledRoot = styled.div`
+  min-width: 100%;
+`
+
 export const StyledCategoryItem: any = styled.div`
   box-sizing: border-box;
-  display: inline-block;
+  /* display: inline-block; */
   min-width: 100%;
-  height: 37px;
+  min-height: 37px;
+  padding: 0 40px 0 40px;
   line-height: 37px;
   cursor: default;
   color: #717171;
 
   ${(props: any) =>
     props.persistent ? "color: #111;" : ":hover { color: #333; }"}
+
+  >.icon {
+    width: 12px;
+    cursor: default;
+  }
+
+  > .text {
+    margin: 0 0 0 ${(props: any) => (props.isLast ? 12 + 7 : 7)}px;
+    white-space: nowrap;
+  }
+`
+
+const StyledSubCategoriesWrapper: any = styled.div`
+  box-sizing: border-box;
+  padding: 0 0 0 ${STYLE_CATEGORY_PADDING_WIDTH}px;
+  display: ${(props: any) => (props.isExpanding ? "block" : "none")};
 `
