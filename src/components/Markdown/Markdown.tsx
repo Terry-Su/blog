@@ -5,6 +5,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 import getDefaultData from '@/helpers/getDefaultData'
 import GlobalMarkdownStyle from '@/styles/GlobalMarkdownStyle'
+import { initMermaid } from '@/utils/mermaid'
 import { MDXTag } from '@mdx-js/tag'
 
 import getReactLiveComponentMap from '../../../shared/getReactLiveComponentMap'
@@ -27,6 +28,10 @@ const basicScope = {
 }
 
 export default class Markdown extends Component<Props, State> {
+  componentDidMount() {
+    initMermaid()
+  }
+
   get componentMap() {
     const { componentTextMap = {} } = getDefaultData()
     const res = getReactLiveComponentMap(componentTextMap)

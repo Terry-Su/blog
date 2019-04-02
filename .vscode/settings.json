@@ -26,6 +26,6 @@
     "**/.backup": true,
     "build-contents": true,
     "build-locales": true,
-    // "build-contents-on-other-platforms": true,
+    "build-contents-on-other-platforms": true,
   },
 }
