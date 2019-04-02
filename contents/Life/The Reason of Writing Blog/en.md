@@ -2,14 +2,20 @@
 postTime: 2019/1/16 15:00
 comment: 14
 ---
-Main reason:
+Main reasons:
+
 1. summarize the knowledge learned 
+
 2. share knowledge
+
 3. communicate with others
 
-Secondary reson:
+Secondary reasons:
+
 1. refine thoughts
+
 2. add fun to daily life
+
 3. build personal website
 
 
@@ -22,8 +28,11 @@ Yep, writing blog is a method. We summarize the knowledge in our own language, w
 
 ## Share knowledge, communicate with others
 Now that having written an blog and post it online, I'm displaying it to others. There're 2 options then. One is that writing articles only I will read, the other is writing articles that not only help myself review the knowledge but also are useful to others. As you can tell, my choice is the second one. By sharing knowledge and communicate with others, I'm able to:
+
 1. express my views
+
 2. find peers in same kind
+
 2. get feedback
 
 
