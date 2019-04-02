@@ -10,14 +10,14 @@ home:
   navAbout: ABOUT
 article:
   endingWords: Thanks for your reading. If you're from other platforms and like this article, please feel free to add thumb up, collection and sharing on the original platform, so that more people can see this article, which is also the biggest encouragement and support for me!
-  endingWordsExtra: Welcome to Github to star and subscribe [My Original Front End Technology Blogs.](https://github.com/Terry-Su/blogs)
+  endingWordsExtra: Welcome to star and subscribe [My Original Front End Technology Blogs.](https://github.com/Terry-Su/blogs)
   qrcodeImageUrl:  ""
   reprintingNote: Author all rights reserved reprint please indicate the source no commercial reprint
   category: Category
   postTime: Post Time
   githubIssuePageBase: https://github.com/Terry-Su/blogs/issues/
   githubCommentBase: https://api.github.com/repos/terry-su/blogs/issues/
-  commentOnGithub: Comment by Github
+  commentOnGithub: Comment (by Github Issues)
 copyright:
   left: Copyright © 2017-
   center: Terry Su

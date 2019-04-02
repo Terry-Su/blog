@@ -12,11 +12,11 @@ const outputDir = path.resolve(
 
 const localeMap = {
   cn: {
-    prefix : `> 欢迎在Github上Star和订阅[我的原创前端技术博客](https://github.com/Terry-Su/blogs-cn)。`,
+    prefix : `> 欢迎在Star和订阅[我的原创前端技术博客](https://github.com/Terry-Su/blogs-cn)。`,
     postfix: `  
     
 **感谢你花时间阅读这篇文章。如果你喜欢这篇文章,欢迎点赞、收藏和分享，让更多的人看到这篇文章，这也是对我最大的鼓励和支持！**  
-**欢迎在Github上Star和订阅[我的原创前端技术博客](https://github.com/Terry-Su/blogs-cn)。**`,
+**欢迎在Star和订阅[我的原创前端技术博客](https://github.com/Terry-Su/blogs-cn)。**`,
     runCase: `点击运行案例`
   },
   en: {

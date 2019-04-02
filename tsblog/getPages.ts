@@ -17,17 +17,17 @@ export default function getPages(
 
   if ( __DEV__ ) {
     // # standalone page
-    // const standAlonepage = {
-    //   path     : "/standalone",
-    //   component: path.resolve(
-    //     __dirname,
-    //     "../src/components/Standalone/Standalone"
-    //   )
-    // }
-    // res.push( standAlonepage )
-    // console.log(
-    //   `Test standalone component at: http://localhost:${config.port}/standalone`
-    // )
+    const standAlonepage = {
+      path     : "/standalone",
+      component: path.resolve(
+        __dirname,
+        "../src/components/Standalone/Standalone"
+      )
+    }
+    res.push( standAlonepage )
+    console.log(
+      `Test standalone component at: http://localhost:${config.port}/standalone`
+    )
 
     // # test page
     const { remarks } = transformedData

@@ -10,14 +10,14 @@ home:
   navAbout: <6>ABOUT</6>
 article:
   endingWords: <18>Thanks for your reading. If you're from other platforms and like this article, please feel free to add thumb up, collection and sharing on the original platform, so that more people can see this article, which is also the biggest encouragement and support for me!</18>
-  endingWordsExtra: <19>Welcome to Github to star and subscribe </19>[<22>My Original Front End Technology Blogs.</22>](<23>https://github.com/Terry-Su/blogs</23>)
+  endingWordsExtra: <19>Welcome to star and subscribe </19>[<22>My Original Front End Technology Blogs.</22>](<23>https://github.com/Terry-Su/blogs</23>)
   qrcodeImageUrl:  ""
   reprintingNote: <7>Author all rights reserved reprint please indicate the source no commercial reprint</7>
   category: <15>Category</15>
   postTime: <16>Post Time</16>
   githubIssuePageBase: <8>https://github.com/Terry-Su/blogs/issues/</8>
   githubCommentBase: <9>https://api.github.com/repos/terry-su/blogs/issues/</9>
-  commentOnGithub: <17>Comment by Github</17>
+  commentOnGithub: <17>Comment (by Github Issues)</17>
 copyright:
   left: <10>Copyright © 2017-</10>
   center: <11>Terry Su</11>

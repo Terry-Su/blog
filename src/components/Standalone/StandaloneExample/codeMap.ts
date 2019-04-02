@@ -4,3 +4,5 @@ export {
 export {
   default as FixedLeftRightAutoCenter
 } from "!!raw-loader!@examples/css/layouts/3Column/FixedLeftRightAutoCenter.js"
+
+export { default as Center } from "!!raw-loader!@examples/css/center/Center.js"
