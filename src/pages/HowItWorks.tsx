@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 import Markdown from '@/components/Markdown/Markdown'
@@ -13,24 +14,24 @@ export default class HowItWorks extends Component<Props, State> {
   render() {
     return (
       <LayoutHome overflowContent>
-        <div
-          style={{
-            boxSizing: `border-box`,
-            display: `flex`,
-            justifyContent: `center`,
-            width: `100%`,
-            padding: `40px 0 0 0`
-          }}
-        >
-          <div
-            style={{
-              width: `700px`
-            }}
-          >
+        <StyledRoot style={{}}>
+          <div className="wrapper">
             <Markdown />
           </div>
-        </div>
+        </StyledRoot>
       </LayoutHome>
     )
   }
 }
+
+const StyledRoot = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 40px 0 0 0;
+
+  > .wrapper {
+    width: 700px;
+  }
+`

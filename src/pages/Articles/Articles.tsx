@@ -71,31 +71,13 @@ class Articles extends Component<Props, State> {
 
     return (
       <LayoutHome overflowContent>
-        <StyledRoot
-          style={{
-            // boxSizing: "border-box",
-            display: "flex",
-            justifyContent: `center`,
-            width: "100%",
-            maxWidth: `${STYLE_ARTICLES_MAX_CONTENT_WIDTH}px`,
-            margin: `0 auto`
-            // minHeight: "100%"
-          }}
-        >
+        <StyledRoot>
           {/* left sidebar */}
           <StyleLeftSidebar bodyHeight={this.state.bodyHeight}>
-            <div
-              style={{
-                // boxSizing: `border-box`,
-                width: `100%`,
-                height: `100%`
-                // padding: `0 20px 0 0`
-              }}
-            >
+            <div className="categoryItemsWrapper">
               <StyledCategoryItem
                 style={{
-                  padding: `0 50px 0 40px`,
-                  margin: `0 0 0 19px`
+                  marginLeft: `19px`
                 }}
                 onClick={this.onNewestClick}
                 persistent={this.isNewestCategroy}
@@ -110,12 +92,6 @@ class Articles extends Component<Props, State> {
                     currentPath={category.name}
                   />
                 ))}
-              {/* taking space  */}
-              {/* <div
-                style={{
-                  padding: "20px 0"
-                }}
-              /> */}
             </div>
           </StyleLeftSidebar>
 
@@ -125,18 +101,7 @@ class Articles extends Component<Props, State> {
           </StyledListWrapper>
 
           {/* right sidebar */}
-          <div
-            style={{
-              // ...sidebarStyle,
-              width: STYLE_ARTICLES_SIDEBAR_WIDTH,
-              height: `auto`,
-              margin: `0 0 0 50px`,
-              // overflow: `auto`,
-              borderLeft: `1px solid rgba(0,0,0,0.02)`
-            }}
-          >
-            &nbsp;
-          </div>
+          <StyledRightBar>&nbsp;</StyledRightBar>
         </StyledRoot>
       </LayoutHome>
     )
@@ -144,7 +109,13 @@ class Articles extends Component<Props, State> {
 }
 export default connect(({ articles = {} }: any) => ({ articles }))(Articles)
 
-const StyledRoot = styled.div``
+const StyledRoot = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: ${() => STYLE_ARTICLES_MAX_CONTENT_WIDTH}px;
+  margin: 0 auto;
+`
 
 const StyleLeftSidebar: any = styled.div`
   position: -webkit-sticky;
@@ -158,11 +129,21 @@ const StyleLeftSidebar: any = styled.div`
   height: ${(props: any) => props.bodyHeight};
   margin: 0 50px 0 0;
   border-right: 1px solid rgba(0, 0, 0, 0.02);
-  /* overflow: auto; */
+
+  .categoryItemsWrapper {
+    height: 100%;
+  }
 `
 
 const StyledListWrapper: any = styled.div`
   box-sizing: border-box;
   width: ${(props: any) => STYLE_ARTICLES_LIST_WIDTH}px;
   height: 100%;
+`
+
+const StyledRightBar = styled.div`
+  width: ${() => STYLE_ARTICLES_SIDEBAR_WIDTH}px;
+  height: auto;
+  margin: 0 0 0 50px;
+  border-left: 1px solid rgba(0, 0, 0, 0.02);
 `

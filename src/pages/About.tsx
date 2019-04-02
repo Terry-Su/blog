@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 import Markdown from '@/components/Markdown/Markdown'
@@ -17,30 +18,34 @@ export default class About extends Component<Props, State> {
     return (
       <LayoutHome overflowContent>
         {/* Note */}
-        <div
-          style={{
-            boxSizing: `border-box`,
-            display: `flex`,
-            justifyContent: `center`,
-            width: `100%`,
-            minHeight: `calc( ${BROWSER_HEIGHT}px - ${STYLE_LAYOUT_HOME_HEADER_HEIGHT}px )`,
-            padding: `40px 0 0 0`
-          }}
-        >
-          <div
-            style={{
-              width: `700px`
-            }}
-          >
+        <StyledRoot>
+          <div className="wrapper">
             {isAutoTranslated && (
-              <div style={{ margin: `0 0 40px 0` }}>
+              <div className="noteIsAutoTranslatedWrapper">
                 <NoteIsAutoTranslated />
               </div>
             )}
             <Markdown />
           </div>
-        </div>
+        </StyledRoot>
       </LayoutHome>
     )
   }
 }
+
+const StyledRoot = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: ${() => BROWSER_HEIGHT - STYLE_LAYOUT_HOME_HEADER_HEIGHT}px;
+  padding: 40px 0 0 0;
+
+  > .wrapper {
+    width: 700px;
+
+    > .noteIsAutoTranslatedWrapper {
+      margin: 0 0 40px 0;
+    }
+  }
+`

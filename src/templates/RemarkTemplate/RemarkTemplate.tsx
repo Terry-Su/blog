@@ -50,54 +50,22 @@ export default connect(({ article }: any) => ({
       const { reprintingNote, endingWords, endingWordsExtra } = articleTexts
       return (
         <LayoutHome isMiniHeader={true}>
-          <div
-            style={{
-              width: `100%`
-            }}
-          >
-            <div
-              style={{
-                boxSizing: `border-box`,
-                display: `flex`,
-                justifyContent: `center`,
-                width: `100%`,
-                padding: `0px 0 0 0`
-              }}
-            >
-              <div
-                style={{
-                  width: `700px`
-                }}
-              >
-                <span
-                  style={{
-                    display: `flex`,
-                    fontSize: `42px`,
-                    fontWeight: `bold`,
-                    justifyContent: `center`
-                  }}
-                >
-                  {title}
-                </span>
+          <StyledRoot>
+            <div className="wrapper">
+              <div className="contentWrapper">
+                <span className="titleWrapper">{title}</span>
 
                 {/* Note */}
                 {isAutoTranslated && (
-                  <div
-                    style={{
-                      margin: `40px 0 0 0`
-                    }}
-                  >
+                  <div className="isAutoTranslatedWrapper">
                     <NoteIsAutoTranslated />
                   </div>
                 )}
 
-                <div
-                  style={{
-                    margin: `40px 0 0 0`
-                  }}
-                >
+                <div className="markdownWrapper">
                   <Markdown />
                 </div>
+
                 <StyledEndingWordsWrapper className="markdown-body">
                   <p>
                     <b>{endingWords}</b>
@@ -110,70 +78,61 @@ export default connect(({ article }: any) => ({
                     />
                   </p>
                 </StyledEndingWordsWrapper>
-                <div
-                  style={{
-                    display: `flex`,
-                    flexDirection: `column`,
-                    alignItems: `flex-end`,
-                    margin: `40px 0 0 0`
-                  }}
-                >
+                <StyledEndInfo>
                   <div>
                     {postTimeTitle}: {new Date(postTime).toLocaleDateString()}
                   </div>
-                  <div
-                    style={{
-                      margin: `10px 0 0 0`
-                    }}
-                  >
+                  <div className="categoryWrapper">
                     {categoryTitle}: {path}
                   </div>
-                  <div
-                    style={{
-                      margin: `10px 0 0 0`
-                    }}
-                  >
-                    {reprintingNote}
-                  </div>
-                </div>
+                  <div className="reprintingNoteWrapper">{reprintingNote}</div>
+                </StyledEndInfo>
               </div>
             </div>
-            <div
-              style={{
-                boxSizing: `border-box`,
-                display: `flex`,
-                justifyContent: `center`,
-                width: `100%`,
-                margin: `80px 0 0 0`,
-                padding: `40px 0`
-                // background: `#fafafa`
-                // background: `hsl(27, 99%, 95%)`
-              }}
-            >
-              <div
-                style={{
-                  width: `700px`
-                }}
-              >
+            <StyledBottom availableDisqusComment={availableDisqusComment}>
+              <div className="wrapper">
                 <div>
                   <GithubComment />
                 </div>
 
-                <div
-                  style={{
-                    padding: availableDisqusComment ? `80px 0 0 0` : "0"
-                  }}
-                >
+                <div className="disqusCommentWrapper">
                   <DisqusComment />
                 </div>
               </div>
-            </div>
-          </div>
+            </StyledBottom>
+          </StyledRoot>
         </LayoutHome>
       )
     }
   }
 )
+
+const StyledRoot = styled.div`
+  > .wrapper {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+
+    > .contentWrapper {
+      width: 700px;
+
+      > .titleWrapper {
+        display: flex;
+        font-size: 42px;
+        font-weight: bold;
+        justify-content: center;
+      }
+
+      > .isAutoTranslatedWrapper {
+        margin: 40px 0 0 0;
+      }
+
+      > .markdownWrapper {
+        margin: 40px 0 0 0;
+      }
+    }
+  }
+`
 
 const StyledEndingWordsWrapper = styled.div`
   margin-top: 80px;
@@ -184,6 +143,39 @@ const StyledEndingWordsWrapper = styled.div`
     justify-content: center;
     > img {
       max-width: 100%;
+    }
+  }
+`
+
+const StyledEndInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 40px 0 0 0;
+
+  > .categoryWrapper {
+    margin: 10px 0 0 0;
+  }
+
+  > .reprintingNoteWrapper {
+    margin: 10px 0 0 0;
+  }
+`
+
+const StyledBottom: any = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 80px 0 0 0;
+  padding: 40px 0;
+
+  > .wrapper {
+    width: 700px;
+
+    > .disqusCommentWrapper {
+      padding: ${(props: any) =>
+        props.availableDisqusComment ? `80px 0 0 0` : "0"};
     }
   }
 `
