@@ -10,7 +10,7 @@ home:
   navAbout: <6>ABOUT</6>
 article:
   endingWords: <18>Thanks for your reading. If you're from other platforms and like this article, please feel free to add thumb up, collection and sharing on the original platform, so that more people can see this article, which is also the biggest encouragement and support for me!</18>
-  endingWordsExtra: <19>Welcome to </19>[<22>subscribe</22>](<23>https://github.com/Terry-Su/blogs</23>)<26>, read my latest original front end techinique blog.</26>
+  endingWordsExtra: <19>Welcome to </19>[<22>subscribe</22>](<23>https://github.com/Terry-Su/blogs</23>)<26>, to read my latest original front end techinique blog.</26>
   qrcodeImageUrl:  ""
   reprintingNote: <7>Author all rights reserved reprint please indicate the source no commercial reprint</7>
   category: <15>Category</15>
