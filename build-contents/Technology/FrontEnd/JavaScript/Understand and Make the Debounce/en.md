@@ -5,7 +5,7 @@ comment: 2
 isAutoTranslated: true
 ---
 
-Anti-shake (de-shake) and throttling (shunt) may not be used much in daily development, but they are useful in certain scenarios. This article mainly discusses anti - shake, mirror article：[The throttle - Understanding, practice and implementation](/cn/detail/throttle.html)。Discuss shake control and throttling separately，The main purpose is to let some readers who are not familiar with anti - shake throttle can be targeted, master them one by one。   
+Anti-shake (de-shake) and throttling (shunt) may not be used much in daily development, but they are useful in certain scenarios. This article mainly discusses anti - shake, mirror article：[The throttle - Understanding, practice and implementation](https://terry-su.github.io/understand-and-make-the-throttle)。Discuss shake control and throttling separately，The main purpose is to let some readers who are not familiar with anti - shake throttle can be targeted, master them one by one。   
 If you have**Two modes**（It's confusing）：Delay execution and direct execution. More on this later.  
 The other key point is if you implement it in code. In this paper, step by step, first to achieve a simple case as an example, draw a flowchart, and then according to the flow chart logic to write anti-shake function code.
 

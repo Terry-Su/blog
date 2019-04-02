@@ -3,7 +3,8 @@ title: Understand and Make the Throttle
 postTime: 2018/9/20 18:27
 comment: 3
 ---
-The principle of throttling (shunt) is similar to that of anti-shake (de-shake). This article mainly discusses throttling, mirroring articles:[Anti - shake - understanding, practice and implementation](/cn/detail/debounce.html).The main purpose of the separate discussion of control and control is to let some readers who are not familiar with control and control can grasp them one by one.  
+
+The principle of throttling (shunt) is similar to that of anti-shake (de-shake). This article mainly discusses throttling, mirroring articles:[Anti - shake - understanding, practice and implementation](https://terry-su.github.io/understand-and-make-the-debounce).The main purpose of the separate discussion of control and control is to let some readers who are not familiar with control and control can grasp them one by one.  
 How to implement throttling in code is also an important point. This paper adopts the method of step-by-step, first draw a flowchart of the case, and then write the throttling function code according to the logic of the flowchart.
 
 
