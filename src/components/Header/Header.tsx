@@ -26,7 +26,12 @@ class Header extends Component<Props, State> {
   render() {
     const { isMini = false } = this.props
     const currentPath = getCurrentPagePath()
-    const { pathnameRoot, logoTitle, texts = {} } = getDefaultData()
+    const {
+      pathnameRoot,
+      logoTitle,
+      texts = {},
+      blogGithub = ""
+    } = getDefaultData()
     return (
       <StyledRoot isMini={isMini}>
         <ResolvedLink to={pathnameRoot} onClick={this.onLogoClick}>
@@ -51,7 +56,7 @@ class Header extends Component<Props, State> {
             </StyledLinkWrapper>
           ))}
           <StyledLinkWrapper isMini={isMini} currentPath={currentPath}>
-            <a href={URL_GITHUB}>GITHUB</a>
+            <a href={blogGithub}>GITHUB</a>
           </StyledLinkWrapper>
         </StyledLinksWrapper>
       </StyledRoot>

@@ -98,7 +98,8 @@ export default function getPagesByLocale(
       siteTitle: t( "home.siteTitle" ),
       category,
       newestRemarks,
-      texts    : t( "home" )
+      texts    : t( "home" ),
+      blogGithub: t("blogGithub")
     }
   }
 
