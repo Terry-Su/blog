@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import * as codeMap from './codeMap'
 
-const code: any = codeMap.Center
+const code: any = codeMap.SetStateUsingFunction
 const scope = { styled }
 export default class StandaloneExample extends Component {
   render() {

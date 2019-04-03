@@ -51,7 +51,8 @@ export default function getPagesByLocale(
     // text
     logoTitle           : t( `logoTitle` ),
     noteIsAutoTranslated: t( `noteIsAutoTranslated` ),
-    copyright           : t( `copyright` )
+    copyright           : t( `copyright` ),
+    blogGithub          : t( "blogGithub" )
   }
 
   const normalRemarks = remarks.filter( remark => {
@@ -98,8 +99,7 @@ export default function getPagesByLocale(
       siteTitle: t( "home.siteTitle" ),
       category,
       newestRemarks,
-      texts    : t( "home" ),
-      blogGithub: t("blogGithub")
+      texts    : t( "home" )
     }
   }
 

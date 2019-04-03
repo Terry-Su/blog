@@ -68,15 +68,13 @@ export default connect(({ article }: any) => ({
 
                 <StyledEndingWordsWrapper className="markdown-body">
                   <p>
-                    <b>{endingWords}</b>
+                    <strong>{endingWords}</strong>
                   </p>
-                  <p>
-                    <b
-                      dangerouslySetInnerHTML={{
-                        __html: markedEndingWordsExtra
-                      }}
-                    />
-                  </p>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: markedEndingWordsExtra
+                    }}
+                  />
                 </StyledEndingWordsWrapper>
                 <StyledEndInfo>
                   <div>

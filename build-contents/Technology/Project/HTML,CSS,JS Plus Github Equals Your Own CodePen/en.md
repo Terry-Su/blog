@@ -15,7 +15,7 @@ However, how an editor's style can stay the same with the style of your blog or 
 
 
 ## Showcase
-<iframe src="https://terry-su.github.io/CDN/CodeViewer/index.html?defaultDataUrl=https://terry-su.github.io/CDN/CodeViewer/examples/hello.js" frameborder="0"></iframe>
+<iframe src="https://terry-su.github.io/CDN/CodeViewer/index.html?defaultDataUrl=https://terry-su.github.io/CDN/CodeViewer/examples/hello.js"></iframe>
 
 
 

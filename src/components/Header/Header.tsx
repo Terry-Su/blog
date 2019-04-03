@@ -32,6 +32,7 @@ class Header extends Component<Props, State> {
       texts = {},
       blogGithub = ""
     } = getDefaultData()
+    console.log(getDefaultData())
     return (
       <StyledRoot isMini={isMini}>
         <ResolvedLink to={pathnameRoot} onClick={this.onLogoClick}>

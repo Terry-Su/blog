@@ -29,11 +29,11 @@ If there're other available event targets whose bubbling attribute is set to `tr
 
 Let's look back at the previous question, the answer can be clear.   
 
-<iframe src="https://terry-su.github.io/BlogCDN/iframes/js/event-capture-bubbling/example/index.html?mode=result" frameborder="0"></iframe>
+<iframe src="https://terry-su.github.io/BlogCDN/iframes/js/event-capture-bubbling/example/index.html?mode=result"></iframe>
 
 
 In this example, each box and its inner box both have registered click events. Once they were clicked, their borders will highlight one by one by the event propagation order. With the three phases of event propagation above, we could know how the 4 situations above happened.
 
 
 
-To make a summary: browser captures the event targets whose capture attribute is `true` by dom tree order first, then bubbles the event targets whose bubbling attribute is `true` by reverse dom tree order.
+To make a summary: **Browser captures the event targets whose capture attribute is `true` by dom tree order first, then bubbles the event targets whose bubbling attribute is `true` by reverse dom tree order**.
