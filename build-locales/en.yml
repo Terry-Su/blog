@@ -5,6 +5,7 @@ commonSiteTitle: Terry Su Blog
 blogGithub: https://github.com/Terry-Su/blogs
 home:
   siteTitle: Terry Su Blog
+  siteMetaDescription: Terry Su's original front-end technology blog 4 years front-end shares popular front-end technology JavaScript ReactJS
   categoryNewest: Latest Blogs
   navArticles: ARTICLES
   navAbout: ABOUT

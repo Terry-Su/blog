@@ -5,6 +5,7 @@ commonSiteTitle: 苏溪云的博客
 blogGithub: https://github.com/Terry-Su/blogs-cn
 home:
   siteTitle: 苏溪云的博客
+  siteMetaDescription: 苏溪云的原创前端技术博客 4年前端 分享主流前端技术 JavaScript ReactJS
   categoryNewest: 最新文章
   navArticles: 所有文章
   navAbout: 关于作者

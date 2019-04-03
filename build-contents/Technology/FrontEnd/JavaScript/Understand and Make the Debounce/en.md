@@ -3,6 +3,7 @@ title: Understand and Make the Debounce
 postTime: 2018/9/19 18:02
 comment: 2
 isAutoTranslated: true
+keywords: Debounce JavaScript Front End Throttle
 ---
 
 Anti-shake (de-shake) and throttling (shunt) may not be used much in daily development, but they are useful in certain scenarios. This article mainly discusses anti - shake, mirror article：[The throttle - Understanding, practice and implementation](https://terry-su.github.io/understand-and-make-the-throttle)。Discuss shake control and throttling separately，The main purpose is to let some readers who are not familiar with anti - shake throttle can be targeted, master them one by one。   
@@ -157,12 +158,12 @@ function debounce( func, wait = 0 ) {
 ```
 
 
-同样，我们可以使用类似方法实现搜索按钮B的功能。
-需求描述：
-1. 点击搜索按钮后，函数马上执行。只有等待一段时间后被点击才能执行函数。
+Similarly, we can implement the search button B in a similar way.
+Requirements describe：
+1. After clicking the search button, the function executes immediately. A function cannot be executed until it has been clicked after a period of time.
 2. If the button is clicked during this time, the timer is reset.
 
-Core parameter：
+Core parameters:
 1. The waiting time
 2. The timer
 

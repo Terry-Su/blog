@@ -96,10 +96,11 @@ export default function getPagesByLocale(
     component: resolve( __dirname, "../src/pages/Home" ),
     data     : {
       ...commonData,
-      siteTitle: t( "home.siteTitle" ),
+      siteTitle          : t( "home.siteTitle" ),
+      siteMetaDescription: t( "home.siteMetaDescription" ),
       category,
       newestRemarks,
-      texts    : t( "home" )
+      texts              : t( "home" )
     }
   }
 
@@ -114,7 +115,8 @@ export default function getPagesByLocale(
     )
     const { title } = remarkBasicData
     const route = getRemarkRoute( remark, absoluteRoot )
-
+    const abstract = getRemarkAbstract( remark )
+    const keywordsString = getRemarkKeywords( remark )
     return {
       path     : `${route}`,
       component: resolve(
@@ -124,7 +126,10 @@ export default function getPagesByLocale(
       data: {
         ...commonData,
         ...remarkBasicData,
-        siteTitle             : `${title}(${t( "commonSiteTitle" )})`,
+        siteTitle          : `${title}(${t( "commonSiteTitle" )})`,
+        siteMetaDescription: `${keywordsString} ${title} ${abstract} (${t(
+          "commonSiteTitle"
+        )})`,
         categoryTitle         : t( "article.category" ),
         postTimeTitle         : t( "article.postTime" ),
         reprintingNote        : t( `article.reprintingNote` ),
@@ -140,25 +145,29 @@ export default function getPagesByLocale(
   } )
 
   // # how it works series page
-  const howItWorks = {
-    path     : `${root}${PATH_HOW_IT_WORKS_SERIES}`,
-    component: resolve( __dirname, "../src/pages/HowItWorks" ),
-    data     : ( () => {
-      const remark = remarks.find( remark => {
-        const localeName = getRemarkFileName( remark )
-        return (
-          localeName === getSpeciaLocalelName( locale ) &&
-          getRemarkFolderPath( remark ) === "how it works series"
-        )
-      } )
-      return {
-        ...commonData,
-        siteTitle: `${t( "howItWorks.siteTitle" )}(${t( "commonSiteTitle" )})`,
-        ...getRemarkBasicData( remark, normalRemarks, locale, absoluteRoot ),
-        texts    : t( "home" )
-      }
-    } )()
-  }
+  // const howItWorks = {
+  //   path     : `${root}${PATH_HOW_IT_WORKS_SERIES}`,
+  //   component: resolve( __dirname, "../src/pages/HowItWorks" ),
+  //   data     : ( () => {
+  //     const remark = remarks.find( remark => {
+  //       const localeName = getRemarkFileName( remark )
+  //       return (
+  //         localeName === getSpeciaLocalelName( locale ) &&
+  //         getRemarkFolderPath( remark ) === "how it works series"
+  //       )
+  //     } )
+  //     const abstract = getRemarkAbstract( remark )
+  //     return {
+  //       ...commonData,
+  //       siteTitle          : `${t( "howItWorks.siteTitle" )}(${t( "commonSiteTitle" )})`,
+  //       siteMetaDescription: `${t( "howItWorks.siteTitle" )}(${t(
+  //         "commonSiteTitle"
+  //       )}) ${abstract}`,
+  //       ...getRemarkBasicData( remark, normalRemarks, locale, absoluteRoot ),
+  //       texts: t( "home" )
+  //     }
+  //   } )()
+  // }
 
   // # about page
   const about = {
@@ -172,11 +181,16 @@ export default function getPagesByLocale(
           getRemarkFolderPath( remark ) === "about"
         )
       } )
+      const abstract = getRemarkAbstract( remark )
+      const keywordsString = getRemarkKeywords( remark )
       return {
         ...commonData,
-        siteTitle: `${t( "about.siteTitle" )}(${t( "commonSiteTitle" )})`,
+        siteTitle          : `${t( "about.siteTitle" )}(${t( "commonSiteTitle" )})`,
+        siteMetaDescription: `${keywordsString} ${t(
+          "about.siteTitle"
+        )} ${abstract} (${t( "commonSiteTitle" )})`,
         ...getRemarkBasicData( remark, normalRemarks, locale, absoluteRoot ),
-        texts    : t( "home" )
+        texts: t( "home" )
       }
     } )()
   }
@@ -190,7 +204,7 @@ export default function getPagesByLocale(
     newestRemarks,
     t
   } )
-  return [ homePageInfo, ...remarkPageInfos, howItWorks, about ]
+  return [ homePageInfo, ...remarkPageInfos, about ]
 }
 
 function getCategoryProps( yamls: TransformedYamlFile[] ) {
@@ -320,23 +334,16 @@ function getCategories(
 }
 
 function getClientListItemRemark(
-  remark,
+  remark: TransformedMarkdownFile,
   absoluteRoot: string
 ): ClientListItemRemark {
-  const {
-    relativePath,
-    getText,
-    getMetadata,
-    getSourceText
-  }: TransformedMarkdownFile = remark
-  const { postTime, id, abstract }: ClientRemarkMetadata = getMetadata()
+  const { getMetadata }: TransformedMarkdownFile = remark
+  const { postTime }: ClientRemarkMetadata = getMetadata()
 
   const title = getRemarkTitle( remark )
   const path = getRemarkCategoryPath( remark )
   const route = getRemarkRoute( remark, absoluteRoot )
-  const sourceText = getSourceText()
-  const remarkAbstract =
-    abstract != null ? abstract : getRemarkAbstract( sourceText )
+  const remarkAbstract = getRemarkAbstract( remark )
   const remarkPostTime = postTime && new Date( postTime ).getTime()
   return {
     title,
@@ -345,6 +352,15 @@ function getClientListItemRemark(
     route,
     postTime: remarkPostTime
   }
+}
+
+function getRemarkAbstract( remark: TransformedMarkdownFile ): string {
+  const { getMetadata, getSourceText }: TransformedMarkdownFile = remark
+  const { abstract }: ClientRemarkMetadata = getMetadata()
+  const sourceText = getSourceText()
+  const remarkAbstract =
+    abstract != null ? abstract : getRemarkAbstractBySourceText( sourceText )
+  return remarkAbstract
 }
 
 function getRemarkTitle( remark: TransformedMarkdownFile ) {
@@ -465,6 +481,12 @@ function getRemarkBasicData(
   }
 }
 
+function getRemarkKeywords( remark: TransformedMarkdownFile ): string {
+  const { getMetadata } = remark
+  const { keywords = "" } = getMetadata() || {}
+  return keywords
+}
+
 function getAvailableOtherLocales(
   remark: TransformedMarkdownFile,
   normalRemarks: TransformedMarkdownFile[],
@@ -489,7 +511,7 @@ function getAvailableOtherLocales(
   return res
 }
 
-function getRemarkAbstract( sourceText: string ) {
+function getRemarkAbstractBySourceText( sourceText: string ) {
   const converter = new showdown.Converter( { metadata: true } )
   const html = converter.makeHtml( sourceText )
   return (

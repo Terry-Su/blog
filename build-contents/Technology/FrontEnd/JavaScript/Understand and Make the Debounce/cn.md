@@ -3,6 +3,8 @@ title: 防抖-理解，实践并实现
 postTime: 2018/9/19 18:02
 comment: 2
 isAutoTranslated: false
+
+keywords: 防抖 Debounce JavaScript 前端 节流
 ---
 
 防抖（去抖），以及节流（分流）在日常开发中可能用的不多，但在特定场景，却十分有用。本文主要讨论防抖，镜像文章：[节流 - 理解，实践与实现](https://terry-su.github.io/cn/understand-and-make-the-throttle)。分开讨论防抖和节流，主要是为了让一些还不太了解防抖节流的读者能够有针对性地，逐一掌握它们。   

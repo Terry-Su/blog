@@ -5,6 +5,7 @@ commonSiteTitle: <2>Terry Su Blog</2>
 blogGithub: <25>https://github.com/Terry-Su/blogs</25>
 home:
   siteTitle: <3>Terry Su Blog</3>
+  siteMetaDescription: <27>Terry Su's original front-end technology blog 4 years front-end shares popular front-end technology</27> JavaScript ReactJS
   categoryNewest: <4>Latest Blogs</4>
   navArticles: <5>ARTICLES</5>
   navAbout: <6>ABOUT</6>

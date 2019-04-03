@@ -5,6 +5,7 @@ commonSiteTitle: <2>苏溪云的博客</2>
 blogGithub: <25>https://github.com/Terry-Su/blogs-cn</25>
 home:
   siteTitle: <3>苏溪云的博客</3>
+  siteMetaDescription: <27>苏溪云的原创前端技术博客 4年前端 分享主流前端技术</27> JavaScript ReactJS
   categoryNewest: <4>最新文章</4>
   navArticles: <5>所有文章</5>
   navAbout: <6>关于作者</6>
