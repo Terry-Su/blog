@@ -7,6 +7,7 @@ import { PATH_ABOUT, PATH_HOW_IT_WORKS_SERIES } from '@/constants/paths'
 import { URL_GITHUB } from '@/constants/urls'
 import getDefaultData, { getCurrentPagePath } from '@/helpers/getDefaultData'
 import { STYLE_LAYOUT_HOME_HEADER_HEIGHT } from '@/styles/STYLES'
+import { About, Home } from '@cache/App'
 
 import ResolvedLink from '../ResolvedLink'
 import Logo from '../svg/Logo'
@@ -23,6 +24,21 @@ class Header extends Component<Props, State> {
     defaultOnClick(event)
   }
 
+  onLinkMouseMove = (path: string) => {
+    const { pathnameRoot } = getDefaultData()
+    if (path === `${pathnameRoot}${PATH_ABOUT}`) {
+      About.preload()
+    }
+
+    if (path === pathnameRoot) {
+      Home.preload()
+    }
+  }
+
+  onLogoSectionMouseMove = () => {
+    Home.preload()
+  }
+
   render() {
     const { isMini = false } = this.props
     const currentPath = getCurrentPagePath()
@@ -34,12 +50,14 @@ class Header extends Component<Props, State> {
     } = getDefaultData()
     return (
       <StyledRoot isMini={isMini}>
-        <ResolvedLink to={pathnameRoot} onClick={this.onLogoClick}>
-          <StyledLogoWrapper isMini={isMini}>
-            <Logo height={!isMini ? "36" : "30"} />
-            <span className="logoTitle">{logoTitle}</span>
-          </StyledLogoWrapper>
-        </ResolvedLink>
+        <span onMouseMove={this.onLogoSectionMouseMove}>
+          <ResolvedLink to={pathnameRoot} onClick={this.onLogoClick}>
+            <StyledLogoWrapper isMini={isMini}>
+              <Logo height={!isMini ? "36" : "30"} />
+              <span className="logoTitle">{logoTitle}</span>
+            </StyledLogoWrapper>
+          </ResolvedLink>
+        </span>
         <StyledLinksWrapper isMini={isMini}>
           {[
             [texts.navArticles, pathnameRoot],
@@ -51,6 +69,7 @@ class Header extends Component<Props, State> {
               isMini={isMini}
               currentPath={currentPath}
               path={path}
+              onMouseMove={() => this.onLinkMouseMove(path)}
             >
               <ResolvedLink to={path}>{value}</ResolvedLink>
             </StyledLinkWrapper>

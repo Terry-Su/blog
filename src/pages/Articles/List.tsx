@@ -7,6 +7,7 @@ import ResolvedLink from '@/components/ResolvedLink'
 import { AppState } from '@/state/app'
 import sortBlogsByPostTime from '@/utils/sortBlogsByPostTime'
 import { formatNormalDate } from '@/utils/time'
+import { RemarkTemplate } from '@cache/App'
 
 class Props extends DefaultComponentProps {
   articles: any
@@ -15,6 +16,10 @@ class Props extends DefaultComponentProps {
 class State {}
 
 class List extends Component<Props, State> {
+  onLinkMouseMove = () => {
+    RemarkTemplate.preload()
+  }
+
   render() {
     const { listRemarks = [] } = this.props.articles || {}
     return (
@@ -37,6 +42,7 @@ class List extends Component<Props, State> {
                   fontSize: `24px`,
                   fontWeight: `bolder`
                 }}
+                onMouseMove={this.onLinkMouseMove}
               >
                 <ResolvedLink to={remark.route}>{remark.title}</ResolvedLink>
               </div>
