@@ -14,7 +14,6 @@ class Switch extends React.Component{
   onButtonClick2() {
     this.setState( prevState => ( { open: ! prevState.open } ) )
     this.setState( prevState => {
-      console.log( this.state === prevState )
       return ( { open: ! prevState.open } )
     } )
   }

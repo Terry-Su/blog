@@ -8,9 +8,9 @@ export function initMermaid() {
     return html.startsWith( `graph` )
   } )
 
-  // mermaidCodes.forEach( code => {
-  //   code.setAttribute( "class", `mermaid` )
-  // } )
+  if ( mermaidCodes.length === 0 ) {
+    return
+  }
 
   const render = () => {
     const mermaid = window[ "mermaid" ]
