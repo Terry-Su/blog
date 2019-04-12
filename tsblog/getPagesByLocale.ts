@@ -16,7 +16,7 @@ import specialNameMap, {
     CN, getSpeciaLocalelName, specialNameToLocaleMap
 } from '../locale/specialNameMap'
 import translate from '../locale/translate'
-import buildReactLiveHtmlByRemark from '../scripts/buildReactLiveHtmlByRemark'
+import buildLiveComponentHtmlByRemark from '../scripts/buildLiveComponentHtmlByRemark'
 import { PATH_CONTENTS } from '../shared/constants'
 import remarkParser from '../shared/server/remarkParser'
 import AbstractCategory from '../src/__typings__/AbstractCategory'
@@ -444,7 +444,7 @@ function getRemarkBasicData(
 
   const route = getRemarkRoute( remark, absoluteRoot )
 
-  // # get react-live component texts
+  // # get live component texts
   let componentTextMap = {}
   for ( let key in components ) {
     const { relativePath } = remark
@@ -465,7 +465,7 @@ function getRemarkBasicData(
   // ========================
   // # !! Side effects
   // ========================
-  buildReactLiveHtmlByRemark( componentTextMap, route, text )
+  buildLiveComponentHtmlByRemark( componentTextMap, route, text )
 
   return {
     id,

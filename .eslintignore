@@ -1,0 +1,8 @@
+**/*.md
+**/*.json
+node_modules/**/*
+contents/**/*
+build-contents/**/*
+public/**/*
+Terry-Su.github.io/**/*
+.backup/**/*

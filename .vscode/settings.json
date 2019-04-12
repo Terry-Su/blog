@@ -6,14 +6,6 @@
     { "language": "typescriptReact", "autoFix": true }
   ],
 
-  "prettier.eslintIntegration": true,
-
-  "[typescript]": {
-    "editor.formatOnSave": true
-  },
-  "[typescriptreact]": {
-    "editor.formatOnSave": true
-  },
 
   "importSorter.generalConfiguration.sortOnBeforeSave": true,
   "importSorter.importStringConfiguration.hasSemicolon": false,

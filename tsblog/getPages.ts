@@ -44,7 +44,7 @@ export default function getPages(
         text            : remark && remark.getText(),
         componentTextMap: {
           TestApp: `
-          render(<h1>Test App</h1>)
+            render(<h1>Test App</h1>)
           `
         }
       }

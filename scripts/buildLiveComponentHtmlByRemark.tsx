@@ -5,17 +5,16 @@ import ReactDOMServer from 'react-dom/server'
 import { ServerStyleSheet } from 'styled-components'
 
 import ClientRemark from '@/__typings__/ClientRemark'
-import ReactLiveComponent from '@/components/ReactLive/ReactLiveComponent'
 
 import { PATH_PUBLIC } from '../shared/constants'
-import getReactLiveComponentMap from '../shared/getReactLiveComponentMap'
+import getLiveComponentMap from '../shared/getLiveComponentMap'
 
 export default function buildReactLiveHtmlByRemark(
   componentTextMap: any,
   remarkRoute: string,
   text: string
 ) {
-  const componentMap = getReactLiveComponentMap(componentTextMap)
+  const componentMap = getLiveComponentMap(componentTextMap)
 
   const buildByComponent = (key, Component) => {
     const sheet = new ServerStyleSheet()

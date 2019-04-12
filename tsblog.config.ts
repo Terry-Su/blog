@@ -4,7 +4,7 @@ import showdown from 'showdown'
 
 import mdx from '@mdx-js/mdx'
 
-import parse from '../i18n-sync/src/parse'
+import parse from '../i18ning/src/parse'
 import { Config } from '../tsblog/src/typings'
 import getPages from './tsblog/getPages'
 import setWebpack from './tsblog/setWebpack'
@@ -25,7 +25,7 @@ const remarkParser = text => {
     "class MDXContent"
   )
 
-  // insert react-live's render method
+  // insert live component's render method
   newText = `${newText}
 render( <MDXContent /> )
   `

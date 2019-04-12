@@ -1,19 +1,22 @@
 import React from 'react'
 
-import ReactLiveComponent from '@/components/ReactLive/ReactLiveComponent'
+import Live from '@/components/Live/Live'
 
-export default function getReactLiveComponentMap(componentTextMap: any) {
+export default function getLiveComponentMap(componentTextMap: any) {
   let res = {}
   let sharing = {}
   for (let key in componentTextMap) {
     const componentText =
       componentTextMap[key] != null ? componentTextMap[key] : ""
-    const Component = props => (
-      <ReactLiveComponent
-        {...props}
+
+    const Component = ({ scope = {} }) => (
+      <Live
         code={componentText}
-        components={res}
-        sharing={sharing}
+        scope={{
+          ...(scope || {}),
+          components: {res},
+          sharing,
+        }}
       />
     )
     res[key] = Component

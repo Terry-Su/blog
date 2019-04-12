@@ -2,6 +2,7 @@ const { StyledRoot, StyledPlayButton } = sharing
 
 class App extends React.Component {
   constructor(props) {
+    super( props )
     this.time = 0
     this.data = [8, 9, 4, 6, 3, 2, 1, 7, 5]
 

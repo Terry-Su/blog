@@ -1,4 +1,8 @@
 import path from 'path'
+import webpack from 'webpack'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+
+import { __DEV__ } from '../scripts/global'
 
 export default function setWebpack( webpackConfig ) {
   webpackConfig.module.rules = [
@@ -20,7 +24,10 @@ export default function setWebpack( webpackConfig ) {
     "@examples": path.resolve( __dirname, "../examples" )
   }
   webpackConfig.devtool = "cheap-module-eval-source-map"
-  webpackConfig.plugins = [ ...( webpackConfig.plugins || [] ) ]
+  webpackConfig.plugins = [
+    ...( webpackConfig.plugins || [] ),
+    ...( !__DEV__ ? [ new BundleAnalyzerPlugin() ] : [] )
+  ]
 
   // # webpack dev server
   if ( !webpackConfig.devServer ) {

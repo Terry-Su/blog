@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
 import styled, { createGlobalStyle } from 'styled-components'
 
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
@@ -8,20 +7,16 @@ import GlobalMarkdownStyle from '@/styles/GlobalMarkdownStyle'
 import { initMermaid } from '@/utils/mermaid'
 import { MDXTag } from '@mdx-js/tag'
 
-import getReactLiveComponentMap from '../../../shared/getReactLiveComponentMap'
-import ReactLiveComponent from '../ReactLive/ReactLiveComponent'
+import getLiveComponentMap from '../../../shared/getLiveComponentMap'
+import Live from '../Live/Live'
 
 class Props extends DefaultComponentProps {}
 
 class State {}
 
 const basicScope = {
-  React,
+  Live,
   MDXTag,
-  LiveProvider,
-  LiveError,
-  LivePreview,
-  LiveEditor,
   styled,
   // For local scope
   scope: {}
@@ -34,13 +29,10 @@ export default class Markdown extends Component<Props, State> {
 
   get componentMap() {
     const { componentTextMap = {} } = getDefaultData()
-    const res = getReactLiveComponentMap(componentTextMap)
+    const res = getLiveComponentMap(componentTextMap)
     return res
   }
 
-  // transformedCode(code: string) {
-  //   return code
-  // }
 
   render() {
     const { text } = getDefaultData()
@@ -59,11 +51,8 @@ export default class Markdown extends Component<Props, State> {
         >
           <div dangerouslySetInnerHTML={{ __html: text }} />
         </div> */}
-        <StyledRoot>
-          <LiveProvider scope={scope} noInline={true} code={text}>
-            <LiveError />
-            <LivePreview className="markdown-body" />
-          </LiveProvider>
+        <StyledRoot className="markdown-body">
+          <Live scope={ scope } code={text} />
         </StyledRoot>
         <GlobalMarkdownStyle />
       </React.Fragment>

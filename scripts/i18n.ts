@@ -3,7 +3,7 @@ import fs from 'fs-extra'
 import glob from 'glob'
 import path from 'path'
 
-import sync, { i18nContents, parse } from '../../i18n-sync/src/index'
+import sync, { i18nContents, parse } from '../../i18ning/src/index'
 import { fileLocaleNames } from './shared'
 
 i18n()
