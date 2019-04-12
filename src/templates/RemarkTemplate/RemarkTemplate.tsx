@@ -31,7 +31,7 @@ export default connect(({ article }: any) => ({
     componentDidMount() {
       window.scrollTo(0, 0)
 
-      Prism.highlightAll()
+      setTimeout( () => Prism.highlightAll(), 0 )
     }
     render() {
       const {

@@ -7,6 +7,8 @@ import * as Babel from '@babel/standalone'
 class Props {
   code?: string = ''
   scope?: any
+
+  onComplete?: Function
 }
 
 class State {}
@@ -67,7 +69,7 @@ var ${key} = __$$__scope__$$__[ '${key}' ]`
 
         // # render function
         var render = ! isRunningNodeJS() ? 
-        element => ReactDOM.hydrate( element, dom ) :
+        element => ! process.env.DEV ? ReactDOM.render( element, dom ) : ReactDOM.hydrate( element, dom ) :
         element => { this.ssrHtml = window[ 'ReactDOMServer' ].renderToString( element ) };
 
         eval(declareScript + '\n' + output);
