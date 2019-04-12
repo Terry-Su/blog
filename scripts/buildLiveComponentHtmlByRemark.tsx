@@ -1,10 +1,13 @@
+import ReactDOMServer from 'react-dom/server'
+
+global["window"] = {
+  ...( global["window"] || {} )
+}
+
 import fs from 'fs-extra'
 import path from 'path'
 import React from 'react'
-import ReactDOMServer from 'react-dom/server'
 import { ServerStyleSheet } from 'styled-components'
-
-import ClientRemark from '@/__typings__/ClientRemark'
 
 import { PATH_PUBLIC } from '../shared/constants'
 import getLiveComponentMap from '../shared/getLiveComponentMap'
@@ -14,6 +17,7 @@ export default function buildReactLiveHtmlByRemark(
   remarkRoute: string,
   text: string
 ) {
+
   const componentMap = getLiveComponentMap(componentTextMap)
 
   const buildByComponent = (key, Component) => {

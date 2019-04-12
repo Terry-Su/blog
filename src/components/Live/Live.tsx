@@ -13,7 +13,7 @@ class State {}
 
 declare const ReactDOMServer: any
 
-const isRunningNodeJS = window[ 'ReactDOMServer' ] != null
+const isRunningNodeJS = () => window[ 'ReactDOMServer' ] != null
 
 export default class Live extends Component<Props, State> {
   ref: any = React.createRef()
@@ -23,7 +23,7 @@ export default class Live extends Component<Props, State> {
   constructor( props ) {
     super( props )
 
-    if ( isRunningNodeJS ) {
+    if ( isRunningNodeJS() ) {
       this.runCodes()
     }
   }
@@ -66,7 +66,7 @@ var ${key} = __$$__scope__$$__[ '${key}' ]`
         }
 
         // # render function
-        var render = ! isRunningNodeJS ? 
+        var render = ! isRunningNodeJS() ? 
         element => ReactDOM.hydrate( element, dom ) :
         element => { this.ssrHtml = window[ 'ReactDOMServer' ].renderToString( element ) };
 
@@ -79,8 +79,8 @@ var ${key} = __$$__scope__$$__[ '${key}' ]`
     return (
       <div>
         {
-          !isRunningNodeJS ? <div ref={ this.ref } /> : <div dangerouslySetInnerHTML={{
-            __html: ! isRunningNodeJS ? '' : this.ssrHtml 
+          !isRunningNodeJS() ? <div ref={ this.ref } /> : <div dangerouslySetInnerHTML={{
+            __html: ! isRunningNodeJS() ? '' : this.ssrHtml 
           }} />
         }
       </div>

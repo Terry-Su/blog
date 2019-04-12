@@ -6,8 +6,10 @@
     { "language": "typescriptReact", "autoFix": true }
   ],
 
-
   "importSorter.generalConfiguration.sortOnBeforeSave": true,
+  "importSorter.generalConfiguration.exclude": [
+    "scripts/buildLiveComponentHtmlByRemark.tsx"
+  ],
   "importSorter.importStringConfiguration.hasSemicolon": false,
 
   "files.associations": {
