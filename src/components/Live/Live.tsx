@@ -11,78 +11,78 @@ class Props {
 
 class State {}
 
+declare const ReactDOMServer: any
+
+const isRunningNodeJS = window[ 'ReactDOMServer' ] != null
+
 export default class Live extends Component<Props, State> {
   ref: any = React.createRef()
 
-  componentDidMount() {
-    // console.log( this.props.code )
+  ssrHtml: string = ''
 
-    var input = `
-try {
-  const render = element => ReactDOM.render( element, __$$__rendering_dom_element__$$__ )
-  ` + this.props.code + `
-  // function Test() {
-  //   return <div>Test123</div>
-  // }
-  
-  class Counter extends React.Component {
-    state = { count: 0 }
+  constructor( props ) {
+    super( props )
 
-    onButtonClick = () => {
-      this.setState( prevState => ( { count: prevState.count + 1 } ) )
-    }
-
-    render() {
-      return <div>
-      <h1>{ this.state.count }</h1>
-      <button onClick={ this.onButtonClick }>Add</button>
-      </div>
+    if ( isRunningNodeJS ) {
+      this.runCodes()
     }
   }
 
-  
+  componentDidMount() {
+    this.runCodes( this.ref.current )
+  }
+
+  runCodes( dom ?: HTMLElement) {
+    const input = `
+try {
+  ` + this.props.code + `
 } catch( e ) {
   console.log( e )
 }
-`;
-
+`
     let output = ''
     try {
       output = Babel.transform(input, { presets: ["es2015", "react"], plugins: [ 'proposal-class-properties' ] }).code;
     } catch ( e ) {
       console.log( e )
+      return
     }
-
-    let ReactAlias = React;
-    let ReactDOMAlias = ReactDOM;
-    let styledAlias = styled;
-    let dom = this.ref.current;
-    const { scope: __$$__scope__$$__ = {} } = this.props
+    let { scope: __$$__scope__$$__ = {} } = this.props
+    __$$__scope__$$__ = {
+      React,
+      ReactDOM,
+      styled,
+      ...__$$__scope__$$__
+    }
+  
     {
-      (function() {
-        var __$$__rendering_dom_element__$$__ = dom
-        var React = ReactAlias;
-        var ReactDOM = ReactDOMAlias;
-        var styled = styledAlias
-        let declareScript = 
-        ''
-        // 'console.log( __$$__scope__$$__ )'
-
+      (() => {
+        // # scope
+        let declareScript = ''
         for ( let key in __$$__scope__$$__ ) {
           const value = __$$__scope__$$__[ key ]
           declareScript = `${declareScript}
 var ${key} = __$$__scope__$$__[ '${key}' ]`
         }
+
+        // # render function
+        var render = ! isRunningNodeJS ? 
+        element => ReactDOM.hydrate( element, dom ) :
+        element => { this.ssrHtml = window[ 'ReactDOMServer' ].renderToString( element ) };
+
         eval(declareScript + '\n' + output);
-      })();
+      })()
     }
   }
 
   render() {
-    const { code, scope } = this.props
     return (
       <div>
-        <div ref={ this.ref }/>
+        {
+          !isRunningNodeJS ? <div ref={ this.ref } /> : <div dangerouslySetInnerHTML={{
+            __html: ! isRunningNodeJS ? '' : this.ssrHtml 
+          }} />
+        }
       </div>
     );
   }
