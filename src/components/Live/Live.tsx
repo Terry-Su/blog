@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
+import loadScript from '@/utils/loadScript'
 import * as Babel from '@babel/standalone'
 
 class Props {

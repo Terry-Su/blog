@@ -47,6 +47,7 @@ const config: Config = {
   entry   : {
     contents    : resolve( __dirname, "./build-contents" ),
     // contents    : resolve( __dirname, "./contents-test" ),
+    static      : resolve( __dirname, "./static" ),
     home        : resolve( __dirname, "./src/pages/Home" ),
     reduxApp    : resolve( __dirname, "./src/state/app" ),
     getPages,

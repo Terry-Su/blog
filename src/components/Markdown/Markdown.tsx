@@ -1,3 +1,4 @@
+import Prism from 'prismjs'
 import React, { Component } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 
@@ -9,6 +10,9 @@ import { MDXTag } from '@mdx-js/tag'
 
 import getLiveComponentMap from '../../../shared/getLiveComponentMap'
 import Live from '../Live/Live'
+
+// support jsx
+require("prismjs/components/prism-jsx.min")
 
 class Props extends DefaultComponentProps {}
 
@@ -25,6 +29,7 @@ const basicScope = {
 export default class Markdown extends Component<Props, State> {
   componentDidMount() {
     initMermaid()
+    setTimeout( () => Prism.highlightAll(), 0 )
   }
 
   get componentMap() {
@@ -32,7 +37,6 @@ export default class Markdown extends Component<Props, State> {
     const res = getLiveComponentMap(componentTextMap)
     return res
   }
-
 
   render() {
     const { text } = getDefaultData()

@@ -7,9 +7,6 @@ import { __DEV__ } from './scripts/global'
 // import i18n from './scripts/i18n'
 import config from './tsblog.config'
 
-
-
-
 run( config )
 
 if ( __DEV__ ) {
