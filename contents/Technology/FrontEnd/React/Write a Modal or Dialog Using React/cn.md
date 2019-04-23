@@ -6,12 +6,14 @@ components:
   ModalApp: components/ModalApp.js
 ---
 
+![](https://user-images.githubusercontent.com/23733477/56563695-f17a9b00-65de-11e9-969f-f98977e7e9a1.png)
+
 <2>打算用React写对话框已经很长一段时间，现在是时候兑现承诺了。实际上，写起来相当简单。</2>
 
 <3>核心在于使用React的接口`React.createPortal(element, domContainer)`。该接口将`element`渲染后的DOM节点嵌入`domContainer`(通常是`document.body`)，并保证只嵌入一次。</3>
 
 <4>所以，我们可以这样写一个对话框或模态框：</4>
-```js
+```jsx
 function Dialog() {
     return React.createPortal( <div>Dialog contents</div>, document.body )
 }
@@ -25,7 +27,7 @@ function Dialog() {
 
 <ModalApp />
 
-```js
+```jsx
 
 class Modal extends React.Component {
   render() {
