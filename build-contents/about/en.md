@@ -8,9 +8,8 @@ I've learned English seriously these years and kept practicing thinking in Engli
 
 
 
-其他住所:
+Other residence:
 * [Github](https://github.com/Terry-Su)
 
-* [思否 SegmentFault](https://segmentfault.com/u/terry_su)
 
 * [Email](theterrysu@163.com)

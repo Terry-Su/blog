@@ -1,25 +1,17 @@
 import React, { Component } from 'react'
-import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
 import styled from 'styled-components'
+
+import Live from '@/components/Live/Live'
 
 import * as codeMap from './codeMap'
 
-const code: any = codeMap.SetStateUsingFunction
+const code: any = codeMap.ModalApp
 const scope = { styled }
 export default class StandaloneExample extends Component {
   render() {
     return (
       <StyledRoot>
-        <LiveProvider scope={scope} noInline={true} code={code}>
-          {/* <LiveEditor /> */}
-          <LiveError />
-          <LivePreview
-            style={{
-              width: "100%",
-              height: "100%"
-            }}
-          />
-        </LiveProvider>
+        <Live scope={ scope } code={code} />
       </StyledRoot>
     )
   }

@@ -5,4 +5,4 @@ contents/**/*
 build-contents/**/*
 public/**/*
 Terry-Su.github.io/**/*
-.backup/**/*
+**/.backup/**/*

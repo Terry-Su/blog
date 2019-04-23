@@ -8,9 +8,8 @@ postTime: 2019/01/15 22:54
 
 
 
-<2>其他住所</2>:
+<2>Other residence</2>:
 * [Github](https://github.com/Terry-Su)
 <5>
-* [思否 SegmentFault](https://segmentfault.com/u/terry_su)
 </5>
 * [<3>Email</3>](theterrysu@163.com)

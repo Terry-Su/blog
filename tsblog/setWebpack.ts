@@ -26,7 +26,9 @@ export default function setWebpack( webpackConfig ) {
   webpackConfig.devtool = "cheap-module-eval-source-map"
   webpackConfig.plugins = [
     ...( webpackConfig.plugins || [] ),
-    ...( !__DEV__ ? [ new BundleAnalyzerPlugin() ] : [] )
+    ...( !__DEV__ ? [ 
+      // new BundleAnalyzerPlugin() 
+    ] : [] )
   ]
 
   // # webpack dev server

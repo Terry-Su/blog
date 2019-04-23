@@ -1,3 +1,32 @@
+---
+title: <1>Write a Modal or Dialog Using React</1>
+postTime: 2019/4/23 15:00
+comment: <0>17</0>
+components:
+  ModalApp: components/ModalApp.js
+---
+
+<2>Having planned to write a dialog using React for a long time, now, it's the time to fullfill the promise. As a matter of fact, it's pretty easy.</2>
+
+<3>The key is the use of React interface `React.createPortal(element, domContainer)`, which inserts the mounted node of `element` into `domContainer`(ofter `document.body`) only **once**.</3>
+
+<4>So, we're able to create a dialog or modal like this:</4>
+```js
+function Dialog() {
+    return React.createPortal( <div>Dialog contents</div>, document.body )
+}
+```
+
+<6>And a new `div` will come out under the `body`:</6>
+![image](https://user-images.githubusercontent.com/23733477/56560376-d86dec00-65d6-11e9-95f5-bcfb31fcf16f.png)
+
+
+<7>A complete demo:</7>
+
+<ModalApp />
+
+```js
+
 class Modal extends React.Component {
   render() {
     const {
@@ -46,10 +75,13 @@ const StyledModalRoot = styled.div`
     place-items: center;
     width: 80%;
     height: 80%;
-    color: white;
-    background: blue;
+    background: white;
     border-radius: 10px;
+    box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 5px 8px 0px rgba(0,0,0,0.14), 0px 1px 14px 0px rgba(0,0,0,0.12);
   }
 `
+```
 
-render( <App /> )
+
+
+<5>Isn't it pretty simple? </5>

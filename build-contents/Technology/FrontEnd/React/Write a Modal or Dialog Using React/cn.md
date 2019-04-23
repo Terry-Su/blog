@@ -1,3 +1,32 @@
+---
+title: 使用React手写一个对话框或模态框
+postTime: 2019/4/23 15:00
+comment: 6
+components:
+  ModalApp: components/ModalApp.js
+---
+
+打算用React写对话框已经很长一段时间，现在是时候兑现承诺了。实际上，写起来相当简单。
+
+核心在于使用React的接口`React.createPortal(element, domContainer)`。该接口将`element`渲染后的DOM节点嵌入`domContainer`(通常是`document.body`)，并保证只嵌入一次。
+
+所以，我们可以这样写一个对话框或模态框：
+```js
+function Dialog() {
+    return React.createPortal( <div>Dialog contents</div>, document.body )
+}
+```
+
+一个新的`div`会出现在`body`内部：
+![image](https://user-images.githubusercontent.com/23733477/56560376-d86dec00-65d6-11e9-95f5-bcfb31fcf16f.png)
+
+
+一个完整DEMO:
+
+<ModalApp />
+
+```js
+
 class Modal extends React.Component {
   render() {
     const {
@@ -46,10 +75,13 @@ const StyledModalRoot = styled.div`
     place-items: center;
     width: 80%;
     height: 80%;
-    color: white;
-    background: blue;
+    background: white;
     border-radius: 10px;
+    box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 5px 8px 0px rgba(0,0,0,0.14), 0px 1px 14px 0px rgba(0,0,0,0.12);
   }
 `
+```
 
-render( <App /> )
+
+
+是不是很简单?
