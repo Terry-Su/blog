@@ -52,25 +52,6 @@ export default class LayoutHome extends Component<Props, State> {
         >
           {...this.props.children}
         </div>
-        {/* <div style={{
-          width: `100%`,
-          height: `100%`,
-          background: `skyblue`,
-        }}>
-         
-        </div> */}
-        {/* <div
-          style={{
-            width: "100%",
-            height: overflowContent
-              ? `calc( 100% - ${STYLE_LAYOUT_HOME_HEADER_HEIGHT}px )`
-              : "auto",
-            overflow: overflowContent ? `auto` : "none"
-          }}
-        >
-          {...this.props.children}
-        </div> */}
-        {/* {!overflowContent && <Footer />} */}
         <Footer />
       </LayoutBasic>
     )

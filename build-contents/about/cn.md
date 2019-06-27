@@ -8,7 +8,6 @@ postTime: 2019/01/15 22:54
 
 
 
-其他住所:
 * [Github](https://github.com/Terry-Su)
 
 * [思否 SegmentFault](https://segmentfault.com/u/terry_su)

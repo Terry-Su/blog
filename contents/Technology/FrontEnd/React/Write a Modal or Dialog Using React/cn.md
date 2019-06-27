@@ -5,7 +5,6 @@ comment: <0>6</0>
 components:
   ModalApp: components/ModalApp.js
 ---
-
 ![](https://user-images.githubusercontent.com/23733477/56563695-f17a9b00-65de-11e9-969f-f98977e7e9a1.png)
 
 <2>打算用React写对话框已经很长一段时间，现在是时候兑现承诺了。实际上，写起来相当简单。</2>
@@ -86,4 +85,4 @@ const StyledModalRoot = styled.div`
 
 
 
-<5>是不是很简单?</5>
+<5></5>

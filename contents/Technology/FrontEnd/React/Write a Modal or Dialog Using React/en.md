@@ -5,7 +5,6 @@ comment: <0>17</0>
 components:
   ModalApp: components/ModalApp.js
 ---
-
 ![](https://user-images.githubusercontent.com/23733477/56563695-f17a9b00-65de-11e9-969f-f98977e7e9a1.png)
 
 <2>Having planned to write a dialog using React for a long time, now, it's the time to fullfill the promise. As a matter of fact, it's pretty easy.</2>

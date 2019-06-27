@@ -8,7 +8,6 @@ I've learned English seriously these years and kept practicing thinking in Engli
 
 
 
-Other residence:
 * [Github](https://github.com/Terry-Su)
 
 

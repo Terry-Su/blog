@@ -1,7 +1,23 @@
+# git repository
+Terry-Su.github.io
+blogs
+blogs-cn
+
 # build
 build
 dist
 public
+build-contents
+build-locales
+build-contents-on-other-platforms
+
+# cache
+.cache
+
+# i18n-sync backup files
+.backup
+
+
 
 # dependecies
 node_modules
@@ -15,18 +31,5 @@ node_modules
 # system files
 .DS_Store
 
-# cache
-.cache
 
-# backup
-## i18n-sync backup files
-.backup
-
-# built contents for other platforms
-build-contents-on-other-platforms
-
-# git repository
-Terry-Su.github.io
-blogs
-blogs-cn
 
