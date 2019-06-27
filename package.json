@@ -6,10 +6,11 @@
   "scripts": {
     "start": "cross-env DEV=true nodemon --verbose -e ts,tsx,md",
     "build": "ts-node --project tsconfig.node.json -r tsconfig-paths/register server",
-    "publish": "npm run tsnode scripts/publish",
+    "publish": "npm run build && npm run tsnode scripts/publishToSite",
     "i18n": "npm run tsnode scripts/i18n",
     "other": "npm run tsnode scripts/buildContentsOnOtherPlatforms",
-    "tsnode": "cross-env TS_NODE_PROJECT=tsconfig.node.json ts-node"
+    "tsnode": "cross-env TS_NODE_PROJECT=tsconfig.node.json ts-node",
+    "tmp": "npm run tsnode scripts/build server"
   },
   "nodemonConfig": {
     "watch": [
