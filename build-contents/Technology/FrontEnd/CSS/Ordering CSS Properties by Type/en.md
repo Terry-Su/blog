@@ -1,16 +1,18 @@
 ---
 postTime: 2018/6/23 1:57
 comment: 6
+isAutoTranslated: false
 ---
+
 There're two popular methods to order css properties:
 * type
 * alphabetic
 
 Alphabetic order, however, is more suitable for searching rather than classifing css properties. In most situations, we prefer a not only consistent but also clear-type way to order css properties.  
 The following is an ordering example recommended by author:
-```stylus
+```css
 .element
-  /* Position */
+  /* Position *//* Position *//* Position *//* Position *//* Position *//* Position *//* Position */
   position absolute
   left 0
   top 0

@@ -338,7 +338,7 @@ function getClientListItemRemark(
   absoluteRoot: string
 ): ClientListItemRemark {
   const { getMetadata }: TransformedMarkdownFile = remark
-  const { postTime }: ClientRemarkMetadata = getMetadata()
+  const { postTime }: ClientRemarkMetadata = getMetadata() || {}
 
   const title = getRemarkTitle( remark )
   const path = getRemarkCategoryPath( remark )
@@ -356,7 +356,7 @@ function getClientListItemRemark(
 
 function getRemarkAbstract( remark: TransformedMarkdownFile ): string {
   const { getMetadata, getSourceText }: TransformedMarkdownFile = remark
-  const { abstract }: ClientRemarkMetadata = getMetadata()
+  const { abstract }: ClientRemarkMetadata = getMetadata() || {}
   const sourceText = getSourceText()
   const remarkAbstract =
     abstract != null ? abstract : getRemarkAbstractBySourceText( sourceText )
@@ -364,12 +364,12 @@ function getRemarkAbstract( remark: TransformedMarkdownFile ): string {
 }
 
 function getRemarkTitle( remark: TransformedMarkdownFile ) {
-  const { title }: ClientRemarkMetadata = remark.getMetadata()
+  const { title }: ClientRemarkMetadata = remark.getMetadata() || {}
   return title || getRemarkFolderName( remark )
 }
 
 function getRemarkId( remark: TransformedMarkdownFile ) {
-  const { id }: ClientRemarkMetadata = remark.getMetadata()
+  const { id }: ClientRemarkMetadata = remark.getMetadata() || {}
   const folderName = getRemarkFolderName( remark )
   const fileName = getRemarkFileName( remark )
   return (
@@ -430,7 +430,7 @@ function getRemarkBasicData(
     comment,
     isAutoTranslated,
     components = {}
-  }: ClientRemarkMetadata = remark.getMetadata()
+  }: ClientRemarkMetadata = remark.getMetadata() || {}
   const id = getRemarkId( remark )
   const title = getRemarkTitle( remark )
   const path = getRemarkCategoryPath( remark )
@@ -483,7 +483,7 @@ function getRemarkBasicData(
 
 function getRemarkKeywords( remark: TransformedMarkdownFile ): string {
   const { getMetadata } = remark
-  const { keywords = "" } = getMetadata() || {}
+  const { keywords = "" } = getMetadata() || {} || {}
   return keywords
 }
 

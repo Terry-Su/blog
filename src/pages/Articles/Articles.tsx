@@ -127,7 +127,7 @@ const StyleLeftSidebar: any = styled.div`
   justify-content: flex-end;
   width: ${STYLE_ARTICLES_SIDEBAR_WIDTH}px;
   height: ${(props: any) => props.bodyHeight};
-  margin: 0 50px 0 0;
+  /* margin: 0 50px 0 0; */
   border-right: 1px solid rgba(0, 0, 0, 0.02);
 
   .categoryItemsWrapper {

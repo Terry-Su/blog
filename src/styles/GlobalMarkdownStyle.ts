@@ -197,6 +197,12 @@ const GlobalMarkdownStyle = createGlobalStyle`
 .markdown-body pre {
   font-family: monospace, monospace;
   font-size: 1em;
+  
+  white-space: pre-wrap!important;       /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap!important;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap!important;      /* Opera 4-6 */
+  white-space: -o-pre-wrap!important;    /* Opera 7 */
+  word-wrap: break-word!important;  
 }
 .markdown-body hr {
   box-sizing: content-box;
@@ -587,7 +593,7 @@ const GlobalMarkdownStyle = createGlobalStyle`
   font-size: 100%;
   margin: 0;
   padding: 0;
-  white-space: pre;
+  /* white-space: pre; */
   word-break: normal;
 }
 .markdown-body .highlight {
@@ -819,7 +825,7 @@ code[class*="language-"],
    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
    font-size: 1em;
    text-align: left;
-   white-space: pre;
+   /* white-space: pre; */
    word-spacing: normal;
    word-break: normal;
    word-wrap: normal;

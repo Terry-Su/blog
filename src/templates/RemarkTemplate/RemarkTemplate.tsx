@@ -61,9 +61,9 @@ export default connect(({ article }: any) => ({
                 </div>
 
                 <StyledEndingWordsWrapper className="markdown-body">
-                  <p>
+                  {/* <p>
                     <strong>{endingWords}</strong>
-                  </p>
+                  </p> */}
                   <div
                     dangerouslySetInnerHTML={{
                       __html: markedEndingWordsExtra
@@ -106,7 +106,7 @@ const StyledRoot = styled.div`
     justify-content: center;
 
     > .contentWrapper {
-      width: 700px;
+      max-width: 700px;
 
       > .titleWrapper {
         display: flex;
@@ -163,7 +163,7 @@ const StyledBottom: any = styled.div`
   padding: 40px 0;
 
   > .wrapper {
-    width: 700px;
+    max-width: 700px;
 
     > .disqusCommentWrapper {
       padding: ${(props: any) =>

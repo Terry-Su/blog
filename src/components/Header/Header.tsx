@@ -98,6 +98,8 @@ const StyledRoot: any = styled.div`
 const StyledLogoWrapper: any = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   margin: ${(props: any) => (!props.isMini ? "30px 0 0 0" : "0")};
 
   > .logoTitle {
@@ -111,11 +113,19 @@ const StyledLogoWrapper: any = styled.div`
 
 const StyledLinksWrapper: any = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: ${(props: any) =>
+    !props.isMini ? "center" : "flex-end"};
   margin: ${(props: any) => (!props.isMini ? "30px 0 0 0" : "")};
+
+  @media (max-width: 576px){
+    width: 100%;
+    flex-wrap: wrap;   
+  }
 `
 
 export const StyledLinkWrapper: any = styled.div`
+  display: inline-flex;
+  justify-content: center;
   color: ${({ isMini, currentPath, path }: any) =>
     !isMini ? (currentPath === path ? "#555!important" : "#aaa") : "#aaa"};
 
@@ -123,6 +133,10 @@ export const StyledLinkWrapper: any = styled.div`
 
   :hover {
     color: #888;
+  }
+
+  @media (max-width: 576px){
+    flex: 1;
   }
 
   a {
@@ -137,5 +151,8 @@ export const StyledLinkWrapper: any = styled.div`
         : `
     margin: 0 10px;
     `}
+    @media (max-width: 576px){
+      margin: 0;
+    }
   }
 `

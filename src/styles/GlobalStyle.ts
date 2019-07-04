@@ -8,6 +8,8 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
   body {
+    box-sizing: border-box;
+    padding: 20px;
     font-size: '16px';
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
     /* background: #f8f3ef; */
