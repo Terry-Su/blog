@@ -106,6 +106,7 @@ const StyledRoot = styled.div`
     justify-content: center;
 
     > .contentWrapper {
+      width: 100%;
       max-width: 700px;
 
       > .titleWrapper {

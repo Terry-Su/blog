@@ -5,24 +5,25 @@ comment: <0>17</0>
 components:
   ModalApp: components/ModalApp.js
 ---
+
 ![](https://user-images.githubusercontent.com/23733477/56563695-f17a9b00-65de-11e9-969f-f98977e7e9a1.png)
 
 <2>Having planned to write a dialog using React for a long time, now, it's the time to fullfill the promise. As a matter of fact, it's pretty easy.</2>
 
 <3>The key is the use of React interface `React.createPortal(element, domContainer)`, which inserts the mounted node of `element` into `domContainer`(ofter `document.body`) only **once**.</3>
 
-<4>So, we're able to create a dialog or modal like this:</4>
+<4>So, we can write a dialog or modal box like this:</4>
 ```jsx
 function Dialog() {
     return React.createPortal( <div>Dialog contents</div>, document.body )
 }
 ```
 
-<6>And a new `div` will come out under the `body`:</6>
+<6>A new 'div' will appear inside 'body' :</6>
 ![image](https://user-images.githubusercontent.com/23733477/56560376-d86dec00-65d6-11e9-95f5-bcfb31fcf16f.png)
 
 
-<7>A complete demo:</7>
+<7>A complete DEMO:</7>
 
 <ModalApp />
 
@@ -85,4 +86,4 @@ const StyledModalRoot = styled.div`
 
 
 
-<5>Isn't it pretty simple? </5>
+<5></5>

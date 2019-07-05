@@ -101,7 +101,7 @@ class Articles extends Component<Props, State> {
           </StyledListWrapper>
 
           {/* right sidebar */}
-          <StyledRightBar>&nbsp;</StyledRightBar>
+          {/* <StyledRightBar>&nbsp;</StyledRightBar> */}
         </StyledRoot>
       </LayoutHome>
     )
