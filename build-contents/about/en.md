@@ -10,6 +10,5 @@ I've learned English seriously these years and kept practicing thinking in Engli
 
 * [Github](https://github.com/Terry-Su)
 
-
-* [Email](http://weibo.com/hidadasu)
+* [Microblog](http://weibo.com/hidadasu)
 * [Email](theterrysu@163.com)

@@ -52,7 +52,7 @@ const apple = { name: 'foo', count: 100 }
 
 
 
-**三、解耦可视化库和Vue/Vuex**。写业务的时候，很容易因为方便，在Vue组件或Vuex模块中代码越写越长，越来越难维护。这个项目也不列外。所以重构的时候，单独将可视化库喜爱那个管逻辑抽成模块，并使用类Vuex写法(state, getters, mutations, actions)进行管理。
+**三、解耦可视化库和Vue/Vuex**。写业务的时候，很容易因为方便，在Vue组件或Vuex模块中代码越写越长，越来越难维护。这个项目也不列外。所以重构的时候，单独将可视化库相关逻辑抽成模块，并使用类Vuex写法(state, getters, mutations, actions)进行管理。
 
 ```js
 class Counter {
@@ -80,7 +80,7 @@ class Counter {
 
 **四、最后一条，编写可维护性高的代码**。这里说两个方法。
 
-**第一个是“使用`Map`”**。处理“一个有多类型的数据”需要使用判断，常见有3种方法：`If`, `Switch`, `Map`。`If`的使用简单粗暴，容易理解。
+**第一是“使用`Map`”**。处理“一个有多类型的数据”需要使用判断，常见有3种方法：`If`, `Switch`, `Map`。`If`的使用简单粗暴，容易理解。
 
 ```js
 if ( animalType === 'dog' ) {
@@ -125,7 +125,7 @@ logMap[ animalType ]()
 
 
 
-**第二个是“使用getters和mutations”**。比如定义一个模块的``：`operationGetters.js`,  里面提供各种用来获取与操作有关的常量和方法。
+**第二是“使用getters和mutations”**。比如定义一个模块的``：`operationGetters.js`,  里面提供各种用来获取与操作有关的常量和方法。
 
 ```js
 export const OPERATION_TYPE_A = 0
