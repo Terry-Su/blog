@@ -24,7 +24,7 @@ export default class CommentBox extends Component<Props, State> {
   }
 
   render() {
-    const { avatorUrl, time, content } = this.props.comment
+    const { avatorUrl, time, content, name } = this.props.comment
     const formatedTime = formatNormalDate(new Date(time))
     const { remarked } = this.state
     return (
@@ -59,7 +59,7 @@ export default class CommentBox extends Component<Props, State> {
             flex: "auto",
             flexDirection: "column",
             border: "1px solid grey",
-            borderRadius: "5px"
+            borderRadius: "4px"
           }}
         >
           <div
@@ -78,7 +78,7 @@ export default class CommentBox extends Component<Props, State> {
             </span>
             <span
               style={{
-                // margin: "0 0 0 10px",
+                margin: "0 0 0 10px",
                 color: "#586069"
               }}
             >
