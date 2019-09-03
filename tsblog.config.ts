@@ -15,7 +15,7 @@ const remarkPreParser = text => {
 }
 
 const remarkParser = text => {
-  const YAML_REGEXP = new RegExp( `^---[\\s\\S]*?---\\n`, "m" )
+  const YAML_REGEXP = new RegExp( `^---[\\s\\S]*?---\\r\\n`, "m" )
   const removedYmlText = text.replace( YAML_REGEXP, "" )
   const jsx = mdx.sync( removedYmlText )
 
@@ -62,7 +62,7 @@ const config: Config = {
   parser: {
     ".md": remarkParser
   },
-  port: 3601
+  port: 3700
 }
 
 export default config

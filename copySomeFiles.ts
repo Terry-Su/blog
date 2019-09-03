@@ -13,7 +13,7 @@ function copyCategoryFiles( source: string, output: string ) {
   chokidar
     .watch( `${source}/**/${CATEGORY_PROPS_FILE_NAME}.yml` )
     .on( "change", filePath => {
-      const relativePath = path.relative( source, filePath )
+      const relativePath = path.relative( source, filePath ).replace( /\\/g, '/' )
       const outputFilePath = path.resolve( output, relativePath )
       const text = fs.readFileSync( filePath, { encoding: "utf8" } )
       fs.outputFileSync( outputFilePath, text, { encoding: "utf8" } )

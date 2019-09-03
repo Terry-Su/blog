@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 import Footer from '@/components/Footer/Footer'

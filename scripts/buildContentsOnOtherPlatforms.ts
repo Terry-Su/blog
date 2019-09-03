@@ -43,7 +43,7 @@ export default function buildContentsOnOtherPlatforms() {
     const transformedText = transform( text, locale )
 
     // # output transformed markdown content
-    const relativePath = path.relative( sourceDir, file )
+    const relativePath = path.relative( sourceDir, file ).replace( /\\/g, '/' )
     const targetPath = path.resolve( outputDir, relativePath )
     fs.outputFileSync( targetPath, transformedText )
   } )

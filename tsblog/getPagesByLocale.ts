@@ -181,6 +181,7 @@ export default function getPagesByLocale(
           getRemarkFolderPath( remark ) === "about"
         )
       } )
+      if ( remark == null ) { return {} }
       const abstract = getRemarkAbstract( remark )
       const keywordsString = getRemarkKeywords( remark )
       return {

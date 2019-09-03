@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
 import ResolvedLink from '@/components/ResolvedLink'
