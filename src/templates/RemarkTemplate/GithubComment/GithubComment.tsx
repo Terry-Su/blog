@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
 import AbstractGithubComment from '@/__typings__/AbstractGithubComment'
 import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
@@ -71,11 +72,7 @@ export default connect(({ article }: any) => ({
       const { availableDisqusComment } = this.props
       const { comments } = this.state
       return (
-        <div
-          style={{
-            width: "100%"
-          }}
-        >
+        <StyledRoot>
           {comment != null && (
             <div
               style={{
@@ -102,7 +99,7 @@ export default connect(({ article }: any) => ({
             }}
           >
             {comments.map((comment, index) => (
-              <div key={index}>
+              <div key={index} className="comment-box-wrapper">
                 <CommentBox
                   comment={comment}
                   remarkParser={this.state.remarkParser}
@@ -110,8 +107,16 @@ export default connect(({ article }: any) => ({
               </div>
             ))}
           </div>
-        </div>
+        </StyledRoot>
       )
     }
   }
 )
+
+
+const StyledRoot = styled.div`
+width: "100%";
+.comment-box-wrapper {
+  margin-bottom: 50px;
+}
+`
