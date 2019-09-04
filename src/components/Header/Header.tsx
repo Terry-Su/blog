@@ -53,7 +53,7 @@ class Header extends Component<Props, State> {
         <span onMouseMove={this.onLogoSectionMouseMove}>
           <ResolvedLink to={pathnameRoot} onClick={this.onLogoClick}>
             <StyledLogoWrapper isMini={isMini}>
-              <Logo height={!isMini ? "36" : "30"} className="logo"/>
+              <Logo height={!isMini ? "30" : "24"} className="logo"/>
               <span className="logoTitle">{logoTitle}</span>
             </StyledLogoWrapper>
           </ResolvedLink>
