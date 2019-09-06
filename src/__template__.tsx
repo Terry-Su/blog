@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import DefaultComponentProps from '@/__typings__/DefaultComponentProps'
-
-class Props extends DefaultComponentProps {}
+class Props {}
 
 class State {}
 

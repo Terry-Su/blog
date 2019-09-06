@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import loadScript from '@/utils/loadScript'
 import * as Babel from '@babel/standalone'
-import LiveSandbox from '@/components/Live/LiveSandbox'
+import CodeLive from '@/components/Live/CodeLive'
 
 class Props {
   code?: string = ''
@@ -14,7 +14,6 @@ class Props {
 }
 
 class State {}
-
 const isRunningNodeJS = () => window[ '$ReactDOMServer' ] != null
 
 export default class Live extends Component<Props, State> {
@@ -54,7 +53,7 @@ try {
       React,
       ReactDOM,
       styled,
-      LiveSandbox,
+      CodeLive,
       ...__$$__scope__$$__
     }
   
@@ -72,7 +71,7 @@ var ${key} = __$$__scope__$$__[ '${key}' ]
         // # render function
         var render = ! isRunningNodeJS() ? 
         element => ! process.env.DEV ? ReactDOM.render( element, dom ) : ReactDOM.hydrate( element, dom ) :
-        element => { this.ssrHtml = window[ 'ReactDOMServer' ].renderToString( element ) };
+        element => { this.ssrHtml = window[ '$ReactDOMServer' ].renderToString( element ) };
 
         eval(declareScript + '\n' + output);
       })()

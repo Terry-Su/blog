@@ -32,18 +32,30 @@ export default class Markdown extends Component<Props, State> {
     setTimeout( () => Prism.highlightAll(), 0 )
   }
 
-  get componentMap() {
+  // get componentMap() {
+  //   const { componentTextMap = {} } = getDefaultData()
+  //   const res = getLiveComponentMap(componentTextMap)
+  //   return res
+  // }
+  get componentMapCodes() {
+    let codes = ''
     const { componentTextMap = {} } = getDefaultData()
-    const res = getLiveComponentMap(componentTextMap)
-    return res
+    for (let key in componentTextMap) {
+      codes += `
+${componentTextMap[ key ]}
+      `
+    }
+    return codes
   }
+  
+  get liveCodes() { return `${getDefaultData().text}${this.componentMapCodes}` }
 
   render() {
-    const { text } = getDefaultData()
     const scope = {
       ...basicScope,
-      ...this.componentMap
+      // ...this.componentMap
     }
+    console.log( this.liveCodes )
     return (
       <React.Fragment>
         {/* <div
@@ -56,7 +68,7 @@ export default class Markdown extends Component<Props, State> {
           <div dangerouslySetInnerHTML={{ __html: text }} />
         </div> */}
         <StyledRoot className="markdown-body">
-          <Live scope={ scope } code={text} />
+          <Live scope={ scope } code={this.liveCodes} />
         </StyledRoot>
         <GlobalMarkdownStyle />
       </React.Fragment>

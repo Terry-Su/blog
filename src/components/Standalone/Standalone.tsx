@@ -2,24 +2,29 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import StandaloneExample from './StandaloneExample/StandaloneExample'
+import CodeLive from '../Live/CodeLive';
 
-const Standalone = StandaloneExample
-// const Standalone = getComponents().TestReactLive
-
-export default class Template extends Component {
+export default class Standalone extends Component {
   render() {
     return (
       <StyledRoot>
-        <Standalone />
+        {/* <StandaloneExample /> */}
+        {/* <CodeLive /> */}
+        <CodeLive
+html={`
+<div id="test"></div>
+`}
+css={`
+#test { width: 100px; height: 100px; background: blue; }
+`}
+js={`
+document.getElementById( 'test' ).onclick = () =>  alert( "test!" )
+`}
+/>
       </StyledRoot>
     )
   }
 }
 
-function getComponents() {
-  return {
-    StandaloneExample
-  }
-}
 
 const StyledRoot = styled.div``
