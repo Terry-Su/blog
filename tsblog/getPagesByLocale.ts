@@ -197,7 +197,7 @@ export default function getPagesByLocale(
   }
 
   // ========================
-  // # !! Side effects
+  // # !! SIDE EFFIECTS
   // ========================
   buildCategoriesForGithubRepo( {
     locale,
@@ -464,7 +464,7 @@ function getRemarkBasicData(
   }
 
   // ========================
-  // # !! Side effects
+  // # !! SIDE EFFIECTS
   // ========================
   buildLiveComponentHtmlByRemark( componentTextMap, route, text )
 

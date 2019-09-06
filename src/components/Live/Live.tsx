@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import loadScript from '@/utils/loadScript'
 import * as Babel from '@babel/standalone'
+import LiveSandbox from '@/components/Live/LiveSandbox'
 
 class Props {
   code?: string = ''
@@ -14,9 +15,7 @@ class Props {
 
 class State {}
 
-declare const ReactDOMServer: any
-
-const isRunningNodeJS = () => window[ 'ReactDOMServer' ] != null
+const isRunningNodeJS = () => window[ '$ReactDOMServer' ] != null
 
 export default class Live extends Component<Props, State> {
   ref: any = React.createRef()
@@ -55,6 +54,7 @@ try {
       React,
       ReactDOM,
       styled,
+      LiveSandbox,
       ...__$$__scope__$$__
     }
   
@@ -65,7 +65,8 @@ try {
         for ( let key in __$$__scope__$$__ ) {
           const value = __$$__scope__$$__[ key ]
           declareScript = `${declareScript}
-var ${key} = __$$__scope__$$__[ '${key}' ]`
+var ${key} = __$$__scope__$$__[ '${key}' ]
+`
         }
 
         // # render function
