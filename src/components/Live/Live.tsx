@@ -64,7 +64,9 @@ try {
         for ( let key in __$$__scope__$$__ ) {
           const value = __$$__scope__$$__[ key ]
           declareScript = `${declareScript}
-var ${key} = __$$__scope__$$__[ '${key}' ]
+try {
+  var ${key} = __$$__scope__$$__[ '${key}' ]
+} catch(e) { console.log(e) }
 `
         }
 

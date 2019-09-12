@@ -55,7 +55,6 @@ ${componentTextMap[ key ]}
       ...basicScope,
       // ...this.componentMap
     }
-    console.log( this.liveCodes )
     return (
       <React.Fragment>
         {/* <div

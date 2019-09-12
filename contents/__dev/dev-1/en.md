@@ -5,11 +5,11 @@ abstract: Blog Abstract
 comment: 0
 isAutoTranslated: false
 components:
-  Foo: Foo.js 
+  common: common.js 
+  Foo: foo.js 
 ---
 
-<Foo />
-
+<Foo1 />
 
 # Mode 1: Sandbox 
 <CodeLive
@@ -20,10 +20,8 @@ css={`
 #test { width: 100px; height: 100px; background: blue; }
 `}
 js={`
-document.getElementById( 'test' ).onclick = () => { alert( "test!" ) }
+document.getElementById( 'test' ).onclick = () => { console.log( "test!" ) }
 `}
-/>
-
+></CodeLive>
 
 # Mode 2: Sandboxie React Component
-1234567

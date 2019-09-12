@@ -463,10 +463,10 @@ function getRemarkBasicData(
     componentTextMap[ key ] = text
   }
 
-  // ========================
-  // # !! SIDE EFFIECTS
-  // ========================
-  buildLiveComponentHtmlByRemark( componentTextMap, route, text )
+  // // ========================
+  // // # !! SIDE EFFIECTS
+  // // ========================
+  // buildLiveComponentHtmlByRemark( componentTextMap, route, text )
 
   return {
     id,

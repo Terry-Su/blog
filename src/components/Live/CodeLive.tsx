@@ -54,14 +54,16 @@ ${js}
         const { html, css, js } = this.props
         // <iframe ref={this.iframeRef}/>
         return <StyledRoot>
-            <div className="windows-zone">
+            {/* <div className="windows-zone">
             <CodeLiveWindow type={CodeLiveWindowType.HTML} value={html}></CodeLiveWindow>
             <CodeLiveWindow type={CodeLiveWindowType.CSS} value={css}></CodeLiveWindow>
             <CodeLiveWindow type={CodeLiveWindowType.JS} value={js}></CodeLiveWindow>
             </div>
             <div className="display-zone">
                 <iframe ref={this.iframeRef} src={`data:text/html;charset=utf-8,${encodeURIComponent(this.ifrmaeHtml)}`} />
-            </div>
+            </div> */}
+            <iframe src={`http://localhost:3601?html=${encodeURIComponent(html)}&css=${encodeURIComponent(css)}&js=${encodeURIComponent(js)}`} ></iframe>
+            {/* <iframe src={`http://localhost:3601?html=${encodeURIComponent(html)}`} ></iframe> */}
             
         </StyledRoot>
     }

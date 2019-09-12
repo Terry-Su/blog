@@ -74,6 +74,7 @@ function transform( text: string, locale: string ) {
     return match
   } )
 
+
   // # add postfiex
   res = `${localeTextsMap.prefix}
 ${res}

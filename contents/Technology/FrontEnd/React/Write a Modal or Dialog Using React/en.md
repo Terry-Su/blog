@@ -27,8 +27,6 @@ function Dialog() {
 
 <ModalApp />
 
-<Standard html={``} css={``} js={``} />
-
 ```jsx
 
 class Modal extends React.Component {
