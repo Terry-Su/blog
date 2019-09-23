@@ -3,17 +3,15 @@ comment: <42>13</42>
 <0>
 postTime: 2019/01/15 22:54
 </0>
-components:
-  Test: components/Test.js
-  Common: components/Common.js
-  Bubble: components/Bubble.js
-  Selection: components/Selection.js
-  Insert: components/Insert.js
-  Merge: components/Merge.js
-  Shell: components/Shell.js
-  Quick: components/Quick.js
+codePaths:
+  - components/Common.js
+  - components/Bubble.js
+  - components/Selection.js
+  - components/Insert.js
+  - components/Merge.js
+  - components/Shell.js
+  - components/Quick.js
 ---
-<Common />
 
 ![](https://terry-su.github.io/BlogCDN/images/simpson-evolution.jpg)    
 
@@ -108,5 +106,3 @@ Start from leftmost.</11>
 2. <40>partition the array into left sub array(smaller keys) and right sub array(larger keys)</40>
 
 3. <41>recur step2 to left sub array and right sub array</41>
-
-<Quick />

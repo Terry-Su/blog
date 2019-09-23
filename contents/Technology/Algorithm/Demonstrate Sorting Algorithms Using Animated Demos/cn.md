@@ -4,17 +4,15 @@ comment: <42>5</42>
 title: 动画演绎排序算法
 postTime: 2019/3/28 10:00
 </0>
-components:
-  Test: components/Test.js
-  Common: components/Common.js
-  Bubble: components/Bubble.js
-  Selection: components/Selection.js
-  Insert: components/Insert.js
-  Merge: components/Merge.js
-  Shell: components/Shell.js
-  Quick: components/Quick.js
+codePaths:
+  - components/Common.js
+  - components/Bubble.js
+  - components/Selection.js
+  - components/Insert.js
+  - components/Merge.js
+  - components/Shell.js
+  - components/Quick.js
 ---
-<Common />
 
 ![](https://terry-su.github.io/BlogCDN/images/simpson-evolution.jpg)    
 
@@ -108,5 +106,3 @@ components:
 2. <40>将数组划分为左子数组(比参考元素小的所有元素)和右子数组(比参考元素大的所有元素)</40>
 
 3. <41>对左子数组和右子数组重复步骤2</41>
-
-<Quick />

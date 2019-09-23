@@ -42,11 +42,7 @@ export default function getPages(
       ),
       data: {
         text            : remark && remark.getText(),
-        componentTextMap: {
-          TestApp: `
-            render(<h1>Test App</h1>)
-          `
-        }
+        importedCodes: `render(<h1>Test App</h1>)`
       }
     }
     res.push( testPage )

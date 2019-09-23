@@ -1,6 +1,4 @@
-const { StyledRoot, StyledPlayButton } = sharing
-
-class App extends React.Component {
+class Bubble extends React.Component {
   constructor(props) {
     super( props )
     
@@ -113,5 +111,3 @@ class App extends React.Component {
     )
   }
 }
-
-render(<App />)

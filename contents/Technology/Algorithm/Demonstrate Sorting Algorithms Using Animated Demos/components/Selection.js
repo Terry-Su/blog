@@ -1,6 +1,4 @@
-const { StyledRoot, StyledPlayButton } = sharing
-
-class App extends React.Component {
+class Selection extends React.Component {
   constructor(props) {
     super( props )
     this.time = 0
@@ -107,5 +105,3 @@ class App extends React.Component {
   }
 }
 
-
-render(<App />)

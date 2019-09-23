@@ -15,7 +15,7 @@ class Modal extends React.Component {
   }
 }
 
-class App extends React.Component {
+class ModalApp extends React.Component {
   state = {
     visibleModal: false
   }
@@ -53,4 +53,3 @@ const StyledModalRoot = styled.div`
   }
 `
 
-render( <App /> )

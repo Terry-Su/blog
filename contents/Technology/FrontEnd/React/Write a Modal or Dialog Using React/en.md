@@ -2,8 +2,8 @@
 title: <1>Write a Modal or Dialog Using React</1>
 postTime: 2019/4/23 15:00
 comment: <0>17</0>
-components:
-  ModalApp: components/ModalApp.js
+codePaths:
+  - components/ModalApp.js
 ---
 
 ![](https://user-images.githubusercontent.com/23733477/56563695-f17a9b00-65de-11e9-969f-f98977e7e9a1.png)

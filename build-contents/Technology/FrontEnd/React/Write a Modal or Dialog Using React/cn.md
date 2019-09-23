@@ -2,8 +2,8 @@
 title: 使用React手写一个对话框或模态框
 postTime: 2019/4/23 15:00
 comment: 6
-components:
-  ModalApp: components/ModalApp.js
+codePaths:
+  - components/ModalApp.js
 ---
 
 ![](https://user-images.githubusercontent.com/23733477/56563695-f17a9b00-65de-11e9-969f-f98977e7e9a1.png)

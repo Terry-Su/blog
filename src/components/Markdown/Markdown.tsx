@@ -8,7 +8,6 @@ import GlobalMarkdownStyle from '@/styles/GlobalMarkdownStyle'
 import { initMermaid } from '@/utils/mermaid'
 import { MDXTag } from '@mdx-js/tag'
 
-import getLiveComponentMap from '../../../shared/getLiveComponentMap'
 import Live from '../Live/Live'
 
 // support jsx
@@ -32,23 +31,7 @@ export default class Markdown extends Component<Props, State> {
     setTimeout( () => Prism.highlightAll(), 0 )
   }
 
-  // get componentMap() {
-  //   const { componentTextMap = {} } = getDefaultData()
-  //   const res = getLiveComponentMap(componentTextMap)
-  //   return res
-  // }
-  get componentMapCodes() {
-    let codes = ''
-    const { componentTextMap = {} } = getDefaultData()
-    for (let key in componentTextMap) {
-      codes += `
-${componentTextMap[ key ]}
-      `
-    }
-    return codes
-  }
-  
-  get liveCodes() { return `${getDefaultData().text}${this.componentMapCodes}` }
+  get liveCodes() { return `${getDefaultData().text}${getDefaultData().importedCodes}` }
 
   render() {
     const scope = {

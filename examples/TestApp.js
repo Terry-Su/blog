@@ -51,5 +51,3 @@ const StyledModalRoot = styled.div`
     border-radius: 10px;
   }
 `
-
-render( <App /> )

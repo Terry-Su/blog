@@ -64,9 +64,7 @@ try {
         for ( let key in __$$__scope__$$__ ) {
           const value = __$$__scope__$$__[ key ]
           declareScript = `${declareScript}
-try {
-  var ${key} = __$$__scope__$$__[ '${key}' ]
-} catch(e) { console.log(e) }
+          var ${key} = __$$__scope__$$__[ '${key}' ]
 `
         }
 
@@ -74,7 +72,7 @@ try {
         var render = ! isRunningNodeJS() ? 
         element => ! process.env.DEV ? ReactDOM.render( element, dom ) : ReactDOM.hydrate( element, dom ) :
         element => { this.ssrHtml = window[ '$ReactDOMServer' ].renderToString( element ) };
-
+        // console.log( `declareScript`, declareScript )
         eval(declareScript + '\n' + output);
       })()
     }

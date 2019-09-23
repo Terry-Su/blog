@@ -430,7 +430,7 @@ function getRemarkBasicData(
     postTime,
     comment,
     isAutoTranslated,
-    components = {}
+    codePaths = []
   }: ClientRemarkMetadata = remark.getMetadata() || {}
   const id = getRemarkId( remark )
   const title = getRemarkTitle( remark )
@@ -446,11 +446,11 @@ function getRemarkBasicData(
   const route = getRemarkRoute( remark, absoluteRoot )
 
   // # get live component texts
-  let componentTextMap = {}
-  for ( let key in components ) {
+  let importedCodes = ``
+  console.log( codePaths )
+  for ( let relativeComponentPath of codePaths ) {
     const { relativePath } = remark
     const relativePathFolder = getFileFolderPath( relativePath )
-    const relativeComponentPath = components[ key ]
     const file = resolve(
       PATH_CONTENTS,
       relativePathFolder,
@@ -460,13 +460,14 @@ function getRemarkBasicData(
     if ( fs.existsSync( file ) ) {
       text = fs.readFileSync( file, { encoding: "utf8" } )
     }
-    componentTextMap[ key ] = text
+    
+    importedCodes = `${importedCodes}\n${text}`
   }
 
   // // ========================
   // // # !! SIDE EFFIECTS
   // // ========================
-  // buildLiveComponentHtmlByRemark( componentTextMap, route, text )
+  // buildLiveComponentHtmlByRemark( importedCodes, route, text )
 
   return {
     id,
@@ -478,7 +479,7 @@ function getRemarkBasicData(
     comment,
     isAutoTranslated,
     availableOtherLocales,
-    componentTextMap
+    importedCodes
   }
 }
 
