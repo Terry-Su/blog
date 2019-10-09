@@ -65,7 +65,7 @@ export default function getPagesByLocale(
     }
   } )
 
-  const articleRemarks = remarks.filter( remark => {
+  let articleRemarks = remarks.filter( remark => {
     const { relativePath } = remark
     // is article folder
     if ( relativePath.split( "/" ).length > 2 ) {
@@ -73,6 +73,18 @@ export default function getPagesByLocale(
       return localeName === getSpeciaLocalelName( locale )
     }
   } )
+  articleRemarks = articleRemarks.filter( v => {
+    // # filter article remarks in simple mode
+    const relativePathsInSimpleMode = [
+      '__dev/dev-1/en',
+      '__dev/dev-component-ssr/en'
+    ]
+    return __SIMPLE_MODE__ ? (
+      relativePathsInSimpleMode.length > 0 && relativePathsInSimpleMode.includes( v.relativePath )
+    ) : (
+      relativePathsInSimpleMode.length === 0 || !relativePathsInSimpleMode.includes( v.relativePath )
+    )
+  }) 
 
   const categoryProps: CategoryProp[] = getCategoryProps( yamls )
   const categories = getCategories(
@@ -144,6 +156,7 @@ export default function getPagesByLocale(
       }
     }
   } )
+  
 
   // # how it works series page
   // const howItWorks = {
@@ -206,12 +219,7 @@ export default function getPagesByLocale(
     newestRemarks,
     t
   } )
-  return [ homePageInfo, ...( __SIMPLE_MODE__ ? remarkPageInfos.filter( v => {
-    return __SIMPLE_MODE__ && (
-      v.path === '/dev-1'
-      || v.path === '/write-a-modal-or-dialog-using-react'
-    )
-  } ).filter(v => v != null) : remarkPageInfos ), about ]
+  return [ homePageInfo, ...remarkPageInfos, about ]
 }
 
 function getCategoryProps( yamls: TransformedYamlFile[] ) {

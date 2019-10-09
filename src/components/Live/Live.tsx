@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import loadScript from '@/utils/loadScript'
 import * as Babel from '@babel/standalone'
 import CodeLive from '@/components/Live/CodeLive'
+import ComponentSSR from '@/components/ComponentSSR'
 
 class Props {
   code?: string = ''
@@ -54,6 +55,7 @@ try {
       ReactDOM,
       styled,
       CodeLive,
+      ComponentSSR,
       ...__$$__scope__$$__
     }
   

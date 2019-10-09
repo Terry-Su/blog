@@ -20,7 +20,7 @@
         "NODE_ENV": "development",
         // "DEV": "true",
         // "SKIP_WEBPACK_COMPILE": "true",
-        "SIMPLE_MODE": "true",
+        // "SIMPLE_MODE": "true",
         "TS_NODE_PROJECT": "tsconfig.node.json"
       },
       "sourceMaps": true

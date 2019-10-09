@@ -31,13 +31,18 @@ export default class Markdown extends Component<Props, State> {
     setTimeout( () => Prism.highlightAll(), 0 )
   }
 
-  get liveCodes() { return `${getDefaultData().text}\n${getDefaultData().importedCodes}` }
+  get liveCodes() { return `try {
+  ${getDefaultData().importedCodes}\n${getDefaultData().text}
+  } catch( e ) {
+  ${getDefaultData().text}
+}` }
 
   render() {
     const scope = {
       ...basicScope,
       // ...this.componentMap
     }
+    // console.log( this.liveCodes )
     return (
       <React.Fragment>
         {/* <div
