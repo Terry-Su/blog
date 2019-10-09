@@ -2,7 +2,7 @@ import path from 'path'
 
 import { Config, PageInfo, TransformedData } from '../../tsblog/src/typings'
 import * as namesMap from '../locale/names'
-import { __DEV__ } from '../scripts/global'
+import { __DEV__, __SIMPLE_MODE__ } from '../scripts/global'
 import getPagesByLocale, { getRemarkFolderPath } from './getPagesByLocale'
 
 export default function getPages(
@@ -10,6 +10,8 @@ export default function getPages(
   config: Config
 ): PageInfo[] {
   let res = []
+
+
   Object.values( namesMap ).forEach( locale => {
     const data = getPagesByLocale( transformedData, locale ) || []
     res = [ ...res, ...data ]
@@ -29,7 +31,7 @@ export default function getPages(
       `Test standalone component at: http://localhost:${config.port}/standalone`
     )
 
-    // # test page
+    // # test page (useful when some blog contents have problems)
     const { remarks } = transformedData
     const remark = remarks.find(
       remark => getRemarkFolderPath( remark ) === "test"
@@ -41,8 +43,18 @@ export default function getPages(
         "../src/templates/RemarkTemplate/RemarkTemplate"
       ),
       data: {
+        title: "Test Blog",
         text            : remark && remark.getText(),
-        importedCodes: `render(<h1>Test App</h1>)`
+        importedCodes: `
+const count = 1
+
+class Foo extends React.Component {
+    render() {
+        console.log( count )
+        return <h1>Test123</h1>
+    }
+}
+      `
       }
     }
     res.push( testPage )

@@ -31,7 +31,7 @@ export default class Markdown extends Component<Props, State> {
     setTimeout( () => Prism.highlightAll(), 0 )
   }
 
-  get liveCodes() { return `${getDefaultData().text}${getDefaultData().importedCodes}` }
+  get liveCodes() { return `${getDefaultData().text}\n${getDefaultData().importedCodes}` }
 
   render() {
     const scope = {

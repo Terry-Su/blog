@@ -1,6 +1,8 @@
-```js
-function Log( str ) {
-  console.log( str )
-}
-```
+---
+title: Blog
+codePaths:
+  - Foo.js
+---
+Test
+<Foo />
 

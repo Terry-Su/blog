@@ -18,7 +18,9 @@
       "protocol": "inspector",
       "env": {
         "NODE_ENV": "development",
-        "DEV": "true",
+        // "DEV": "true",
+        // "SKIP_WEBPACK_COMPILE": "true",
+        "SIMPLE_MODE": "true",
         "TS_NODE_PROJECT": "tsconfig.node.json"
       },
       "sourceMaps": true

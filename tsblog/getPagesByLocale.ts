@@ -27,6 +27,7 @@ import ClientRemark, {
 import { PATH_ABOUT, PATH_HOW_IT_WORKS_SERIES } from '../src/constants/paths'
 import { SiteData } from '../tsblog.config'
 import { CATEGORY_PROPS_FILE_NAME } from './constants'
+import { __SIMPLE_MODE__ } from 'scripts/global'
 
 const { resolve } = path
 
@@ -205,7 +206,12 @@ export default function getPagesByLocale(
     newestRemarks,
     t
   } )
-  return [ homePageInfo, ...remarkPageInfos, about ]
+  return [ homePageInfo, ...( __SIMPLE_MODE__ ? remarkPageInfos.filter( v => {
+    return __SIMPLE_MODE__ && (
+      v.path === '/dev-1'
+      || v.path === '/write-a-modal-or-dialog-using-react'
+    )
+  } ).filter(v => v != null) : remarkPageInfos ), about ]
 }
 
 function getCategoryProps( yamls: TransformedYamlFile[] ) {
@@ -447,7 +453,7 @@ function getRemarkBasicData(
 
   // # get live component texts
   let importedCodes = ``
-  console.log( codePaths )
+  // console.log( codePaths )
   for ( let relativeComponentPath of codePaths ) {
     const { relativePath } = remark
     const relativePathFolder = getFileFolderPath( relativePath )

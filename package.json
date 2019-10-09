@@ -7,6 +7,8 @@
     "start": "cross-env DEV=true nodemon --verbose -e ts,tsx,md",
     "build": "ts-node --project tsconfig.node.json -r tsconfig-paths/register server",
     "publish": "npm run build && npm run tsnode scripts/publishToSite",
+    "simple": "cross-env DEV=true SIMPLE_MODE=true SKIP_WEBPACK_COMPILE=true nodemon --verbose -e ts,tsx,md",
+    "simple:build": "cross-env SIMPLE_MODE=true ts-node --project tsconfig.node.json -r tsconfig-paths/register server",
     "i18n": "npm run tsnode scripts/i18n",
     "other": "npm run tsnode scripts/buildContentsOnOtherPlatforms",
     "tsnode": "cross-env TS_NODE_PROJECT=tsconfig.node.json ts-node",

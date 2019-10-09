@@ -14,7 +14,7 @@
 
   "files.associations": {
     "*.md": "mdx",
-    "*.js": "jsx",
+    "*.js": "javascriptreact",
   },
 
 

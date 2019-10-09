@@ -69,11 +69,17 @@ try {
         }
 
         // # render function
-        var render = ! isRunningNodeJS() ? 
-        element => ! process.env.DEV ? ReactDOM.render( element, dom ) : ReactDOM.hydrate( element, dom ) :
-        element => { this.ssrHtml = window[ '$ReactDOMServer' ].renderToString( element ) };
-        // console.log( `declareScript`, declareScript )
-        eval(declareScript + '\n' + output);
+        try {
+          var render = ! isRunningNodeJS() ? 
+          element => ! process.env.DEV ? ReactDOM.render( element, dom ) : ReactDOM.hydrate( element, dom ) :
+          element => { 
+            this.ssrHtml = window[ '$ReactDOMServer' ].renderToString( element ) 
+          };
+          // console.log( `declareScript`, declareScript )
+          eval(declareScript + '\n' + output);
+        } catch(e) {
+          console.log( e )
+        }
       })()
     }
   }
@@ -81,9 +87,14 @@ try {
   render() {
     return (
       <div>
+        {/* {
+          isRunningNodeJS() && <div>
+            Loading...
+          </div>
+        } */}
         {
           !isRunningNodeJS() ? <div ref={ this.ref } /> : <div dangerouslySetInnerHTML={{
-            __html: ! isRunningNodeJS() ? '' : this.ssrHtml 
+            __html: this.ssrHtml 
           }} />
         }
       </div>
