@@ -13,4 +13,4 @@ postTime: 2019/01/15 22:54
 * [思否 SegmentFault](https://segmentfault.com/u/terry_su)
 </5>
 * [<3>微博</3>](http://weibo.com/hidadasu)
-* [<3>微博</3>](theterrysu@163.com)
+* [<6>电子邮箱</6>](theterrysu@163.com)

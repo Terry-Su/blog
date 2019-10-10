@@ -11,4 +11,4 @@ I've learned English seriously these years and kept practicing thinking in Engli
 * [Github](https://github.com/Terry-Su)
 
 * [Microblog](http://weibo.com/hidadasu)
-* [Microblog](theterrysu@163.com)
+* [Email](theterrysu@163.com)

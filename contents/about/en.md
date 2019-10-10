@@ -11,4 +11,4 @@ postTime: 2019/01/15 22:54
 * [Github](https://github.com/Terry-Su)
 <5></5>
 * [<3>Microblog</3>](http://weibo.com/hidadasu)
-* [<3>Microblog</3>](theterrysu@163.com)
+* [<6>Email</6>](theterrysu@163.com)
