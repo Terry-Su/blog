@@ -42,7 +42,7 @@ Writing helps to organize my thoughts, to inspire myself to produce great ideas 
 
 
 ## Add fun to daily life
-The process of learning is boring sometimes. However, when writing a blog, I can do something interesting. I can create an animation to show complex and boring theory vividly, for example,.
+The process of learning is boring sometimes. However, when writing a blog, I can do something interesting. I can create an animation to show complex and boring theory vividly, for example.
 
 
 ## Build personal website
