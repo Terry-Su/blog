@@ -29,6 +29,7 @@ export default class Markdown extends Component<Props, State> {
   componentDidMount() {
     initMermaid()
     setTimeout( () => Prism.highlightAll(), 0 )
+    console.log( 123 )
   }
 
   get liveCodes() { return `try {

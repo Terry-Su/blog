@@ -26,7 +26,7 @@ isAutoTranslated: false
 ## How 
 ### 搭建源码调试环境
 要阅读源码，首先拿到源码，然后最后能边调试边阅读。当然，如果智力和推理能力惊人，大可以直接在Github上在线阅读。
-有2中方法下载源码。一种是最常见的git clone,将Github上webpack项目clone到本地，pull后与webpack官方最新代码保持一致，一劳永逸。不过作者尝试第一种方法时，总是clone不下来，很大可能是由于webpack源文件过大且github服务器clone一直很慢。
+有2种方法下载源码。一种是最常见的git clone,将Github上webpack项目clone到本地，pull后与webpack官方最新代码保持一致，一劳永逸。不过作者尝试第一种方法时，总是clone不下来，很大可能是由于webpack源文件过大且github服务器clone一直很慢。
 于是退而求其次，使用第二种方法：下载Webpack源码release版本。选择一个打算阅读的webpack源码版本，直接下载"Source code(zip)"即可。速度非常快，因为不包含.git。
 ![image](https://user-images.githubusercontent.com/23733477/72396287-2a632d00-3777-11ea-9aa8-7ba669a1869a.png)
 

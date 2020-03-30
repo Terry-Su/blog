@@ -62,7 +62,7 @@ const config: Config = {
   parser: {
     ".md": remarkParser
   },
-  port: 3603
+  port: 3606
 }
 
 export default config

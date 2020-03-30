@@ -7,7 +7,7 @@ import { PATH_ABOUT, PATH_HOW_IT_WORKS_SERIES } from '@/constants/paths'
 import { URL_GITHUB } from '@/constants/urls'
 import getDefaultData, { getCurrentPagePath } from '@/helpers/getDefaultData'
 import { STYLE_LAYOUT_HOME_HEADER_HEIGHT } from '@/styles/STYLES'
-import { About, Home } from '@cache/App'
+// import { About, Home } from '@cache/App'
 
 import ResolvedLink from '../ResolvedLink'
 import Logo from '../svg/Logo'
@@ -27,16 +27,16 @@ class Header extends Component<Props, State> {
   onLinkMouseMove = (path: string) => {
     const { pathnameRoot } = getDefaultData()
     if (path === `${pathnameRoot}${PATH_ABOUT}`) {
-      About.preload()
+      // About.preload()
     }
 
     if (path === pathnameRoot) {
-      Home.preload()
+      // Home.preload()
     }
   }
 
   onLogoSectionMouseMove = () => {
-    Home.preload()
+    // Home.preload()
   }
 
   render() {

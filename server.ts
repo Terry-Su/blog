@@ -14,5 +14,5 @@ if ( __DEV__ && !__SIMPLE_MODE__ ) {
   const sourceI18nContent = path.resolve( __dirname, "contents" )
   copySomeFiles( sourceI18nContent, config.entry.contents )
 
-  require( "./scripts/i18n" )
+  import( "./scripts/i18n" )
 }
