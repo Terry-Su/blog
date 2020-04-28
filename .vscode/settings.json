@@ -1,23 +1,25 @@
 {
-  "eslint.autoFixOnSave": true,
   "eslint.validate": [
     "javascript",
-    { "language": "typescript", "autoFix": true },
-    { "language": "typescriptReact", "autoFix": true }
+    "javascriptReact",
+    "typescript",
+    "typescriptReact",
   ],
-
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "javascript.format.enable": false,
+  "eslint.format.enable": true,
+  "editor.tabSize": 2,
   "importSorter.generalConfiguration.sortOnBeforeSave": true,
   "importSorter.generalConfiguration.exclude": [
     "scripts/buildLiveComponentHtmlByRemark.tsx"
   ],
   "importSorter.importStringConfiguration.hasSemicolon": false,
-
   "files.associations": {
     "*.md": "mdx",
     "*.js": "javascriptreact",
   },
-
-
   "files.exclude": {
     "**/.backup": true,
     "build-contents": true,

@@ -12,6 +12,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
     /* background: #f8f3ef; */
     background: hsl(27, 39%, 95%);
+    /* background: rgba(247, 231, 206,1); */
+    /* background: rgba(242, 232, 219,1); */
     @media (max-width: 576px){
       box-sizing: border-box;
       padding: 20px;

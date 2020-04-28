@@ -1,7 +1,7 @@
 ---
 title: 轻松学会HTTP缓存（强缓存，协商缓存）
 postTime: 2020/3/30 9:30
-comment: 8
+comment: 9
 isAutoTranslated: false
 # codePaths:
 #   foo.js

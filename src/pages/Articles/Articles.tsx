@@ -121,12 +121,13 @@ const StyleLeftSidebar: any = styled.div`
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   align-self: flex-start;
   display: flex;
   justify-content: flex-end;
   width: ${STYLE_ARTICLES_SIDEBAR_WIDTH}px;
   height: ${(props: any) => props.bodyHeight};
+  margin-right: 10px;
   /* margin: 0 50px 0 0; */
   border-right: 1px solid rgba(0, 0, 0, 0.02);
 

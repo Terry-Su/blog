@@ -75,7 +75,7 @@ class Header extends Component<Props, State> {
             </StyledLinkWrapper>
           ))}
           <StyledLinkWrapper isMini={isMini} currentPath={currentPath}>
-            <a href={blogGithub}>GITHUB</a>
+            <a href={'https://github.com/Terry-Su'}>GITHUB</a>
           </StyledLinkWrapper>
         </StyledLinksWrapper>
       </StyledRoot>
