@@ -1,9 +1,10 @@
 ---
-title: 彻底搞懂React源码中的调度原理（Concurrent模式）
+title: 彻底搞懂React源码调度原理（Concurrent模式）
 postTime: 2020/5/11 11:23
 comment: 11
 isAutoTranslated: false
 ---
+![](https://terry-su.github.io/assets/blogs/understand-react-scheduling-mechanism/article-title.jpg)
 自上一篇写关于diff的文章到现在已经过了二十天多，利用业余时间和10天婚假的闲暇，终于搞懂了React源码中的调度原理。当费劲一番周折终于调试到将更新与调度任务连接在一起的核心逻辑那一刻，忧愁的嘴角终于露出欣慰的微笑。
 
 最早之前，React还没有用fiber重写，那个时候对React调度模块就有好奇。而现在的调度模块对于之前没研究过它的我来说更是带有一层神秘的色彩，色彩中朦胧浮现出两个字：“困难”。
@@ -65,7 +66,7 @@ ReactDOM.render(<SyncSchedulingExample />, document.getElementById("container"))
 
 运行案例后，查看Chrome性能分析图：
 
-![](http://localhost:5000/assets/blogs/understand-react-scheduling-mechanism/1-cn.png)
+![](https://terry-su.github.io/assets/blogs/understand-react-scheduling-mechanism/1-cn.png)
 
 从结果可知，尽管两个任务理应“同时”运行，但react会先把第一个任务执行完后再执行第二个任务，这就是react同步模式：
 
@@ -94,7 +95,7 @@ React官网用了一个很形象的版本管理案例来形容“同时”模式
 
 [Dan-Concurrent Mode Demo](https://codesandbox.io/s/koyz664q35):
 
-![](http://localhost:5000/assets/blogs/understand-react-scheduling-mechanism/dan-input-demo.gif)
+![](https://terry-su.github.io/assets/blogs/understand-react-scheduling-mechanism/dan-input-demo.gif)
 
 同步模式下，卡顿现象明显，并且会出现UI阻塞状态：Input中的光标不再闪烁，而是卡住。
 
@@ -107,7 +108,7 @@ React是如何实现同步调度模式的？这也是本文的核心。接下来
 
 
 ## 时间切片
-![](http://localhost:5000/assets/blogs/understand-react-scheduling-mechanism/time-slicing-demo.png)
+![](https://terry-su.github.io/assets/blogs/understand-react-scheduling-mechanism/time-slicing-demo.png)
 ### 什么是时间切片
 最早是从Lin Clark分享的[经典Fiber演讲](https://www.youtube.com/watch?v=ZCuYPiUIONs)中了解到的时间切片。时间切片指的是一种将多个粒度小的任务放入一个个时间切片中执行的一种方法。
 
@@ -139,7 +140,7 @@ React是如何实现同步调度模式的？这也是本文的核心。接下来
 
 从2019年2月27号开始，React调度模块[移除了之前的requestIdleCallback腻子脚本相关代码](https://github.com/facebook/react/commit/00748c53e183952696157088a858352cc77b0010?diff=split#diff-603a307ec39e05daabd1c651dc2ffb15)。
 
-![](http://localhost:5000/assets/blogs/understand-react-scheduling-mechanism/react-remove-requestIdleCallback-polyfill.png)
+![](https://terry-su.github.io/assets/blogs/understand-react-scheduling-mechanism/react-remove-requestIdleCallback-polyfill.png)
 
 所以在一些之前的调度相关文章中，会提到React如何使用`requestAnimationFrame`实现`requestIdleCallback`腻子脚本，以及计算帧的边界时间等。因为当时的调度源码的确使用了这些来实现时间切片。不过现在的调度模块代码已精简许多，并且用新的方式实现了时间切片。
 
@@ -177,7 +178,7 @@ console.log( 'after port1 postMessage' )
 
 在执行调度工作循环和计算工作循环时，执行每一个工作中Fiber。但是，有一个条件是每隔5毫秒，会跳出工作循环，运行一次**异步的`MessageChannel`的`port.postMessage(...)`方法，检查是否存在事件响应、更高优先级任务或其他代码需要执行**，如果有则执行，如果没有则重新创建工作循环，执行剩下的工作中Fiber。
 
-![](http://localhost:5000/assets/blogs/understand-react-scheduling-mechanism/time-slicing-demo.png)
+![](https://terry-su.github.io/assets/blogs/understand-react-scheduling-mechanism/time-slicing-demo.png)
 
 但是，为什么性能图上显示的切片不是精确的5毫秒？
 
@@ -191,7 +192,7 @@ console.log( 'after port1 postMessage' )
 # 如何调度一个任务
 
 讲完时间切片，就可以了解React如何真正的调度一个任务了。
-![](http://localhost:5000/assets/blogs/understand-react-scheduling-mechanism/frame-lifecycle.png)
+![](https://terry-su.github.io/assets/blogs/understand-react-scheduling-mechanism/frame-lifecycle.png)
 
 `requestIdleCallback(callback, { timeout: number })`是浏览器提供的一种可以让回调函数执行在每帧（上图2个`vsync`之间即为1帧）末尾的空闲阶段的方法，配置timeout后，若多帧持续没有空闲时间,超过timeout时长后，该回调函数将立即被执行。  
 
@@ -287,7 +288,7 @@ ReactDOM.createRoot( document.getElementById('container') ).render( <ConcurrentS
 
 因为是为了展示高优先级插队。第二次setTimeout使用的用户交互优先级更新，晚100毫秒，可保证第一次setTimeout对应的普通更新正在执行中，还没有完成，这个时候最能体现插队效果。
 
-![](http://localhost:5000/assets/blogs/understand-react-scheduling-mechanism/insert-high-priority-demo.gif)
+![](https://terry-su.github.io/assets/blogs/understand-react-scheduling-mechanism/insert-high-priority-demo.gif)
 
 运行案例后，页面默认显示8000个0，然后0变为2（而不是变为1），再变为3。
 
@@ -295,9 +296,9 @@ ReactDOM.createRoot( document.getElementById('container') ).render( <ConcurrentS
 
 接下来，观察性能图。
 总览：
-![](http://localhost:5000/assets/blogs/understand-react-scheduling-mechanism/concurrent-insert-high-priority-cn.png)
+![](https://terry-su.github.io/assets/blogs/understand-react-scheduling-mechanism/concurrent-insert-high-priority-cn.png)
 被中断细节：只执行了3个时间切片就被中断：
-![](http://localhost:5000/assets/blogs/understand-react-scheduling-mechanism/concurrent-insert-high-priority-detail.png)
+![](https://terry-su.github.io/assets/blogs/understand-react-scheduling-mechanism/concurrent-insert-high-priority-detail.png)
 
 ### 如何实现高优先级插队
 1. 延用上面的高优先级插队案例，从触发高优先级点击事件（准备插队）开始。
@@ -355,7 +356,7 @@ ReactDOM.createRoot( document.getElementById('container') ).render( <ConcurrentS
 | 过程 | 时间相关参数  |   值   |
 | ---- | ---- | ---- |
 | `setState(...) -->`<br/>`var expirationTime = computeExpirationForFiber(currentTime, ...)` | `currentTime` | 1073741 630 |
-| | expirationTime=computeExpirationForFiber(currentTime, ...) | 1073741 571 |
+| | `expirationTime=computeExpirationForFiber(currentTime, ...)` | 1073741 571 |
 | `ensureRootIsScheduled(...) -->` `timeout = expirationTimeToMs(expirationTime) - now()` | `expirationTimeToMs(expirationTime)` | 2500 |
 | | `now()` | 1916 |
 | | `timeout = expirationTimeToMs(expirationTime) - now()` | 584 |
