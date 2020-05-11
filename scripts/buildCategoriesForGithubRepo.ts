@@ -43,8 +43,6 @@ function getMarkdownText(
   res =
     res +
     `${t( "forGithubRepo.subscriptionNote" )}
-    
-![](https://user-images.githubusercontent.com/23733477/55521767-b6a6d680-56b4-11e9-9ddf-87b7e2888153.gif)
 `
 
   // # newest blogs
