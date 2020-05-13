@@ -103,8 +103,8 @@ React官网用了一个很形象的版本管理案例来形容“同时”模式
 
 同时模式很好的解决了连续频繁更新状态场景下的卡顿和UI阻塞问题。当然，同时模式下还有其他实用功能，比如Suspense，因为本文主要讲调度原理和源码实现，所以就不展开讲Suspense了。
 
-### 同步调度模式如何实现
-React是如何实现同步调度模式的？这也是本文的核心。接下来将先讲时间切片模式，以及React如何实现时间切片模式，然后再讲调度中的优先级，以及如何实现优先级插队，最后讲调度的核心参数：expirationTime（过期时间）。
+### 同时调度模式如何实现
+React是如何实现同时调度模式的？这也是本文的核心。接下来将先讲时间切片模式，以及React如何实现时间切片模式，然后再讲调度中的优先级，以及如何实现优先级插队，最后讲调度的核心参数：expirationTime（过期时间）。
 
 
 ## 时间切片
@@ -341,7 +341,7 @@ ReactDOM.createRoot( document.getElementById('container') ).render( <ConcurrentS
 |   `ensureRootIsScheduled(...) -->` <br/>`timeout = expirationTimeToMs(expirationTime) - now()`   |  `expirationTimeToMs(expirationTime)`    |  7000    |
 |      |   `now()`   |   1808   |
 |      |   `timeout = expirationTimeToMs(expirationTime) - now()`   |   5192   |
-|      |   `startTime`   |  1808    |
+|   `unstable_scheduleCallback() -->` <br/>`var expirationTime = startTime + timeout`   |   `startTime`   |  1808    |
 |      |   `timeout`   |   5192   |
 |      |   `expirationTime = startTime + timeout`   |   7000   |
 
@@ -865,4 +865,4 @@ function unstable_scheduleCallback(priorityLevel, callback, options) {
 
 3. 调试源码。
 
-对于非常简单的功能，一般只看源码就能弄懂。但其他功能，往往只有经过调试才能能验证和推理，从而真正弄懂。下一篇会写如何搭建**支持所有React版本断点调试细分文件**的React源码调试环境。
+对于非常简单的功能，一般只看源码就能弄懂。但其他功能，往往只有经过调试才能验证和推理，从而真正弄懂。下一篇会写如何搭建**支持所有React版本断点调试细分文件**的React源码调试环境。

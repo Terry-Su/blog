@@ -17,7 +17,7 @@ const localeMap = {
     
 **感谢你花时间阅读这篇文章。如果你喜欢这篇文章，欢迎点赞、收藏和分享，让更多的人看到这篇文章，这也是对我最大的鼓励和支持！**  
 
-**欢迎通过微信（扫描下方二维码）或[Github](https://github.com/Terry-Su/blogs-cn)订阅我的博客。**\n\n
+**欢迎通过微信（搜索“苏溪云的博客”或扫描下方二维码）或[Github](https://github.com/Terry-Su/blogs-cn)订阅我的博客。**\n\n
 ![微信公众号：苏溪云的博客](https://user-images.githubusercontent.com/23733477/77869172-2459f400-7270-11ea-8a84-d5d63a426c19.png)`,
     runCase: `点击运行案例`
   },
