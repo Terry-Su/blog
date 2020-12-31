@@ -106,3 +106,5 @@ Start from leftmost.</11>
 2. <40>partition the array into left sub array(smaller keys) and right sub array(larger keys)</40>
 
 3. <41>recur step2 to left sub array and right sub array</41>
+
+<Quick />

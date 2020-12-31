@@ -42,6 +42,9 @@ isAutoTranslated: false
 
 实体标签再验证的优先级高于日期再验证。
 
+日期再验证对应服务端响应头部为：`Last-Modified: <date>`，实体标签再验证对应服务端响应头部为： `ETag: <tag>`。
+
+
 ## 客户端刷新和重载
 那么客户端的刷新和重载如何影响HTTP缓存？事实上，每个浏览器都由自己的一套处理机制。一般来说，普通刷新不会影响缓存，但强制刷新（重载）会让缓存失效，重新向请求服务器文档。
 
@@ -67,7 +70,8 @@ HTTP缓存的2个要点就是：
 
 而这2点每个都包含相关的2个报文请求首部：
 * 强缓存：过期时间`Expires` 和有效期`Cache-Control: max-age`
-* 协商缓存：日期再验证`If-Modified-Since`和实体标签再验证`If-Not-Matched`
+* 协商缓存：日期再验证`If-Modified-Since`（对应响应首部：`Last-Modifed`）和实体标签再验证`If-Not-Matched`（对应响应首部：`Etag`）
+
 
 
 ## 参考资料

@@ -106,3 +106,5 @@ In the majority of situations, this is the fastest sort.
 2. partition the array into left sub array(smaller keys) and right sub array(larger keys)
 
 3. recur step2 to left sub array and right sub array
+
+<Quick />
